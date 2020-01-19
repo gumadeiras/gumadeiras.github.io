@@ -34,7 +34,7 @@
       // "website": "",
       "startDate": "2018-08",
       "endDate": "2019-09",
-      "summary": "Tool development that allows for automated vocal analysis in rodents using deep learning. https://dietrich-lab.org",
+      "summary": "Tool development that allows for automated vocal analysis in rodents using deep learning.",
       "highlights": [
         "Parameter-free identification of vocals in experimental recordings with high recall.",
         "Noise filtering and Classification of vocals using Convolutional Neural Networks.",
@@ -47,7 +47,7 @@
       // "website": "",
       "startDate": "2018-08",
       "endDate": "2019-09",
-      "summary": "Whole-brain analysis of neuronal activity in neonatal mice using the iDISCO+ tissue-clearing protocol and light-sheet microscopy. https://dietrich-lab.org",
+      "summary": "Whole-brain analysis of neuronal activity in neonatal mice using the iDISCO+ tissue-clearing protocol and light-sheet microscopy.",
       "highlights": [
         "Single-cell analysis of neuronal activation.",
         "High-performance parallel image processing pipeline for fast whole-brain analysis.",
