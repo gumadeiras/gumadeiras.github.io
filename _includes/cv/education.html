@@ -6,6 +6,7 @@
 
     <div class="entry-content">
       {% for e in cv.education %}
+      <div>
         {% if e.institution %}
           <h4 class="institution">{{ e.institution }}</h4>
         {% endif %}
@@ -30,6 +31,7 @@
             {% endfor %}
           </ul>
         {% endif %}
+        </div>
       {% endfor %}
     </div>
   </div>
