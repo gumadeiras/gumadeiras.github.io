@@ -35,4 +35,4 @@ google_fonts:
 navigation_pages:
   # - about.md
   - cv.md
-  - tags.md
+  # - tags.md
