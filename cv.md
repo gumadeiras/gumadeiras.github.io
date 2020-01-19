@@ -1,8 +1,8 @@
 ---
-title: Curriculum Vitæ
+title: About
 layout: cv
 actions:
-  - label: "Download as PDF"
-    icon: pdf
-    url: "#pdf-asset"
+  - label: "Google Scholar"
+    icon: googleplus
+    url: "https://scholar.google.com/citations?user=L603SPwAAAAJ"
 ---
