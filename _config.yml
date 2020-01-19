@@ -14,20 +14,22 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 lang: en-US
-title: My Awesome Site
+title: ①②③
 email:
-description:
+description: random thoughts [❤][☃]
 baseurl: # the optional subpath of your site, e.g. "/blog"
-url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-author:
-  name:
-  twitter:
+url: "https://gumadeiras.github.io"
+author: gumadeiras
+  name: Gustavo Madeira Santana
+  twitter: gumadeiras
   picture:
-twitter_username:
-github_username:
+twitter_username: gumadeiras
+instagram_username: gumadeiras
+lastfm_username: blissyzoad
+github_username: gumadeiras
 logo: # path of site logo, e.g. "/assets/images/logo.png"
-search: # true, false (default)
-search_full_content: false # true, false (default)
+search: false
+search_full_content: false
 search_provider: # lunr (default), algolia
 algolia:
   application_id: # YOUR_APPLICATION_ID
@@ -36,8 +38,10 @@ algolia:
   powered_by: # true (default), false
 
 # Build settings
+use_math: true
 markdown: kramdown
 remote_theme: "mmistakes/jekyll-theme-basically-basic"
+skin: night
 plugins: # previsously gems
   - jekyll-feed
   - jekyll-seo-tag
