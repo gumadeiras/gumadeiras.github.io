@@ -14,24 +14,24 @@ instagram_username: gumadeiras
 lastfm_username: gumadeiras
 github_username: gumadeiras
 
-# minima:
-#   date_format: "%b %-d, %Y"
+minima:
+  date_format: "%b %-d, %Y"
 
-#   # generate social links in footer
-#   social_links:
-#     twitter: gumadeiras
-#     instagram: gumadeiras
-#     lastfm:
-#     github: gumadeiras
-#     rss: rss
+  # generate social links in footer
+  social_links:
+    twitter: gumadeiras
+    instagram: gumadeiras
+    github: gumadeiras
+    rss: rss
     
 # Set this to true to get LaTeX math equation support
 use_math: true
 
 # Everything below here can be ignored, unless you want to change the theme entirely
-# theme: minima
-remote_theme: "mmistakes/jekyll-theme-basically-basic"
-skin: night
+theme: minima
+# remote_theme: "mmistakes/jekyll-theme-basically-basic"
+# skin: night
+skin: sunrise
 
 plugins:
   - jekyll-feed
