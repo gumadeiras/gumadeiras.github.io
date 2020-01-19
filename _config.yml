@@ -19,10 +19,10 @@ email:
 description: random thoughts [❤][☃]
 baseurl: # the optional subpath of your site, e.g. "/blog"
 url: "https://gumadeiras.github.io"
-author: gumadeiras
-  name: Gustavo Madeira Santana
+author: Gustavo Madeira Santana
+  name: Gustavo
   twitter: gumadeiras
-  picture:
+  # picture:
 twitter_username: gumadeiras
 instagram_username: gumadeiras
 lastfm_username: blissyzoad
