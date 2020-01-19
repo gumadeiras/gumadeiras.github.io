@@ -104,6 +104,19 @@
       //   "DB1101 - Perpendicular Crosstalk",
       //   "CS2011 - Introduction to Moisturization"
       // ]
+    },
+    {
+      "institution": "The Rockefeller University",
+      "area": "Kavli NSI iDISCO and ClearMap Course",
+      // "studyType": "Bachelor of Engineering",
+      "website": "https://www.rockefeller.edu/research/interdisciplinary-centers/kavli/",
+      "startDate": "2019-02-15",
+      "endDate": "2019-02-28",
+      // "gpa": "4.0",
+      // "courses": [
+      //   "DB1101 - Perpendicular Crosstalk",
+      //   "CS2011 - Introduction to Moisturization"
+      // ]
     }
   ],
   "awards": [
