@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: ①②③
-author: gumadeiras
+author: Gustavo Madeira Santana
 description: random thoughts [❤][☃]
 # github_username: gumadeiras
 
@@ -21,7 +21,7 @@ minima:
   social_links:
     twitter: gumadeiras
     instagram: gumadeiras
-    github:  gumadeiras
+    github: gumadeiras
     rss: rss
     
 # Set this to true to get LaTeX math equation support
