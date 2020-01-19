@@ -6,14 +6,24 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: hey, I'm Gustavo Madeira Santana
-description: random thoughts (❤)
-github_username: gumadeiras
+title: ①②③
+author: gumadeiras
+description: random thoughts [❤][☃]
+# github_username: gumadeiras
 
-# Email and twitter are optional:
-email: gumadeiras@gmail
-twitter_username: gumadeiras
+# # Email and twitter are optional:
+# email:
+# twitter_username: gumadeiras
+minima:
+  date_format: "%b %-d, %Y"
 
+  # generate social links in footer
+  social_links:
+    twitter: gumadeiras
+    instagram: gumadeiras
+    github:  gumadeiras
+    rss: rss
+    
 # Set this to true to get LaTeX math equation support
 use_math: true
 
