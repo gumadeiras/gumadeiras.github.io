@@ -8,7 +8,11 @@
       {% for e in cv.education %}
       <div>
         {% if e.institution %}
-          <h4 class="institution">{{ e.institution }}</h4>
+          {% if w.website %}
+              <a href="{{ w.website }}"><h4 class="institution">{{ e.institution }}</h4></a>
+            {% else %}
+              <h4 class="institution">{{ e.institution }}</h4>
+          {% endif %}
         {% endif %}
         <div class="date">
           {% if e.startDate %}
