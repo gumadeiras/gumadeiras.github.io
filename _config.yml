@@ -9,26 +9,30 @@
 title: ①②③
 author: Gustavo Madeira Santana
 description: random thoughts [❤][☃]
-# github_username: gumadeiras
+twitter_username: gumadeiras
+instagram_username: gumadeiras
+lastfm_username: gumadeiras
+github_username: gumadeiras
 
-# # Email and twitter are optional:
-# email:
-# twitter_username: gumadeiras
-minima:
-  date_format: "%b %-d, %Y"
+# minima:
+#   date_format: "%b %-d, %Y"
 
-  # generate social links in footer
-  social_links:
-    twitter: gumadeiras
-    instagram: gumadeiras
-    github: gumadeiras
-    rss: rss
+#   # generate social links in footer
+#   social_links:
+#     twitter: gumadeiras
+#     instagram: gumadeiras
+#     lastfm:
+#     github: gumadeiras
+#     rss: rss
     
 # Set this to true to get LaTeX math equation support
 use_math: true
 
 # Everything below here can be ignored, unless you want to change the theme entirely
-theme: minima
+# theme: minima
+remote_theme: "mmistakes/jekyll-theme-basically-basic"
+skin: night
+
 plugins:
   - jekyll-feed
   - jekyll-gist
