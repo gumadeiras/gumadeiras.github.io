@@ -29,12 +29,12 @@
   },
   "work": [
     {
-      "company": "The Whip",
-      "position": "CEO/President",
-      "website": "https://thewh.ip",
-      "startDate": "2013-12-01",
-      "endDate": "",
-      "summary": "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
+      "company": "Yale University School of Medicine",
+      "position": "Bachelor of Engineering",
+      "website": "https://ufrgs.br",
+      "startDate": "2015-03-01",
+      "endDate": "2019-11-16",
+      "summary": "Bachelor's degree in Computer Engineering.",
       "highlights": [
         "Concealed nipper in embrodiery.",
         "Dealt with Elastical Gomez on a daily basis."
@@ -56,16 +56,28 @@
   ],
   "education": [
     {
-      "institution": "University of Ointment",
+      "institution": "Yale University School of Medicine",
+      "area": "Computational Neuroscience",
+      "studyType": "Research Assistant",
+      "startDate": "2018-08-01",
+      "endDate": "2019-09-01",
+      // "gpa": "4.0",
+      // "courses": [
+      //   "DB1101 - Perpendicular Crosstalk",
+      //   "CS2011 - Introduction to Moisturization"
+      // ]
+    },
+    {
+      "institution": "Federal University of Rio Grande do Sul",
       "area": "Digital Skillets",
-      "studyType": "Bachelor",
-      "startDate": "2011-06-01",
-      "endDate": "2014-01-01",
-      "gpa": "4.0",
-      "courses": [
-        "DB1101 - Perpendicular Crosstalk",
-        "CS2011 - Introduction to Moisturization"
-      ]
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2015-03-01",
+      "endDate": "2019-11-16",
+      // "gpa": "4.0",
+      // "courses": [
+      //   "DB1101 - Perpendicular Crosstalk",
+      //   "CS2011 - Introduction to Moisturization"
+      // ]
     }
   ],
   "awards": [
