@@ -8,8 +8,8 @@
       {% for e in cv.education %}
       <div>
         {% if e.institution %}
-          {% if w.website %}
-              <a href="{{ w.website }}"><h4 class="institution">{{ e.institution }}</h4></a>
+          {% if e.website %}
+              <a href="{{ e.website }}"><h4 class="institution">{{ e.institution }}</h4></a>
             {% else %}
               <h4 class="institution">{{ e.institution }}</h4>
           {% endif %}
