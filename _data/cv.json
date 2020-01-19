@@ -29,12 +29,12 @@
   },
   "work": [
     {
-      "company": "Automated vocal analysis in rodents using Deep Learning",
+      "company": "Deep Learning framework for automated vocalization detection and analysis in rodents",
       "position": "Dietrich Lab, Research Assistant",
       // "website": "",
       "startDate": "2018-08",
       "endDate": "2019-09",
-      "summary": "Automated vocal analysis in rodents using deep learning allows for etc. https://dietrich-lab.org",
+      "summary": "Tool development that allows for automated vocal analysis in rodents using deep learning. https://dietrich-lab.org",
       "highlights": [
         "Parameter-free identification of vocals in experimental recordings with high recall.",
         "Noise filtering and Classification of vocals using Convolutional Neural Networks.",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "company": "Whole-brain analysis of neuronal activity using tissue-clearing techniques and light-sheet microscopy",
+      "company": "Whole-brain analysis of neuronal activity using tissue-clearing and light-sheet microscopy",
       "position": "Dietrich Lab, Research Assistant",
       // "website": "",
       "startDate": "2018-08",
