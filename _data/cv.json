@@ -29,15 +29,29 @@
   },
   "work": [
     {
-      "company": "Yale University School of Medicine",
-      "position": "Bachelor of Engineering",
-      "website": "https://ufrgs.br",
-      "startDate": "2015-03-01",
-      "endDate": "2019-11-16",
-      "summary": "Bachelor's degree in Computer Engineering.",
+      "company": "Automated vocal analysis in rodents using Deep Learning",
+      "position": "Dietrich Lab, Research Assistant",
+      "website": "",
+      "startDate": "2018-08",
+      "endDate": "2019-09",
+      "summary": "Automated vocal analysis in rodents using deep learning allows for etc. https://dietrich-lab.org",
       "highlights": [
-        "Concealed nipper in embrodiery.",
-        "Dealt with Elastical Gomez on a daily basis."
+        "Parameter-free identification of vocals in experimental recordings with high recall.",
+        "Noise filtering and Classification of vocals using Convolutional Neural Networks.",
+        "Vocalization segmentation using Deep Learning for precise spectro-temporal analysis."
+      ]
+    },
+    {
+      "company": "Whole-brain analysis of neuronal activity using tissue-clearing techniques and light-sheet microscopy",
+      "position": "Dietrich Lab, Research Assistant",
+      "website": "",
+      "startDate": "2018-08",
+      "endDate": "2019-09",
+      "summary": "Whole-brain analysis of neuronal activity using tissue-clearing techniques and light-sheet microscopy  allows for etc. https://dietrich-lab.org",
+      "highlights": [
+        "Parameter-free identification of vocals in experimental recordings with high recall.",
+        "Noise filtering and Classification of vocals using Convolutional Neural Networks.",
+        "Vocalization segmentation using Deep Learning for precise spectro-temporal analysis."
       ]
     }
   ],
@@ -59,8 +73,8 @@
       "institution": "Dietrich Lab - Yale University School of Medicine",
       "area": "Computational Neuroscience",
       "studyType": "Research Assistant",
-      "startDate": "2018-08-01",
-      "endDate": "2019-09-01",
+      "startDate": "2018-08",
+      "endDate": "2019-09",
       // "gpa": "4.0",
       // "courses": [
       //   "DB1101 - Perpendicular Crosstalk",
