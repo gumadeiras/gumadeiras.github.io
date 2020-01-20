@@ -80,6 +80,20 @@
     }
   ],
   "education": [
+    
+    {
+      "institution": "Federal University of Rio Grande do Sul",
+      "area": "Biological Sciences - Biochemistry",
+      "studyType": "Master of Science",
+      "website": "https://www.ufrgs.br/ppgbioq/",
+      "startDate": "2019-12",
+      // "endDate": "2019-11-16",
+      // "gpa": "4.0",
+      // "courses": [
+      //   "DB1101 - Perpendicular Crosstalk",
+      //   "CS2011 - Introduction to Moisturization"
+      // ]
+    },
     {
       "institution": "Dietrich Lab - Yale University School of Medicine",
       "area": "Computational Neuroscience",
