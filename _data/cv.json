@@ -87,7 +87,7 @@
       "studyType": "Master of Science",
       "website": "https://www.ufrgs.br/ppgbioq/",
       "startDate": "2019-12",
-      // "endDate": "2019-11-16",
+      "endDate": "",
       // "gpa": "4.0",
       // "courses": [
       //   "DB1101 - Perpendicular Crosstalk",
@@ -112,8 +112,8 @@
       "area": "Computer Engineering",
       "studyType": "Bachelor of Engineering",
       "website": "http://www.ufrgs.br/english/home",
-      "startDate": "2015-03-01",
-      "endDate": "2019-11-16",
+      "startDate": "2015-03",
+      "endDate": "2019-11",
       // "gpa": "4.0",
       // "courses": [
       //   "DB1101 - Perpendicular Crosstalk",
