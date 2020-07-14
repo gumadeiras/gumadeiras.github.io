@@ -16,7 +16,7 @@
 lang: en-US
 title: ①②③
 email:
-description: random thoughts [❤][☃]
+description: Gustavo Madeira Santana
 baseurl: # the optional subpath of your site, e.g. "/blog"
 url: "https://gumadeiras.github.io"
 author:
@@ -27,7 +27,7 @@ twitter_username: gumadeiras
 instagram_username: gumadeiras
 lastfm_username: blissyzoad
 github_username: gumadeiras
-google_analytics: UA-46692180-1
+# google_analytics: UA-46692180-1
 
 logo: # /assets/images/logo.png
 search: false
