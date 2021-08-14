@@ -25,7 +25,7 @@ author:
   picture: /assets/images/profile.png
 twitter_username: gumadeiras
 instagram_username: gumadeiras
-lastfm_username: blissyzoad
+lastfm_username: gumadieras
 github_username: gumadeiras
 # google_analytics: UA-46692180-1
 
@@ -49,8 +49,8 @@ plugins: # previsously gems
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
-feed:
-  path: atom.xml
+# feed:
+#   path: atom.xml
 
 # Pagination - https://jekyllrb.com/docs/pagination/
 paginate: 10
@@ -81,11 +81,11 @@ exclude:
   - /example # ignore Basically Basic dev site
 
 # Front Matter Defaults
-defaults:
-  # _posts
-  - scope:
-      path: "_posts"
-      type: posts
-    values:
-      layout: post
-      read_time: true
+# defaults:
+#   # _posts
+#   - scope:
+#       path: "_posts"
+#       type: posts
+#     values:
+#       layout: post
+#       read_time: true
