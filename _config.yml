@@ -14,9 +14,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 lang: en-US
-title: ①②③
+title: ①②③ | @gumadeiras
 email:
-description: Gustavo Madeira Santana
+description: Gustavo Madeira Santana | @gumadeiras
 baseurl: # the optional subpath of your site, e.g. "/blog"
 url: "https://gumadeiras.github.io"
 author:
