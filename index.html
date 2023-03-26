@@ -1,22 +1,54 @@
 ---
-layout: home
-paginate: true
-alt_title: "Hello. I'm Gustavo."
-sub_title: "∇"
-image: /assets/images/banner.jpg
-introduction: |
-  Feel free to message me on twitter or <a href="mailto:fromweb1@gumadeiras.com">email</a> me.
-actions:
-  - label: "Google Scholar"
-    icon: googleplus
-    url: "https://scholar.google.com/citations?user=L603SPwAAAAJ"
-  - label: "Twitter"
-    icon: twitter
-    url: "https://twitter.com/gumadeiras"
-  - label: "Instagram"
-    icon: instagram
-    url: "https://www.instagram.com/gumadeiras"
-  - label: "Last.fm"
-    icon: lastfm
-    url: "https://www.last.fm/user/gumadeiras"
+layout: default
 ---
+
+<section id="intro">
+    <div class="flex-row-between">
+        <h1>Hi, I'm Gustavo Madeira Santana.</h1>
+        <button id="theme-toggle" onclick="modeSwitcher()">
+            <div></div>
+        </button>
+    </div>
+    <p>
+        Feel free to message me on twitter or <a href="mailto:fromweb1@gumadeiras.com">email</a> me.
+    </p>
+</section>
+
+<section class="posts">
+    <!-- <h3>BLOG</h3>
+    <ul>
+        {% for post in site.posts %}
+        <li>
+            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time></li>
+        {% endfor %}
+    </ul> -->
+    <h3>news</h3>
+    <ul>
+        <li>
+            test...
+        </li>
+        <li>
+            <a href="https://elifesciences.org/articles/59161">VocalMat is out in eLife!</a>
+            <time datetime="2021-03-21">March 31, 2021</time>
+        </li>
+        
+    </ul>
+
+    
+    <h3>links</h3>
+    <ul>
+        <li>
+            <a href="https://scholar.google.com/citations?user=L603SPwAAAAJ">google scholar</a>
+        </li>
+        <li>
+            <a href="https://twitter.com/gumadeiras">twitter</a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/gumadeiras">instagram</a>
+        </li>
+        <li>
+            <a href="https://www.last.fm/user/gumadeiras">last.fm</a>
+        </li>
+    </ul>
+</section>

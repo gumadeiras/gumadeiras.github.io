@@ -1,9 +1,15 @@
 ---
-layout: page
+layout: default
 ---
 
-{{ content }}
-
-<div class="entries-{{ page.entries_layout | default: 'list' }}">
-  {% include posts-tag.html taxonomy=page.taxonomy %}
-</div>
+<section class="posts">
+<h1>Tag #{{page.tag}}</h1>
+    <ul>
+      {% for post in site.posts %}
+      {% if post.tags contains page.tag %}
+      <li><a class="post" href="{{ post.url }}">{{ post.title }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+	
+</section>

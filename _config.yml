@@ -1,91 +1,63 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-lang: en-US
-title: ①②③ | @gumadeiras
-email:
-description: Gustavo Madeira Santana | @gumadeiras
-baseurl: # the optional subpath of your site, e.g. "/blog"
-url: "https://gumadeiras.github.io"
+site: Gustavo Madeira Santana
+url: #yoururl
+title: Gustavo Madeira Santana
+description: researcher. computer engineering. neuroscience.
+googlewebfonts: Fira+Code:wght@400;500;700
+twitter:
+  username: @gumadeiras
+  card: summary
+  creator: @gumadeiras
 author:
-  name: Gustavo Madeira Santana
-  twitter: gumadeiras
-  picture: /assets/images/profile.png
-twitter_username: gumadeiras
-instagram_username: gumadeiras
-lastfm_username: gumadieras
-github_username: gumadeiras
-# google_analytics: UA-46692180-1
+  twitter: #yourusername
+  name: #yourusername
+  avatar:
+  email: #youremail
+  url: #yoururl
+permalink: pretty
 
-logo: # /assets/images/logo.png
-search: false
-search_full_content: false
-search_provider: # lunr (default), algolia
-algolia:
-  application_id: # YOUR_APPLICATION_ID
-  index_name: # YOUR_INDEX_NAME
-  search_only_api_key: # YOUR_SEARCH_ONLY_API_KEY
-  powered_by: # true (default), false
+baseurl: ""
 
-# Build settings
-use_math: true
-markdown: kramdown
-remote_theme: "mmistakes/jekyll-theme-basically-basic"
-skin: night
-plugins: # previsously gems
-  - jekyll-feed
+highlighter: rouge
+
+exclude:
+  - .jekyll-cache
+  
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+
+sass:
+  sass_dir:          _sass
+  style:            :compressed
+
+plugins:
+  - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-paginate
-# feed:
-#   path: atom.xml
 
-# Pagination - https://jekyllrb.com/docs/pagination/
-paginate: 10
-paginate_path: /page:num/
-
-# Exclude from processing.
-exclude:
-  - .asset-cache
-  - .bundle
-  - .codeclimate.yml
-  - .editorconfig
-  - .gitattributes
-  - .jekyll-assets-cache
-  - .sass-cache
-  - .scss-lint.yml
-  - CHANGELOG
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - node_modules
-  - Rakefile
-  - README
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - /docs # ignore Basically Basic sample site
-  - /example # ignore Basically Basic dev site
-
-# Front Matter Defaults
-# defaults:
-#   # _posts
-#   - scope:
-#       path: "_posts"
-#       type: posts
-#     values:
-#       layout: post
-#       read_time: true
+collections:
+  pages:
+    output: true
+    permalink: /:name
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:slug
+  
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
