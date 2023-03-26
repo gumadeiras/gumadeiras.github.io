@@ -40,10 +40,9 @@ layout: compress
 
     let theme = localStorage.getItem('theme');
 
-    theme = theme || (window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : 'light');
+    theme = theme || (window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light' : 'light');
     
-    // forcing light theme
-    setTheme('light');
+    setTheme(theme);
 
     function modeSwitcher() {
       let currentMode = document.documentElement.getAttribute('data-theme');
