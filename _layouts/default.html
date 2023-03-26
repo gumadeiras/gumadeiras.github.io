@@ -40,7 +40,7 @@ layout: compress
 
     let theme = localStorage.getItem('theme');
 
-    theme = theme || (window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light' : 'light');
+    theme = theme || (window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : 'light');
     
     setTheme(theme);
 
@@ -53,6 +53,7 @@ layout: compress
         setTheme('dark');
       }
     }
+    setTheme('light');
   </script>
 </body>
 
