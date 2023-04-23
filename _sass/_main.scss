@@ -173,11 +173,11 @@ a {
 .circular--portrait { 
 	position: relative;
 	overflow: hidden;
-	border-radius: 50%;
 }
 .circular--portrait img { 
 	width: 150px; 
 	height: 150px;
+	border-radius: 50%;
 }
 
 code,
