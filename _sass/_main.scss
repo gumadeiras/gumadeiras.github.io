@@ -170,6 +170,16 @@ a {
 	margin: 2rem 0;
 }
 
+.circular--portrait { 
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.circular--portrait img { 
+	width: 100%; 
+	height: auto;
+}
+
 code,
 pre {
 	background: var(--very-light-text-color);
