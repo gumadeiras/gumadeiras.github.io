@@ -306,7 +306,8 @@ header ul {
 
 .posts li {
 	align-items: center;
-	display: flex;
+	display: grid;
+	grid-template-columns: auto auto auto;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
 }
@@ -325,6 +326,15 @@ header ul {
 	padding-left: 1rem;
 	white-space: nowrap;
 	font-variant-numeric: tabular-nums;
+}
+
+.posts li dimension {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-align: right;
+	white-space: nowrap;
+}
+
 }
 
 time {
