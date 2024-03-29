@@ -432,10 +432,9 @@ figcaption {
 .badge{
   background: #fff;
   color: #424242;
-  min-width: 50px;
   padding-right: 1em;
-  height: 25px;
-  border-radius: 30px;
+  height: 20px;
+  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -453,5 +452,5 @@ figcaption {
   align-items: center;
   justify-content: center;
   margin-right: 0.5em;
-  margin-left: 0.1em;
+  margin-left: 0.5em;
 }
