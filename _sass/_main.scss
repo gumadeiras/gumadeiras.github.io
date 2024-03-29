@@ -429,29 +429,25 @@ figcaption {
 
 
 
-.dimension div {
+.posts li dimension div {
   position: relative;
   margin: auto;
-  width: 120px;
-  line-height: 64px;
+  width: 60px;
+  line-height: auto;
   text-align: center;
   color: #1a1a1a;
   font-size: 20px;
   border: 2px solid #f6a9bd;
-  border-radius: 10px;
+  border-radius: 1px;
   background: #f6a9bd;
   transition: all 0.3s;
   cursor: pointer;
 }
 
-.dimension div::before,
-.dimension div::after {
+.posts li dimension div::before,
+.posts li dimension div::after {
   content: "";
   position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
   border: 2px solid #fff;
   transition: all 0.5s;
   -webkit-animation: clippath 3s infinite linear;
@@ -459,7 +455,7 @@ figcaption {
   border-radius: 10px;
 }
 
-.dimension div::after {
+.posts li dimension div::after {
   -webkit-animation: clippath 3s infinite -1.5s linear;
           animation: clippath 3s infinite -1.5s linear;
 }
