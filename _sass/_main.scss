@@ -429,71 +429,27 @@ figcaption {
 
 
 
-.posts li dimension div {
-  position: relative;
-  margin: auto;
-  width: auto;
-  line-height: 25px;
-  text-align: center;
-  color: #1a1a1a;
-  font-size: 20px;
-  border: 1px solid #DE0606;
-  border-radius: 0.5px;
-  background: #555;
-  transition: all 0.3s;
-  cursor: pointer;
+.badge{
+  background: #fff;
+  color: #424242;
+  min-width: 50px;
+  padding-right: 1em;
+  height: 25px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.posts li dimension div::before,
-.posts li dimension div::after {
-  content: "";
-  position: absolute;
-  border: 1px solid #fff;
-  transition: all 0.5s;
-  -webkit-animation: clippath 3s infinite linear;
-          animation: clippath 3s infinite linear;
-  border-radius: 10px;
-}
-
-.posts li dimension div::after {
-  -webkit-animation: clippath 3s infinite -1.5s linear;
-          animation: clippath 3s infinite -1.5s linear;
-}
-
-@-webkit-keyframes clippath {
-  0%, 100% {
-    -webkit-clip-path: inset(0 0 98% 0);
-            clip-path: inset(0 0 98% 0);
-  }
-  25% {
-    -webkit-clip-path: inset(0 98% 0 0);
-            clip-path: inset(0 98% 0 0);
-  }
-  50% {
-    -webkit-clip-path: inset(98% 0 0 0);
-            clip-path: inset(98% 0 0 0);
-  }
-  75% {
-    -webkit-clip-path: inset(0 0 0 98%);
-            clip-path: inset(0 0 0 98%);
-  }
-}
-
-@keyframes clippath {
-  0%, 100% {
-    -webkit-clip-path: inset(0 0 98% 0);
-            clip-path: inset(0 0 98% 0);
-  }
-  25% {
-    -webkit-clip-path: inset(0 98% 0 0);
-            clip-path: inset(0 98% 0 0);
-  }
-  50% {
-    -webkit-clip-path: inset(98% 0 0 0);
-            clip-path: inset(98% 0 0 0);
-  }
-  75% {
-    -webkit-clip-path: inset(0 0 0 98%);
-            clip-path: inset(0 0 0 98%);
-  }
+.badge__icon{
+  background: #009688;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5em;
+  margin-left: 0.1em;
 }
