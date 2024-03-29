@@ -313,6 +313,7 @@ header ul {
 .posts li a,
 .posts li div,
 .projects li a {
+	text-align: left;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -330,10 +331,6 @@ header ul {
 	padding-left: 1rem;
 	text-align: right;
 	white-space: nowrap;
-}
-
-.posts li paper {
-	text-align: left;
 }
 
 time {
