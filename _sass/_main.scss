@@ -306,8 +306,7 @@ header ul {
 
 .posts li {
 	align-items: center;
-	display: grid;
-	grid-template-columns: auto auto auto;
+	display: flex;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
 }
@@ -330,7 +329,6 @@ header ul {
 
 .posts li dimension {
 	padding-left: 1rem;
-	padding-right: 1rem;
 	text-align: right;
 	white-space: nowrap;
 }
