@@ -439,14 +439,16 @@ figcaption {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  font-size: 0.8em;
 }
 
 .badge__icon{
-  background: #009688;
+  font-size: 0.8em;
+  background: #DE0606;
   color: #fff;
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
