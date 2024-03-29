@@ -425,76 +425,79 @@ figcaption {
 
 
 
-.badge_center {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
 
-.badge_circle {
+
+
+
+.dimension div {
   position: relative;
-  width: 200px;
-  height: 200px;
-  color: #fff;
-  background: #000;
-  border-radius: 50%;
-  border: 2px solid;
-}
-
-.badge_logo {
-  font-size: 140px;
-  line-height: 200px;
-  vertical-align: middle;
-}
-
-.badge_button {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  padding: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #000;
-  border: 2px solid;
-  animation: slide 1.4s ease-in-out infinite;
+  margin: auto;
+  width: 120px;
+  line-height: 64px;
+  text-align: center;
+  color: #1a1a1a;
+  font-size: 20px;
+  border: 2px solid #f6a9bd;
+  border-radius: 10px;
+  background: #f6a9bd;
+  transition: all 0.3s;
   cursor: pointer;
 }
 
-.badge_button:hover {
-  color: #000;
-  background: #fff;
-  border-color: #fff;
+.dimension div::before,
+.dimension div::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid #fff;
+  transition: all 0.5s;
+  -webkit-animation: clippath 3s infinite linear;
+          animation: clippath 3s infinite linear;
+  border-radius: 10px;
 }
 
-@keyframes slide {
-  0% {
-    transform: translateX(10px)
+.dimension div::after {
+  -webkit-animation: clippath 3s infinite -1.5s linear;
+          animation: clippath 3s infinite -1.5s linear;
+}
+
+@-webkit-keyframes clippath {
+  0%, 100% {
+    -webkit-clip-path: inset(0 0 98% 0);
+            clip-path: inset(0 0 98% 0);
+  }
+  25% {
+    -webkit-clip-path: inset(0 98% 0 0);
+            clip-path: inset(0 98% 0 0);
   }
   50% {
-    transform: translateX(-10px)
+    -webkit-clip-path: inset(98% 0 0 0);
+            clip-path: inset(98% 0 0 0);
   }
-  100% {
-    transform: translateX(10px)
+  75% {
+    -webkit-clip-path: inset(0 0 0 98%);
+            clip-path: inset(0 0 0 98%);
   }
 }
 
-.badge_text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-  animation: rotate 10s linear infinite;
-  fill: #fff;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
+@keyframes clippath {
+  0%, 100% {
+    -webkit-clip-path: inset(0 0 98% 0);
+            clip-path: inset(0 0 98% 0);
+  }
+  25% {
+    -webkit-clip-path: inset(0 98% 0 0);
+            clip-path: inset(0 98% 0 0);
+  }
+  50% {
+    -webkit-clip-path: inset(98% 0 0 0);
+            clip-path: inset(98% 0 0 0);
+  }
+  75% {
+    -webkit-clip-path: inset(0 0 0 98%);
+            clip-path: inset(0 0 0 98%);
+  }
 }
