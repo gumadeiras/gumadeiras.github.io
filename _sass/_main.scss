@@ -307,7 +307,6 @@ header ul {
 .posts li {
 	align-items: center;
 	display: flex;
-	justify-content: space-between;
 	margin-bottom: 0.5rem;
 }
 
@@ -331,6 +330,10 @@ header ul {
 	padding-left: 1rem;
 	text-align: right;
 	white-space: nowrap;
+}
+
+.posts li paper {
+	text-align: left;
 }
 
 time {
