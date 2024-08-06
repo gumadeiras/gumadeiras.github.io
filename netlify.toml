@@ -11,7 +11,7 @@
   for = "*.ico"
   [headers.values]
     Content-Type = "image/x-icon"
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.svg"
@@ -59,48 +59,48 @@
   for = "*.mp4"
   [headers.values]
     Content-Type = "video/mp4"
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.webm"
   [headers.values]
     Content-Type = "video/webm"
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.docx"
   [headers.values]
     Content-Type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.pdf"
   [headers.values]
     Content-Type = "application/pdf"
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.css"
   [headers.values]
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.js"
   [headers.values]
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.jpg"
   [headers.values]
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.png"
   [headers.values]
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
 [[headers]]
   for = "*.gif"
   [headers.values]
-    Cache-Control = "max-age=604800, public"
+    Cache-Control = "max-age=31536000, public"
 
