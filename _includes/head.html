@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   {% seo title=false %}
 
   <title>
@@ -26,11 +26,25 @@
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.baseurl }}/atom.xml">
   <link rel="alternate" type="application/json" title="{{ site.title }}" href="{{ "/feed.json" | prepend: site.baseurl | prepend: site.url }}" />
   <link rel="sitemap" type="application/xml" title="sitemap" href="{{ site.baseurl }}/sitemap.xml" />
-      
+
   {% if site.googlewebfonts %}
     <link rel="preconnect" href="//fonts.gstatic.com">
-    <link href="//fonts.googleapis.com/css2?family={{ site.googlewebfonts }}&display=swap" rel="stylesheet">
+    <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family={{ site.googlewebfonts }}&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family={{ site.googlewebfonts }}&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+    </noscript>
   {% endif %}
+
+
 
   <style>
     {% capture include_to_scssify %}
