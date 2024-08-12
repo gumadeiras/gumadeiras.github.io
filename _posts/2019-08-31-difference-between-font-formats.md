@@ -5,6 +5,7 @@ description: What is the difference between various font formats?
 summary: What is the difference between various font formats?
 comments: true
 tags: [typography]
+sitemap: false
 ---
 
 # h1
