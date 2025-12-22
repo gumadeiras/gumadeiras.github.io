@@ -25,40 +25,20 @@ layout: default
 <section class="posts">
     <h2>some papers</h2>
     <ul>
+        {% for paper in site.data.papers %}
+        {% if paper.featured %}
         <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:QIV2ME_5wuYC" target="_blank" rel="noopener noreferrer">visual neurons for distance estimation!</a>
+            <a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
             <dimension></dimension>
-            <time datetime="2025-09-26">sep 26, 2025</time>
+            <time datetime="{{ paper.date | date: '%Y-%m-%d' }}">{{ paper.date | date: "%b %d, %Y" | downcase }}</time>
         </li>
-        <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:mVmsd5A6BfQC" target="_blank" rel="noopener noreferrer">neurons for divergent odor-coding dynamics!</a>
-            <dimension></dimension>
-            <time datetime="2025-06-19">jun 19, 2025</time>
-        </li>
-        <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:Wp0gIr-vW9MC" target="_blank" rel="noopener noreferrer">age-specific social neurons in mice</a>
-            <dimension></dimension>
-            <time datetime="2025-05-05">may 05, 2025</time>
-        </li>
-        <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:4DMP91E08xMC" target="_blank" rel="noopener noreferrer">fly adaptive navigation strategies</a>
-            <dimension></dimension>
-            <time datetime="2025-03-31">mar 31, 2025</time>
-        </li>
-        <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:4TOpqqG69KYC" target="_blank" rel="noopener noreferrer">neurons for mother–baby bonding!</a>
-            <dimension></dimension>
-            <time datetime="2024-04-23">jul 25, 2024</time>
-        </li>
-        <li>
-            <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:_kc_bZDykSQC" target="_blank" rel="noopener noreferrer">squeakout, autoencoder for vocal segmentation</a>
-            <dimension></dimension>
-            <time datetime="2024-04-23">apr 23, 2024</time>
-        </li>
+        {% endif %}
+        {% endfor %}
         <li>
             <a href="/archive">...</a>
             <dimension></dimension>
         </li>
+    </ul>
 
 <br>
 
