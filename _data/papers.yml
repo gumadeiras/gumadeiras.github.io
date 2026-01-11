@@ -11,7 +11,7 @@
   date: 2025-06-19
   featured: true
   badge:
-    icon: "1"
+    icon: "3"
     text: "citations"
 
 - title: "age-specific social neurons in mice"
@@ -19,8 +19,8 @@
   date: 2025-05-05
   featured: true
   badge:
-    icon: "-"
-    text: "new!"
+    icon: "2"
+    text: "citations"
 
 - title: "fly adaptive navigation strategies"
   url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:4DMP91E08xMC"
@@ -35,7 +35,7 @@
   date: 2024-07-25
   featured: true
   badge:
-    icon: "9"
+    icon: "11"
     text: "citations"
 
 - title: "squeakout, autoencoder for vocal segmentation"
@@ -51,7 +51,7 @@
   date: 2022-01-23
   featured: false
   badge:
-    icon: "19"
+    icon: "22"
     text: "citations"
 
 - title: "vocalmat: parameter-free vocal detection"
@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "90"
+    icon: "97"
     text: "citations"
 
 - title: "even lower low-power ffts"
