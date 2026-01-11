@@ -6,12 +6,6 @@ Personal website of **Gustavo Madeira Santana** — researcher, computer enginee
 
 ---
 
-## About
-
-I'm a PhD student in Neuroscience at Yale University, working at the intersection of olfaction, vision, and neural computation in *Drosophila*. My research focuses on understanding how flies detect and navigate odor gradients.
-
-Previously, I worked on low-power digital signal processing and audio/video compression algorithms.
-
 ## Tech Stack
 
 - **Framework:** [Jekyll](https://jekyllrb.com/)
@@ -35,7 +29,7 @@ Previously, I worked on low-power digital signal processing and audio/video comp
 
 ## Publications
 
-Papers are managed in `_data/papers.yml` with citation counts that are automatically updated weekly via my assistant [Pinguini](https://github.com/gumadeiras/clawd) 🐧
+Papers are managed in `_data/papers.yml` with citation counts that are automatically updated weekly by Pinguini, my Pi agent and assistant 🐧
 
 ## Local Development
 
