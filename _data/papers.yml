@@ -11,7 +11,7 @@
   date: 2025-06-19
   featured: true
   badge:
-    icon: "3"
+    icon: "4"
     text: "citations"
 
 - title: "age-specific social neurons in mice"
@@ -35,7 +35,7 @@
   date: 2024-07-25
   featured: true
   badge:
-    icon: "11"
+    icon: "15"
     text: "citations"
 
 - title: "squeakout, autoencoder for vocal segmentation"
@@ -51,7 +51,7 @@
   date: 2022-01-23
   featured: false
   badge:
-    icon: "22"
+    icon: "23"
     text: "citations"
 
 - title: "vocalmat: parameter-free vocal detection"
@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "97"
+    icon: "99"
     text: "citations"
 
 - title: "even lower low-power ffts"
@@ -83,7 +83,7 @@
   date: 2018-09-26
   featured: false
   badge:
-    icon: "29"
+    icon: "30"
     text: "citations"
 
 - title: "ffts, split-radix, adder compressors!"
