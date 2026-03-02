@@ -3,15 +3,15 @@
   date: 2025-09-26
   featured: true
   badge:
-    icon: "-"
-    text: "new!"
+    icon: "1"
+    text: "citations"
 
 - title: "neurons for divergent odor-coding dynamics!"
   url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&sortby=pubdate&citation_for_view=L603SPwAAAAJ:mVmsd5A6BfQC"
   date: 2025-06-19
   featured: true
   badge:
-    icon: "4"
+    icon: "5"
     text: "citations"
 
 - title: "age-specific social neurons in mice"
@@ -19,7 +19,7 @@
   date: 2025-05-05
   featured: true
   badge:
-    icon: "2"
+    icon: "4"
     text: "citations"
 
 - title: "fly adaptive navigation strategies"
@@ -51,7 +51,7 @@
   date: 2022-01-23
   featured: false
   badge:
-    icon: "23"
+    icon: "25"
     text: "citations"
 
 - title: "vocalmat: parameter-free vocal detection"
@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "99"
+    icon: "100"
     text: "citations"
 
 - title: "even lower low-power ffts"
@@ -67,7 +67,7 @@
   date: 2021-03-11
   featured: false
   badge:
-    icon: "15"
+    icon: "14"
     text: "citations"
 
 - title: "low-power adder compressors for video encoding"
@@ -83,7 +83,7 @@
   date: 2018-09-26
   featured: false
   badge:
-    icon: "30"
+    icon: "31"
     text: "citations"
 
 - title: "ffts, split-radix, adder compressors!"
@@ -91,5 +91,5 @@
   date: 2017-05-12
   featured: false
   badge:
-    icon: "8"
+    icon: "9"
     text: "citations"
