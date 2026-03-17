@@ -4,6 +4,10 @@
 
   {% seo title=false %}
 
+  {% if page.robots %}
+    <meta name="robots" content="{{ page.robots }}">
+  {% endif %}
+
   <title>
       {% if page.tag or page.title %}
         {% if page.tag %}
