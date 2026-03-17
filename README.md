@@ -37,16 +37,16 @@ brew install ruby@3.2
 export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
 
 # Install Bundler if needed
-gem install bundler:2.2.9
+gem install bundler:2.7.1
 
 # Install dependencies
-bundle _2.2.9_ install
+bundle install
 
 # Run the same build path used in production
 script/build_site.sh
 
 # Or run a local dev server
-bundle _2.2.9_ exec jekyll serve
+bundle exec jekyll serve
 
 # Visit http://localhost:4000
 ```

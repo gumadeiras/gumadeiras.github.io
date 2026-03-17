@@ -28,5 +28,5 @@ done
 
 export JEKYLL_ENV="${JEKYLL_ENV:-production}"
 
-bundle _2.2.9_ exec jekyll build "${args[@]}"
+bundle _2.7.1_ exec jekyll build "${args[@]}"
 ruby script/fingerprint_assets.rb _site "${SITE_URL:-https://gumadeiras.com}" "$baseurl"
