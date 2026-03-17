@@ -1,0 +1,9 @@
+---
+layout: none
+---
+{% capture include_to_scssify %}
+  @use "main" with (
+    $asset-prefix: "{{ '/assets' | relative_url }}"
+  );
+{% endcapture %}
+{{ include_to_scssify | scssify }}

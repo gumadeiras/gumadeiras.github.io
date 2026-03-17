@@ -8,6 +8,32 @@
 	padding: 0;
 }
 
+$asset-prefix: "/assets" !default;
+
+@font-face {
+	font-family: "Fira Code";
+	src: url("#{$asset-prefix}/fonts/fira-code-400.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Fira Code";
+	src: url("#{$asset-prefix}/fonts/fira-code-500.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Fira Code";
+	src: url("#{$asset-prefix}/fonts/fira-code-700.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
 html {
 	font-size: 13px;
 }
@@ -155,7 +181,7 @@ html[data-theme="dark"] {
 }
 
 body {
-	font-family: "Fira Code", monospace;
+	font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 	text-rendering: optimizeLegibility;
 	line-height: 1.75;
 	color: var(--main-text-color);
