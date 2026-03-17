@@ -95,7 +95,7 @@ html[data-theme="light"] {
 		transform-origin: center;
 		transition: all 0.45s ease 0s;
 		overflow: hidden;
-		box-shadow: inset 8px -8px 0px 0px var(--theme-ui-colors-toggleIcon, #2d3748);
+		box-shadow: inset 7px -7px 0px 0px var(--theme-ui-colors-toggleIcon, #2d3748);
 
 		&::before {
 			content: "";
