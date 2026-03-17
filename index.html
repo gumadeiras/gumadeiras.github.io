@@ -3,19 +3,16 @@ layout: default
 ---
 
 <section id="intro">
-    <div class="circular--portrait" align="left"><img src="assets/images/me.jpg" alt="headshot picture" /></div>
-    <br>
+    <div class="circular-portrait">
+        <img src="{{ '/assets/images/me.jpg' | relative_url }}" alt="Portrait of Gustavo Madeira Santana" width="300" height="300" decoding="async" fetchpriority="high" />
+    </div>
     <div class="flex-row-between">
         <h2>hello. i'm gustavo madeira santana.</h2>
-        <button id="theme-toggle" onclick="modeSwitcher()" aria-label="toggle light/dark mode">
-            <div></div>
-        </button>
+        {% include theme_toggle.html %}
     </div>
     <p>
         i'm a phd candidate in the <a href="https://emonet.biology.yale.edu" target="_blank" rel="noopener noreferrer">emonet lab</a> studying the neural basis of olfactory navigation in fruit flies. i'm broadly interested in how sensory information is integrated in the brain and used in decision-making.
     </p>
-
-    <br>
 
     <p>
         feel free to message me on <a href="https://twitter.com/gumadeiras">twitter</a> or <a href="mailto:fromweb1@gumadeiras.com">email</a> me.
@@ -29,18 +26,16 @@ layout: default
         {% if paper.featured %}
         <li>
             <a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
-            <dimension></dimension>
+            <span class="list-meta" aria-hidden="true"></span>
             <time datetime="{{ paper.date | date: '%Y-%m-%d' }}">{{ paper.date | date: "%b %d, %Y" | downcase }}</time>
         </li>
         {% endif %}
         {% endfor %}
         <li>
-            <a href="/archive/">...</a>
-            <dimension></dimension>
+            <a href="{{ '/archive/' | relative_url }}">...</a>
+            <span class="list-meta" aria-hidden="true"></span>
         </li>
     </ul>
-
-<br>
 
     <h2>links (me)</h2>
     <ul>
@@ -63,8 +58,6 @@ layout: default
             <a href="https://www.instagram.com/gumadeiras" target="_blank" rel="noopener noreferrer">instagram</a>
         </li>
     </ul>
-
-<br>
 
     <h2>links (involved)</h2>
     <ul>
@@ -90,8 +83,6 @@ layout: default
             <a href="https://www.cientificolatino.com/gsmi" target="_blank" rel="noopener noreferrer">cientifico latino graduate student mentorship initiative</a>
         </li>
     </ul>
-
-<br>
 
     <h2>etc</h2>
     <ul>

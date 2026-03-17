@@ -6,27 +6,25 @@ title: paper archives
 <section id="intro">
     <div class="flex-row-between">
         <h2>more papers</h2>
-        <button id="theme-toggle" onclick="modeSwitcher()" aria-label="toggle light/dark mode">
-            <div></div>
-        </button>
+        {% include theme_toggle.html %}
     </div>
 </section>
 
 <section class="posts">
     <ul>
         <li>
-            <a href="/">..</a>
-            <dimension></dimension>
+            <a href="{{ '/' | relative_url }}">..</a>
+            <span class="list-meta" aria-hidden="true"></span>
             <time datetime="2022-01-23">go back</time>
         </li>
         {% for paper in site.data.papers %}
         <li>
             <a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
-            <dimension>
+            <span class="list-meta">
                 <a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">
                     <span class="badge"><span class="badge__icon">{{ paper.badge.icon }}</span>{{ paper.badge.text }}</span>
                 </a>
-            </dimension>
+            </span>
             <time datetime="{{ paper.date | date: '%Y-%m-%d' }}">{{ paper.date | date: "%b %d, %Y" | downcase }}</time>
         </li>
         {% endfor %}

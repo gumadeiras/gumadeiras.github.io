@@ -12,7 +12,7 @@ html {
 	font-size: 13px;
 }
 
-#theme-toggle {
+.theme-toggle {
 	opacity: 0.65;
 	position: relative;
 	border-radius: 5px;
@@ -32,6 +32,11 @@ html {
 	transform: scale(0.8);
 }
 
+.theme-toggle:focus-visible {
+	outline: 2px solid var(--link-color);
+	outline-offset: 3px;
+}
+
 html,
 html[data-theme="light"] {
 	--very-light-text-color: rgb(236, 237, 238);
@@ -43,7 +48,7 @@ html[data-theme="light"] {
 
 	background-color: #f2f2f2;
 
-	#theme-toggle div {
+	.theme-toggle span {
 		position: relative;
 		width: 28px;
 		height: 28px;
@@ -101,7 +106,7 @@ html[data-theme="dark"] {
 
 	background-color: #0d1117;
 
-	#theme-toggle div {
+	.theme-toggle span {
 		position: relative;
 		width: 25px;
 		height: 25px;
@@ -173,16 +178,22 @@ a {
 	margin: 0.5rem 0;
 }
 
+#intro p + p {
+	margin-top: 1.25rem;
+}
+
 .meta {
 	margin: 2rem 0;
 }
 
-.circular--portrait { 
+.circular-portrait {
 	position: relative;
 	overflow: hidden;
+	margin-bottom: 1rem;
 }
-.circular--portrait img { 
-	width: 150px; 
+.circular-portrait img {
+	display: block;
+	width: 150px;
 	height: 150px;
 	border-radius: 50%;
 }
@@ -327,7 +338,7 @@ header ul {
 	font-variant-numeric: tabular-nums;
 }
 
-.posts li dimension {
+.posts li .list-meta {
 	padding-left: 1rem;
 	text-align: right;
 	margin-left: auto;
@@ -335,10 +346,14 @@ header ul {
 	opacity: 0.5;
 }
 
-.posts li dimension a {
+.posts li .list-meta a {
 	text-decoration-skip-ink: none;
 	font-weight: normal;
 	text-decoration: none;
+}
+
+.posts > h2:not(:first-child) {
+	margin-top: 2rem;
 }
 
 time {
