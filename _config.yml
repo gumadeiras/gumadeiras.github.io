@@ -8,11 +8,10 @@ twitter:
   card: summary
   creator: gumadeiras
 author:
-  twitter: #yourusername
-  name: #yourusername
-  avatar:
-  email: #youremail
-  url: #yoururl
+  twitter: gumadeiras
+  name: Gustavo Madeira Santana
+  avatar: /assets/images/me.jpg
+  url: https://gumadeiras.com
 permalink: pretty
 
 baseurl: ""
