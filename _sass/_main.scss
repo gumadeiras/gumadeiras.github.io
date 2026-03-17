@@ -64,6 +64,15 @@ html {
 	outline-offset: 3px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.theme-toggle,
+	.theme-toggle span,
+	.theme-toggle span::before,
+	.theme-toggle span::after {
+		transition: none;
+	}
+}
+
 html,
 html[data-theme="light"] {
 	--very-light-text-color: rgb(236, 237, 238);
@@ -358,6 +367,7 @@ header ul {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: bold;
+	min-width: 0;
 }
 
 .posts li time,
@@ -400,7 +410,7 @@ time {
 
 main {
 	display: flex;
-	max-width: 51rem;
+	max-width: 55rem;
 	margin: -5rem auto 0;
 	padding: 2.4rem 2rem;
 	flex-direction: column;
@@ -454,11 +464,34 @@ main {
 	}
 
 	main {
-		padding: 0 2rem;
+		padding: 0 1.25rem;
 	}
 
 	.github-corner {
 		display: none;
+	}
+
+	.posts li {
+		align-items: flex-start;
+		flex-wrap: wrap;
+		row-gap: 0.2rem;
+	}
+
+	.posts li a,
+	.posts li div,
+	.projects li a {
+		white-space: normal;
+		overflow: visible;
+		text-overflow: clip;
+	}
+
+	.posts li .list-meta,
+	.posts li time,
+	.projects li time {
+		padding-left: 0;
+		margin-left: 0;
+		width: 100%;
+		text-align: left;
 	}
 }
 
