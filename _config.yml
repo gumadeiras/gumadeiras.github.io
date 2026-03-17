@@ -20,6 +20,12 @@ highlighter: rouge
 
 exclude:
   - .jekyll-cache
+  - script
+  - README.md
+  - LICENSE.md
+  - Gemfile
+  - Gemfile.lock
+  - .ruby-version
 
 compress_html:
   clippings: all
