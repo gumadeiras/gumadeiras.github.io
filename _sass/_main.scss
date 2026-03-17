@@ -92,7 +92,8 @@ html[data-theme="light"] {
 		border-radius: 50%;
 		border: none;
 		background-color: var(--theme-ui-colors-toggleIcon, #2d3748);
-		transform: none;
+		transform: rotate(18deg);
+		transform-origin: center;
 		transition: all 0.45s ease 0s;
 		overflow: visible;
 		box-shadow: none;
@@ -372,6 +373,7 @@ header ul {
 }
 
 .posts li time,
+.posts li .list-note,
 .projects li time {
 	padding-left: 1rem;
 	white-space: nowrap;
@@ -397,6 +399,10 @@ header ul {
 }
 
 time {
+	color: var(--light-text-color);
+}
+
+.list-note {
 	color: var(--light-text-color);
 }
 
@@ -488,6 +494,7 @@ main {
 
 	.posts li .list-meta,
 	.posts li time,
+	.posts li .list-note,
 	.projects li time {
 		padding-left: 0;
 		margin-left: 0;

@@ -53,6 +53,23 @@ bundle exec jekyll serve
 
 The production site is built by `.github/workflows/jekyll.yml` and deployed to GitHub Pages. `script/build_site.sh` runs Jekyll and fingerprints CSS, fonts, and image assets in the generated `_site` output to improve cacheability.
 
+## Publishing Posts
+
+Create a Markdown file in `_posts` named `YYYY-MM-DD-slug.md` with frontmatter like:
+
+```yaml
+---
+layout: post
+title: My Post Title
+description: Short description for previews
+summary: Short description for feeds
+---
+```
+
+By default, published posts will render at `/YYYY/MM/DD/slug`, use the shared post layout, and appear in the feeds. If you want to keep a draft in `_posts` without publishing it yet, add `published: false`.
+
+The homepage is still paper-focused today. If you want blog posts surfaced on the homepage or in a dedicated blog index, that would be a separate UI change.
+
 ## License
 
 Content © Gustavo Madeira Santana. Code under [MIT License](LICENSE.md).
