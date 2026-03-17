@@ -9,7 +9,7 @@ Personal website of **Gustavo Madeira Santana** — researcher, computer enginee
 ## Tech Stack
 
 - **Framework:** [Jekyll](https://jekyllrb.com/)
-- **Hosting:** GitHub Pages
+- **Hosting:** GitHub Pages via GitHub Actions
 - **Font:** [Fira Code](https://fonts.google.com/specimen/Fira+Code)
 - **Plugins:** jekyll-paginate, jekyll-seo-tag, jekyll-sitemap
 
@@ -34,6 +34,11 @@ Papers are managed in `_data/papers.yml` with citation counts that are automatic
 ## Local Development
 
 ```bash
+# Use Ruby 3.2.x (see .ruby-version)
+
+# Install Bundler if needed
+gem install bundler:2.2.9
+
 # Install dependencies
 bundle install
 
@@ -42,6 +47,8 @@ bundle exec jekyll serve
 
 # Visit http://localhost:4000
 ```
+
+The production site is built by `.github/workflows/jekyll.yml` and deployed to GitHub Pages. Netlify-specific config is intentionally not used.
 
 ## License
 
