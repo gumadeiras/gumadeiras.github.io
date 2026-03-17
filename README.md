@@ -2,15 +2,13 @@
 
 Personal website of **Gustavo Madeira Santana** — researcher, computer engineer, neuroscientist.
 
-🌐 **Live site:** [gumadeiras.com](https://gumadeiras.com/)
-
----
+Live site: [gumadeiras.com](https://gumadeiras.com/)
 
 ## Tech Stack
 
 - **Framework:** [Jekyll](https://jekyllrb.com/)
 - **Hosting:** GitHub Pages via GitHub Actions
-- **Font:** [Fira Code](https://fonts.google.com/specimen/Fira+Code)
+- **Font:** self-hosted Fira Code subsets (`woff2`)
 - **Plugins:** jekyll-paginate, jekyll-seo-tag, jekyll-sitemap
 
 ## Structure
@@ -34,26 +32,29 @@ Papers are managed in `_data/papers.yml` with citation counts that are automatic
 ## Local Development
 
 ```bash
-# Use Ruby 3.2.x (see .ruby-version)
+# Install Ruby 3.2 via Homebrew
+brew install ruby@3.2
+export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
 
 # Install Bundler if needed
 gem install bundler:2.2.9
 
 # Install dependencies
-bundle install
+bundle _2.2.9_ install
 
-# Run locally
-bundle exec jekyll serve
+# Run the same build path used in production
+script/build_site.sh
+
+# Or run a local dev server
+bundle _2.2.9_ exec jekyll serve
 
 # Visit http://localhost:4000
 ```
 
-The production site is built by `.github/workflows/jekyll.yml` and deployed to GitHub Pages. Netlify-specific config is intentionally not used.
+The production site is built by `.github/workflows/jekyll.yml` and deployed to GitHub Pages. `script/build_site.sh` runs Jekyll and fingerprints CSS, fonts, and image assets in the generated `_site` output to improve cacheability.
 
 ## License
 
 Content © Gustavo Madeira Santana. Code under [MIT License](LICENSE.md).
 
----
-
-*Built with ☕ and 🧠*
+Built with Jekyll and GitHub Pages.
