@@ -81,31 +81,32 @@ html[data-theme="light"] {
 	--main-text-color: #333;
 	--dark-text-color: #111;
 	--link-color: #df0505;
+	--page-background: #f2f2f2;
 
 	background-color: #f2f2f2;
 
 	.theme-toggle span {
 		position: relative;
-		width: 28px;
-		height: 28px;
+		width: 24px;
+		height: 24px;
 		border-radius: 50%;
 		border: none;
-		background-color: var(--theme-ui-colors-transparent, transparent);
-		transform: scale(0.8);
-		transform-origin: center;
+		background-color: var(--theme-ui-colors-toggleIcon, #2d3748);
+		transform: none;
 		transition: all 0.45s ease 0s;
-		overflow: hidden;
-		box-shadow: inset 7px -7px 0px 0px var(--theme-ui-colors-toggleIcon, #2d3748);
+		overflow: visible;
+		box-shadow: none;
 
 		&::before {
 			content: "";
 			position: absolute;
-			right: -9px;
-			top: -9px;
-			height: 28px;
-			width: 28px;
+			left: 8px;
+			top: -2px;
+			height: 24px;
+			width: 24px;
 			border: none;
 			border-radius: 50%;
+			background-color: var(--page-background);
 			transform: translate(0px, 0px);
 			opacity: 1;
 			transition: transform 0.45s ease 0s;
