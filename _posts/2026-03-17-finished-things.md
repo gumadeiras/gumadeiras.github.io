@@ -26,13 +26,17 @@ it is only present while you use it.
 
 that kind of thing feels strangely rare now.
 
-notifications about messages. about emails. from my phone. from my computer. from my watch.
+notifications about messages. about emails.
+
+from my phone. from my computer. from my watch.
 
 notifications about my light bulbs. my coffee maker. my plant lights.
 
 so much upkeep. just to keep things functional.
 
-connection lost. pair device again. so much maintenance.
+connection lost. pair device again. reauthentic account.
+
+so much maintenance.
 
 i recently stayed at an airbnb. they had a fancy bluetooth speaker.
 
