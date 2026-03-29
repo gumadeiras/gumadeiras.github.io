@@ -396,9 +396,10 @@ header ul {
 	mask-size: contain;
 }
 
-.me-link__icon--small {
-	width: 0.9em;
-	height: 0.9em;
+.me-link__icon--inline {
+	width: 1em;
+	height: 0.65em;
+	margin-right: -0.25em;
 }
 
 .posts li time,
