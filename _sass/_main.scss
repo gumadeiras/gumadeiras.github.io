@@ -535,7 +535,22 @@ main {
 		width: 100%;
 		text-align: left;
 	}
-}
+
+	.posts li.paper-entry > a:first-child {
+		flex-basis: 100%;
+	}
+
+	.posts li.paper-entry time {
+		order: 1;
+		width: auto;
+	}
+
+	.posts li.paper-entry .list-meta {
+		order: 2;
+		width: auto;
+		padding-left: 0.5rem;
+	}
+	}
 
 section {
 	flex-grow: 999;
