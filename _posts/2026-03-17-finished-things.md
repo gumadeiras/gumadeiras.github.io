@@ -14,6 +14,8 @@ lately, i keep thinking that "finished" means something narrower than it used to
 
 not “well designed”. not “beautiful”. not even “simple”.
 
+not frozen, either.
+
 i mean a thing that has an ending. finished.
 
 you use it. you put it away. finished.
@@ -58,13 +60,27 @@ even when nothing is broken, there is a faint feeling that something still needs
 
 i think that feeling changes people. it changed me.
 
-i suspect this is why analog objects feel so grounding. they restore a clean edge between the user and the tool.
+some complexity is real. some upkeep is fair.
+
+software can help me route through a strange city. make a call across an ocean.
+
+that is not really the point.
+
+i suspect analog objects feel grounding because they make the contrast easy to see.
+
+but the distinction i care about is not really analog versus digital.
+
+it is bounded versus ongoing.
 
 the tool does its part.
 
 you do yours.
 
 the exchange ends there.
+
+too many products are built around recurrence.
+
+subscriptions. retention. little reasons to keep summoning you back into the loop.
 
 i want things that solve a problem without establishing residency in my attention.
 
