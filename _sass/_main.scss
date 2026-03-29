@@ -77,6 +77,7 @@ html,
 html[data-theme="light"] {
 	--very-light-text-color: rgb(236, 237, 238);
 	--light-text-color: #bbb;
+	--paper-date-color: #888;
 	--medium-text-color: #555;
 	--main-text-color: #333;
 	--dark-text-color: #111;
@@ -138,6 +139,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
 	--very-light-text-color: #333;
 	--light-text-color: #444;
+	--paper-date-color: #999;
 	--medium-text-color: #888;
 	--main-text-color: #ddd;
 	--dark-text-color: #eee;
@@ -405,6 +407,10 @@ header ul {
 	padding-left: 1rem;
 	white-space: nowrap;
 	font-variant-numeric: tabular-nums;
+}
+
+.posts li time {
+	color: var(--paper-date-color);
 }
 
 .posts li .list-meta {
