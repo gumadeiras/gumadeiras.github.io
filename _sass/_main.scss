@@ -372,6 +372,28 @@ header ul {
 	min-width: 0;
 }
 
+.me-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45em;
+	min-width: 0;
+}
+
+.me-link__icon {
+	width: 1em;
+	height: 1em;
+	flex: none;
+	background-color: currentColor;
+	-webkit-mask-image: var(--icon-url);
+	mask-image: var(--icon-url);
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+}
+
 .posts li time,
 .posts li .list-note,
 .projects li time {
