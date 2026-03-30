@@ -402,6 +402,19 @@ header ul {
 	margin-right: -0.25em;
 }
 
+.me-link__icon-image {
+	width: 1em;
+	height: 1em;
+	flex: none;
+	display: block;
+}
+
+.me-link__icon-image--inline {
+	width: 1em;
+	height: 1em;
+	margin-right: -0.25em;
+}
+
 .posts li time,
 .posts li .list-note,
 .projects li time {
