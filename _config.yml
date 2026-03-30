@@ -4,7 +4,7 @@ title: Gustavo Madeira Santana
 description: researcher. computer engineer. neuroscientist.
 twitter:
   username: gumadeiras
-  card: summary
+  card: summary_large_image
   creator: gumadeiras
 author:
   twitter: gumadeiras
@@ -53,6 +53,11 @@ defaults:
       path: ""
     values:
       layout: "default"
+      image:
+        path: /assets/images/me.jpg
+        alt: Gustavo Madeira Santana
+        width: 300
+        height: 300
   -
     scope:
       path: ""
