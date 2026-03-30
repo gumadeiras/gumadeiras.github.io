@@ -54,8 +54,6 @@ each demand is small. but they sum up to fatigue.
 
 ownership has become mixed up with caretaking.
 
-it is no longer enough for a tool to work. we are asked to host it. to maintain its identity. to keep its little channels clear. to notice when it is unhappy. to participate in its continuity.
-
 even when nothing is broken, there is a faint feeling that something still needs tending.
 
 i think that feeling changes people. it changed me.
