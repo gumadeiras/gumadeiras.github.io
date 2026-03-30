@@ -9,7 +9,7 @@ Live site: [gumadeiras.com](https://gumadeiras.com/)
 - **Framework:** [Jekyll](https://jekyllrb.com/)
 - **Hosting:** GitHub Pages via GitHub Actions
 - **Font:** self-hosted Fira Code subsets (`woff2`)
-- **Plugins:** jekyll-paginate, jekyll-seo-tag, jekyll-sitemap
+- **Plugins:** jekyll-seo-tag, jekyll-sitemap
 
 ## Structure
 

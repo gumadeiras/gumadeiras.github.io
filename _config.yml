@@ -35,7 +35,6 @@ sass:
   style:            :compressed
 
 plugins:
-  - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
 
