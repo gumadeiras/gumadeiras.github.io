@@ -16,6 +16,7 @@ layout: compress
       var root = document.documentElement;
       var toggle = document.querySelector("[data-theme-toggle]");
       var mediaQuery = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+      var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function syncToggle(theme) {
         if (!toggle) {
@@ -50,6 +51,73 @@ layout: compress
         }
       }
 
+      function animateCollapsible(section, content, expand) {
+        section.dataset.animating = "true";
+
+        if (expand) {
+          section.dataset.closing = "";
+          section.open = true;
+          content.style.height = "0px";
+        } else {
+          section.dataset.closing = "true";
+          content.style.height = content.scrollHeight + "px";
+        }
+
+        requestAnimationFrame(function () {
+          content.style.height = expand ? content.scrollHeight + "px" : "0px";
+        });
+      }
+
+      function setupCollapsibleSection(section) {
+        var summary = section.querySelector(".collapsible-section__summary");
+        var content = section.querySelector(".collapsible-section__content");
+
+        if (!summary || !content) {
+          return;
+        }
+
+        content.addEventListener("transitionend", function (event) {
+          if (event.target !== content || event.propertyName !== "height") {
+            return;
+          }
+
+          if (section.dataset.closing === "true") {
+            section.open = false;
+            section.dataset.closing = "";
+            content.style.height = "";
+          } else if (section.open) {
+            content.style.height = "auto";
+          }
+
+          section.dataset.animating = "";
+        });
+
+        summary.addEventListener("click", function (event) {
+          if (section.dataset.animating === "true") {
+            event.preventDefault();
+            return;
+          }
+
+          event.preventDefault();
+
+          animateCollapsible(section, content, !section.open);
+        });
+      }
+
+      function setupCollapsibleSections() {
+        if (prefersReducedMotion) {
+          return;
+        }
+
+        var collapsibles = document.querySelectorAll(".collapsible-section");
+
+        if (!collapsibles.length) {
+          return;
+        }
+
+        collapsibles.forEach(setupCollapsibleSection);
+      }
+
       var storedTheme = getStoredTheme();
       var initialTheme = storedTheme || root.getAttribute("data-theme") || (mediaQuery && mediaQuery.matches ? "dark" : "light");
 
@@ -67,6 +135,8 @@ layout: compress
           setTheme(event.matches ? "dark" : "light", false);
         });
       }
+
+      setupCollapsibleSections();
     })();
   </script>
 </body>

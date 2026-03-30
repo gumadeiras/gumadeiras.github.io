@@ -482,16 +482,20 @@ header ul {
 	font-weight: bold;
 }
 
-.collapsible-section[open] .collapsible-section__summary {
-	margin-bottom: 1.5rem;
+.collapsible-section__content {
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+	transition: height 0.24s ease, opacity 0.18s ease;
 }
 
-.collapsible-section > h3 {
-	margin-bottom: 1rem;
+.collapsible-section__content-inner {
+	padding-top: 1.5rem;
 }
 
-.collapsible-section > ul + h3 {
-	margin-top: 1.5rem;
+.collapsible-section[open] .collapsible-section__content {
+	height: auto;
+	opacity: 1;
 }
 
 time {
