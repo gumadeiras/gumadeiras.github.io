@@ -216,6 +216,18 @@ a {
 	text-decoration: underline;
 }
 
+.stealth-link,
+.stealth-link:visited,
+.stealth-link:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+.stealth-link:focus-visible {
+	outline: 2px solid var(--link-color);
+	outline-offset: 3px;
+}
+
 .post p {
 	margin: 0.5rem 0;
 }
