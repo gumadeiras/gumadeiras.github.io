@@ -53,11 +53,6 @@ defaults:
       path: ""
     values:
       layout: "default"
-      image:
-        path: /assets/images/me.jpg
-        alt: Gustavo Madeira Santana
-        width: 300
-        height: 300
   -
     scope:
       path: ""
