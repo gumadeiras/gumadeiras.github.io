@@ -432,6 +432,55 @@ header ul {
 	margin-top: 2rem;
 }
 
+.collapsible-section {
+	margin-top: 2rem;
+}
+
+.collapsible-section__summary {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 0.65rem;
+	list-style: none;
+	margin-bottom: 0;
+}
+
+.collapsible-section__summary::-webkit-details-marker {
+	display: none;
+}
+
+.collapsible-section__summary::before {
+	content: "+";
+	color: var(--medium-text-color);
+	font-weight: 400;
+}
+
+.collapsible-section[open] .collapsible-section__summary::before {
+	content: "-";
+}
+
+.collapsible-section__summary:focus-visible {
+	outline: 2px solid var(--link-color);
+	outline-offset: 3px;
+}
+
+.collapsible-section__title {
+	color: var(--dark-text-color);
+	font-weight: bold;
+}
+
+.collapsible-section[open] .collapsible-section__summary {
+	margin-bottom: 1.5rem;
+}
+
+.collapsible-section > h3 {
+	margin-bottom: 1rem;
+}
+
+.collapsible-section > ul + h3 {
+	margin-top: 1.5rem;
+}
+
 time {
 	color: var(--light-text-color);
 }
