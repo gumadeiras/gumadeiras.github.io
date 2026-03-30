@@ -268,27 +268,6 @@ hr {
 	border: 0;
 }
 
-header {
-	flex-basis: 10rem;
-	flex-grow: 1;
-	position: relative;
-}
-
-header a {
-	text-decoration: none;
-}
-
-header li {
-	margin-bottom: 0.2rem;
-	text-align: right;
-	margin-right: 2rem;
-}
-
-header a.active {
-	font-weight: bold;
-}
-
-header,
 section {
 	padding: 1rem 0;
 }
@@ -331,19 +310,6 @@ b {
 	font-weight: bold;
 }
 
-.photos ul {
-	list-style: none;
-}
-
-.photos li {
-	margin-bottom: 1.5rem;
-}
-
-.photo picture,
-.project picture {
-	margin-bottom: 0.5rem;
-}
-
 .posts {
 	margin-top: 2rem;
 }
@@ -352,8 +318,7 @@ b {
 	font-weight: 500;
 }
 
-.posts ul,
-header ul {
+.posts ul {
 	list-style: none;
 }
 
@@ -364,8 +329,7 @@ header ul {
 }
 
 .posts li a,
-.posts li div,
-.projects li a {
+.posts li div {
 	text-align: left;
 	white-space: nowrap;
 	overflow: hidden;
@@ -416,8 +380,7 @@ header ul {
 }
 
 .posts li time,
-.posts li .list-note,
-.projects li time {
+.posts li .list-note {
 	padding-left: 1rem;
 	white-space: nowrap;
 	font-variant-numeric: tabular-nums;
@@ -523,27 +486,6 @@ main {
 	flex-direction: column;
 }
 
-.github-corner:hover .octo-arm {
-	animation: octocat-wave 560ms ease-in-out;
-}
-
-@keyframes octocat-wave {
-	0%,
-	100% {
-		transform: rotate(0);
-	}
-
-	20%,
-	60% {
-		transform: rotate(-25deg);
-	}
-
-	40%,
-	80% {
-		transform: rotate(10deg);
-	}
-}
-
 .flex-row-between {
 	display: flex;
 	flex-direction: row;
@@ -551,31 +493,8 @@ main {
 }
 
 @media screen and (max-width: 45rem) {
-	header li {
-		display: inline;
-		margin-right: 1rem;
-	}
-	.logo {
-		padding-bottom: 1rem;
-	}
-	header ul {
-		border-bottom: 1px solid #edf2f7;
-		padding-bottom: 2rem;
-	}
-	nav ul {
-		border-right: 0px;
-	}
-
-	.photos ul {
-		margin-top: 0.5rem;
-	}
-
 	main {
 		padding: 0 1.25rem;
-	}
-
-	.github-corner {
-		display: none;
 	}
 
 	.posts li {
@@ -585,8 +504,7 @@ main {
 	}
 
 	.posts li a,
-	.posts li div,
-	.projects li a {
+	.posts li div {
 		white-space: normal;
 		overflow: visible;
 		text-overflow: clip;
@@ -594,8 +512,7 @@ main {
 
 	.posts li .list-meta,
 	.posts li time,
-	.posts li .list-note,
-	.projects li time {
+	.posts li .list-note {
 		padding-left: 0;
 		margin-left: 0;
 		width: 100%;
@@ -617,7 +534,7 @@ main {
 		width: auto;
 		padding-left: 0.5rem;
 	}
-	}
+}
 
 section {
 	flex-grow: 999;
