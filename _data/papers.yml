@@ -35,7 +35,7 @@
   date: 2024-07-25
   featured: true
   badge:
-    icon: "15"
+    icon: "17"
     text: "citations"
 
 - title: "squeakout, autoencoder for vocal segmentation"
@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "100"
+    icon: "102"
     text: "citations"
 
 - title: "even lower low-power ffts"
