@@ -581,13 +581,15 @@ figcaption {
   font-size: 0.8em;
   background: #DE0606;
   color: #fff;
-  width: 15px;
+  min-width: 15px;
   height: 15px;
-  line-height: 15px;
-  border-radius: 15px;
-  display: flex;
+  padding: 0 0.35em;
+  border-radius: 999px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   margin-right: 0.5em;
   margin-left: 0.5em;
 }
