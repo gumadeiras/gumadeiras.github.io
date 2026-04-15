@@ -70,6 +70,14 @@
     icon: "14"
     text: "citations"
 
+- title: "arithmetic datapaths for binary multipliers"
+  url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&citation_for_view=L603SPwAAAAJ:Se3iqnhoufwC"
+  date: 2020-12-22
+  featured: false
+  badge:
+    icon: "4"
+    text: "citations"
+
 - title: "low-power adder compressors for video encoding"
   url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&citation_for_view=L603SPwAAAAJ:eQOLeE2rZwMC"
   date: 2020-01-04
@@ -84,6 +92,14 @@
   featured: false
   badge:
     icon: "31"
+    text: "citations"
+
+- title: "asic sram viterbi decoder"
+  url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=L603SPwAAAAJ&citation_for_view=L603SPwAAAAJ:2osOgNQ5qMEC"
+  date: 2017-12-05
+  featured: false
+  badge:
+    icon: "6"
     text: "citations"
 
 - title: "ffts, split-radix, adder compressors!"
