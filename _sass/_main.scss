@@ -35,7 +35,7 @@ $asset-prefix: "/assets" !default;
 }
 
 html {
-	font-size: 13px;
+	font-size: clamp(15px, 2vw, 16px);
 }
 
 .theme-toggle {
