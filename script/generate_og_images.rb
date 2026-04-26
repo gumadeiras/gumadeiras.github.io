@@ -77,7 +77,42 @@ def title_layout(title)
   [size, wrap_text(title, (900 / (size * 0.62)).floor, 4)]
 end
 
-def svg_for(title:, url:, date:)
+def card_background_svg
+  <<~SVG
+    <defs>
+      <clipPath id="card-clip">
+        <rect x="40" y="50" width="1120" height="530"/>
+      </clipPath>
+      <filter id="soften">
+        <feGaussianBlur stdDeviation="34"/>
+      </filter>
+      <linearGradient id="card-bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f4ffff"/>
+        <stop offset="0.55" stop-color="#eefafa"/>
+        <stop offset="1" stop-color="#f1e1dc"/>
+      </linearGradient>
+    </defs>
+    <rect width="#{WIDTH}" height="#{HEIGHT}" fill="#292929"/>
+    <g clip-path="url(#card-clip)">
+      <rect x="40" y="50" width="1120" height="530" fill="url(#card-bg)"/>
+      <path d="M -105 330 C 85 250 210 502 405 410 C 625 305 720 458 900 372 C 1040 305 1140 220 1290 255 L 1290 690 L -105 690 Z" fill="#bdc6d7" opacity="0.72" filter="url(#soften)"/>
+      <path d="M 455 500 C 625 330 770 392 925 310 C 1054 242 1138 180 1275 206 L 1275 690 L 455 690 Z" fill="#d9bab6" opacity="0.68" filter="url(#soften)"/>
+      <path d="M -70 458 C 165 350 250 550 438 500 C 578 462 652 360 804 414 C 925 457 1010 390 1140 305 L 1140 690 L -70 690 Z" fill="#aeb5c9" opacity="0.54" filter="url(#soften)"/>
+      <rect x="40" y="50" width="1120" height="530" fill="#ffffff" opacity="0.08"/>
+    </g>
+  SVG
+end
+
+def site_svg
+  <<~SVG
+    <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}" viewBox="0 0 #{WIDTH} #{HEIGHT}">
+      #{card_background_svg}
+      <text x="112" y="352" font-family="Fira Code, Menlo, Consolas, monospace" font-size="88" font-weight="700" fill="#111111" letter-spacing="0">gumadeiras.com</text>
+    </svg>
+  SVG
+end
+
+def post_svg(title:, url:, date:)
   title_size, title_lines = title_layout(title)
   title_line_height = (title_size * 1.18).round
   title_start_y = 235
@@ -89,27 +124,7 @@ def svg_for(title:, url:, date:)
 
   <<~SVG
     <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}" viewBox="0 0 #{WIDTH} #{HEIGHT}">
-      <defs>
-        <clipPath id="card-clip">
-          <rect x="40" y="50" width="1120" height="530"/>
-        </clipPath>
-        <filter id="soften">
-          <feGaussianBlur stdDeviation="34"/>
-        </filter>
-        <linearGradient id="card-bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#f4ffff"/>
-          <stop offset="0.55" stop-color="#eefafa"/>
-          <stop offset="1" stop-color="#f1e1dc"/>
-        </linearGradient>
-      </defs>
-      <rect width="#{WIDTH}" height="#{HEIGHT}" fill="#292929"/>
-      <g clip-path="url(#card-clip)">
-        <rect x="40" y="50" width="1120" height="530" fill="url(#card-bg)"/>
-        <path d="M -105 330 C 85 250 210 502 405 410 C 625 305 720 458 900 372 C 1040 305 1140 220 1290 255 L 1290 690 L -105 690 Z" fill="#bdc6d7" opacity="0.72" filter="url(#soften)"/>
-        <path d="M 455 500 C 625 330 770 392 925 310 C 1054 242 1138 180 1275 206 L 1275 690 L 455 690 Z" fill="#d9bab6" opacity="0.68" filter="url(#soften)"/>
-        <path d="M -70 458 C 165 350 250 550 438 500 C 578 462 652 360 804 414 C 925 457 1010 390 1140 305 L 1140 690 L -70 690 Z" fill="#aeb5c9" opacity="0.54" filter="url(#soften)"/>
-        <rect x="40" y="50" width="1120" height="530" fill="#ffffff" opacity="0.08"/>
-      </g>
+      #{card_background_svg}
       <text font-family="Fira Code, Menlo, Consolas, monospace" font-size="#{title_size}" font-weight="700" fill="#111111" letter-spacing="0">#{title_tspans}</text>
       <text x="112" y="#{title_start_y + (title_lines.length * title_line_height) + 44}" font-family="Fira Code, Menlo, Consolas, monospace" font-size="25" fill="#111111" opacity="0.78" letter-spacing="0">#{CGI.escapeHTML(date)}</text>
       <text x="112" y="#{title_start_y + (title_lines.length * title_line_height) + 80}" font-family="Fira Code, Menlo, Consolas, monospace" font-size="25" fill="#111111" opacity="0.78" letter-spacing="0">#{CGI.escapeHTML(url)}</text>
@@ -130,6 +145,17 @@ def write_png(svg, output_path)
 end
 
 generated = 0
+site_output_path = OUTPUT_DIR.join('site.png')
+site_svg = site_svg()
+site_digest = Digest::SHA256.hexdigest(site_svg)
+site_digest_path = CACHE_DIR.join('site.sha256')
+
+unless site_output_path.file? && site_digest_path.file? && site_digest_path.read == site_digest
+  write_png(site_svg, site_output_path)
+  FileUtils.mkdir_p(site_digest_path.dirname)
+  site_digest_path.write(site_digest)
+  generated += 1
+end
 
 Dir.glob(POSTS_DIR.join('*.md')).sort.each do |post_path|
   parts = post_parts(post_path)
@@ -143,7 +169,7 @@ Dir.glob(POSTS_DIR.join('*.md')).sort.each do |post_path|
   url = "gumadeiras.com/#{date[0, 4]}/#{date[5, 2]}/#{date[8, 2]}/#{slug}"
   display_date = Date.parse(date).strftime('%b %-d, %Y')
   output_path = OUTPUT_DIR.join("#{date}-#{slug}.png")
-  svg = svg_for(title: title, url: url, date: display_date)
+  svg = post_svg(title: title, url: url, date: display_date)
   digest = Digest::SHA256.hexdigest(svg)
   digest_path = CACHE_DIR.join("#{date}-#{slug}.sha256")
 
