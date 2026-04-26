@@ -12,6 +12,8 @@ script/build_site.sh
 bundle exec jekyll serve
 ```
 
+`script/build_site.sh` generates social preview images for posts before the Jekyll build. It needs `rsvg-convert` locally (`brew install librsvg`).
+
 ## Stack
 
 Jekyll. GitHub Pages. GitHub Actions.

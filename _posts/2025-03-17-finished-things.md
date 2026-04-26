@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Finished things
+title: finished things
 description: On ownership, maintenance, and the quiet dignity of tools that know when they are done.
 summary: On ownership, maintenance, and the quiet dignity of tools that know when they are done.
 published: true

@@ -15,7 +15,7 @@ TEXT_EXTENSIONS = %w[.css .html .json .txt .xml].freeze
 FINGERPRINT_GLOBS = [
   'assets/css/*.css',
   'assets/fonts/*.{woff,woff2,ttf,otf}',
-  'assets/images/*.{jpg,jpeg,png,svg,webp,avif,gif}'
+  'assets/images/**/*.{jpg,jpeg,png,svg,webp,avif,gif}'
 ].freeze
 
 fingerprinted_paths = Dir.glob(FINGERPRINT_GLOBS.map { |pattern| site_dir.join(pattern).to_s }).sort
