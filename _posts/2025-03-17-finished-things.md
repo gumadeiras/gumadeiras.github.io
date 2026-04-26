@@ -12,7 +12,7 @@ i keep finding myself drawn to finished things.
 
 i keep thinking "finished" has started to mean something narrower than it used to.
 
-not *well designed*. not *beautiful*. not even *simple*.
+not well designed. not beautiful. not even simple.
 
 not frozen, either.
 
