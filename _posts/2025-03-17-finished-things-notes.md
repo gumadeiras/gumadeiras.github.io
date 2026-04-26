@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Drafts
+title: finished things notes
 published: false
 ---
 
