@@ -8,9 +8,10 @@ layout: default
     {% include theme_toggle.html %}
   </div>
   <h1 class="title">{{ page.title }}</h1>
-  {% assign words = content | strip_html | number_of_words %}
-  {% assign reading_time = words | divided_by: 200 %}
-  {% assign reading_time_remainder = words | modulo: 200 %}
+  {% assign readable_content = content | split: '<div class="footnotes"' | first %}
+  {% assign words = readable_content | strip_html | number_of_words %}
+  {% assign reading_time = words | divided_by: 250 %}
+  {% assign reading_time_remainder = words | modulo: 250 %}
   {% if reading_time_remainder > 0 %}
   {% assign reading_time = reading_time | plus: 1 %}
   {% endif %}
@@ -22,7 +23,9 @@ layout: default
     <span aria-hidden="true"> · </span>
     <span>{{ reading_time }} min read</span>
   </p>
-  {{ content }}
+  <div class="post-content">
+    {{ content }}
+  </div>
   {% if page.tags and page.tags != empty %}
   <p class="meta">
     {% for tag in page.tags %}

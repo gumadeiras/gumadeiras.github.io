@@ -118,6 +118,15 @@ layout: compress
         collapsibles.forEach(setupCollapsibleSection);
       }
 
+      function setupPostContentLinks() {
+        var links = document.querySelectorAll(".post-content a[href]:not([href^='#'])");
+
+        links.forEach(function (link) {
+          link.setAttribute("target", "_blank");
+          link.setAttribute("rel", "noopener noreferrer");
+        });
+      }
+
       var storedTheme = getStoredTheme();
       var initialTheme = storedTheme || root.getAttribute("data-theme") || (mediaQuery && mediaQuery.matches ? "dark" : "light");
 
@@ -137,6 +146,7 @@ layout: compress
       }
 
       setupCollapsibleSections();
+      setupPostContentLinks();
     })();
   </script>
 </body>

@@ -271,6 +271,8 @@ pre {
 }
 
 img {
+	display: block;
+	height: auto;
 	max-width: 100%;
 }
 
@@ -547,6 +549,11 @@ main {
 		width: auto;
 		padding-left: 0.5rem;
 	}
+
+	.post-content figure img,
+	.post-content figure figcaption {
+		max-width: 100%;
+	}
 }
 
 section {
@@ -557,6 +564,49 @@ section {
 
 figcaption {
 	font-size: smaller;
+}
+
+.post-content figure {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: 1.75rem 0;
+}
+
+.post-content figure img,
+.post-content figure figcaption {
+	max-width: min(75%, 100%);
+	width: 100%;
+}
+
+.post-content figure figcaption {
+	text-align: left;
+}
+
+.post-content .footnotes {
+	border-top: 1px solid var(--light-text-color);
+	color: var(--medium-text-color);
+	font-size: 0.82rem;
+	line-height: 1.6;
+	margin-top: 3.5rem;
+	padding-top: 1.25rem;
+}
+
+.post-content .footnotes ol {
+	margin-left: 1.35rem;
+}
+
+.post-content .footnotes li {
+	margin-bottom: 0.9rem;
+	padding-left: 0.25rem;
+}
+
+.post-content .footnotes p {
+	margin: 0;
+}
+
+.post-content .footnotes .reversefootnote {
+	text-decoration: none;
 }
 
 
