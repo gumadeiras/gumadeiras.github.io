@@ -48,7 +48,7 @@ the speaker was not broken.
 
 it was just not done asking things of me.
 
-convenience? [draining.](https://www.nytimes.com/2018/02/16/opinion/sunday/tyranny-convenience.html)
+convenience? [draining](https://www.nytimes.com/2018/02/16/opinion/sunday/tyranny-convenience.html).
 
 the exhausting part is not any single interruption. it is the cumulative shape of them.
 
@@ -84,8 +84,8 @@ too many products are built around recurrence.
 
 subscriptions. retention. little reasons to keep summoning you back into the loop.
 
-i want things that solve a problem [without establishing residency in my attention.](https://nicolasbouliane.com/blog/calm-tech)
+i want things that solve a problem [without establishing residency in my attention](https://nicolasbouliane.com/blog/calm-tech).
 
-i want things that can be [fully owned, not endlessly administered.](https://maggieappleton.com/home-cooked-software)
+i want things that can be [fully owned](https://maggieappleton.com/home-cooked-software), not endlessly administered.
 
 i want more finished things.
