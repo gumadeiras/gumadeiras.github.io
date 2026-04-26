@@ -583,6 +583,15 @@ figcaption {
 	text-align: left;
 }
 
+.post-content sup {
+	line-height: 0;
+}
+
+.post-content sup .footnote {
+	font-size: 0.72em;
+	text-decoration: none;
+}
+
 .post-content .footnotes {
 	border-top: 1px solid var(--light-text-color);
 	color: var(--medium-text-color);
