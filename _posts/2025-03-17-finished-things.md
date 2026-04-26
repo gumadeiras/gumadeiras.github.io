@@ -12,7 +12,7 @@ i keep finding myself drawn to finished things.
 
 i keep thinking "finished" has started to mean something narrower than it used to.
 
-not **well designed**. not **beautiful**. not even **simple**.
+not *well designed*. not *beautiful*. not even *simple*.
 
 not frozen, either.
 
@@ -20,7 +20,7 @@ i mean a thing that has an ending. finished.
 
 you use it. you put it away. finished.
 
-you take it out again. you use it. you put it away. *finished*.
+you take it out again. you use it. you put it away. **finished**.
 
 it requires nothing of you.
 
@@ -72,7 +72,7 @@ i suspect analog objects feel grounding because they make the contrast easy to s
 
 but the distinction i care about is not really analog versus digital.
 
-it is bounded versus ongoing.
+it is *bounded* versus *ongoing*.
 
 the tool does its part.
 
