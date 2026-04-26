@@ -6,13 +6,13 @@ summary: On ownership, maintenance, and the quiet dignity of tools that know whe
 published: true
 ---
 
-i keep finding myself so close to finishing projects but not quite there.
+i keep getting close to finishing projects. close, but not there.
 
 i keep finding myself drawn to finished things.
 
-lately, i keep thinking that "finished" means something narrower than it used to.
+i keep thinking "finished" has started to mean something narrower than it used to.
 
-not “well designed”. not “beautiful”. not even “simple”.
+not **well designed**. not **beautiful**. not even **simple**.
 
 not frozen, either.
 
@@ -20,7 +20,7 @@ i mean a thing that has an ending. finished.
 
 you use it. you put it away. finished.
 
-you take it out again. you use it. you put it away. finished.
+you take it out again. you use it. you put it away. *finished*.
 
 it requires nothing of you.
 
@@ -44,7 +44,11 @@ i recently stayed at an airbnb. they had a fancy bluetooth speaker.
 
 bluetooth pairing. hit play on spotify. nothing comes out. app download required. new account required. firmware update required.
 
-convenience? draining.
+the speaker was not broken.
+
+it was just not done asking things of me.
+
+convenience? [draining.](https://www.nytimes.com/2018/02/16/opinion/sunday/tyranny-convenience.html)
 
 the exhausting part is not any single interruption. it is the cumulative shape of them.
 
@@ -80,8 +84,8 @@ too many products are built around recurrence.
 
 subscriptions. retention. little reasons to keep summoning you back into the loop.
 
-i want things that solve a problem without establishing residency in my attention.
+i want things that solve a problem [without establishing residency in my attention.](https://nicolasbouliane.com/blog/calm-tech)
 
-i want things that can be fully owned, not endlessly administered.
+i want things that can be [fully owned, not endlessly administered.](https://maggieappleton.com/home-cooked-software)
 
 i want more finished things.
