@@ -19,10 +19,19 @@ HEIGHT = 630
 
 def rsvg_convert
   @rsvg_convert ||= begin
-    path = ENV['RSVG_CONVERT'] || `command -v rsvg-convert`.strip
+    path = ENV['RSVG_CONVERT'] || find_executable('rsvg-convert')
     abort('rsvg-convert not found. Install librsvg: brew install librsvg, or apt-get install librsvg2-bin.') if path.empty?
     path
   end
+end
+
+def find_executable(name)
+  ENV.fetch('PATH', '').split(File::PATH_SEPARATOR).each do |directory|
+    path = File.join(directory, name)
+    return path if File.executable?(path) && !File.directory?(path)
+  end
+
+  ''
 end
 
 def front_matter(path)
