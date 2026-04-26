@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install image tools
         run: sudo apt-get update && sudo apt-get install -y librsvg2-bin fonts-firacode
       - name: Setup Ruby
