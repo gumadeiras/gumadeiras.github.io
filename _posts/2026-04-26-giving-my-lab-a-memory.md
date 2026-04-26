@@ -1,0 +1,413 @@
+---
+layout: post
+title: giving my lab a memory
+description: how i built a source-grounded memex for my lab, connected it to agents, and started using it for research.
+summary: a personal account of building a lab memex for papers, genetics, data analysis, onboarding, and shared scientific memory.
+published: true
+---
+
+i wanted my lab to have memory.
+
+not institutional memory in the vague sense.
+
+*actual* memory.
+
+papers. notes. genetic lines. caveats. old decisions. failed ideas. things someone knew once and then forgot.
+
+at first it was just a folder.
+
+then it became a wiki. filled with papers and notes.
+
+then agents got good enough that the wiki started feeling less like a place to store things and more like something i could talk to.
+
+i started calling it a memex, after Vannevar Bush's concept of a personal knowledge system that stores and links information.[^memex]
+
+the idea is not new.[^biomemex]
+
+the timing is.
+
+this is my experience building one for myself. then letting it become part of a neuroscience research lab.
+
+i am a PhD candidate in the [Emonet Lab](https://emonet.biology.yale.edu/).
+
+i study olfactory navigation in fruit flies.
+
+flies smell things. flies move toward odor sources. flies find food and mates.
+
+tiny animal. complex behavior. a brain we can actually study.
+
+that is the job.
+
+i have been coding for a long time, and i love trying new tools. every time a new LLM came out, i tried it.
+
+mostly, i got frustrated.
+
+there were magic moments. write a comment block, press tab, get a function that kind of worked.
+
+fun, but not something i trusted.
+
+that started to change in july 2025.
+
+Anthropic released Opus 4, and for the first time it felt useful-on-a-monday good.
+
+not generalized intelligence. not magic. just good enough at specific coding and research tasks that i kept coming back to it.
+
+the first lab uses were obvious.
+
+attach a paper. ask for the main claims. ask what figure 3 is really showing. ask for related work. ask which citations are worth reading next.
+
+useful, but not enough.
+
+i did not want a chatbot that could read one paper.
+
+i wanted something that already knew the lab context.
+
+what we work on. which papers matter. which fly lines people keep using. which claims are settled. which ones are still shaky. what someone tried three years ago and never wrote down properly.
+
+and i needed sources.
+
+otherwise it was just *confidence with better grammar*.
+
+so i started building a small memex.
+
+papers in a folder. notes about the papers. links between ideas. external resources. local knowledge.
+
+it was okay.
+
+i did not get a breakthrough. no new theory of olfactory navigation.
+
+but the answers got better because the agent had something to stand on.
+
+by september 2025, newer models had made the same workflow stronger. it was better at identifying gaps, connecting distant topics, and noticing when two papers were using different words for the same thing.
+
+at one point i hacked together a slack bot that just routed messages to Claude Code.
+
+that was the first shift.
+
+i stopped only asking it to *do* things.
+
+i started asking it *about* things.
+
+my usage kept increasing.
+
+i used it to synthesize information across papers. relate experimental results to existing literature. find fly lines i half-remembered. review analysis code. rewrite parts of the memex itself.
+
+then i gave it access to raw data.
+
+this was the moment that made me uncomfortable in a useful way.
+
+i tried not to steer it. no hints. no "look here". just the data, the memex, and a question.
+
+more than once, it arrived at the same analysis i had done manually.
+
+not always. not perfectly. often enough that i stopped thinking of it as a toy.
+
+it was following the shape of the project. it could read the data, connect it to the literature, propose analyses, and explain why those analyses made sense.
+
+compared to me, at least, it was doing pretty damn well.
+
+around that same time, i saw a post by [Peter](https://x.com/steipete/status/1999990963826200966) about what became [OpenClaw](https://github.com/openclaw/openclaw).
+
+a personal AI agent i could talk to from anywhere, with access to the same computer tools i use.
+
+sign me up.
+
+i set up an agent and connected it to telegram.
+
+my personal agent is called pinguini.
+
+for the next week i talked about nothing else.
+
+my girlfriend was not thrilled when pinguini first texted her.
+
+we later visited a new city. pinguini suggested an ice cream place. it was good ice cream.
+
+we were figuring out how to get to a museum. pinguini gave us the route and which lines to take.
+
+no searching around. no downloading transit apps. no maps app.
+
+just a message away on telegram.
+
+she saw the value.
+
+OpenClaw made agents feel personal.
+
+the agent has [personality](https://docs.openclaw.ai/concepts/soul). memory. [habits](https://docs.openclaw.ai/gateway/heartbeat). a little sass.
+
+<figure>
+  <img
+    src="{{ '/assets/images/memex-walk-sass.png' | relative_url }}"
+    alt="AI agent named Walk sent a Slack message saying: 'The model is sufficient to explain' — they built a switching state-space model and called it a mechanism. It's a preprint with a nice model. The brain probably does something else entirely."
+    width="994"
+    height="212"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption aria-hidden="true">sourced answers, with a little sass about weak claims.</figcaption>
+</figure>
+
+it remembered things.
+
+it felt less like opening a tool and more like texting someone with access to my computer.
+
+that was the second shift.
+
+agents were no longer only something i used alone.
+
+they could become part of the lab environment.
+
+i did not start by giving the lab the memex.
+
+that felt too abrupt.
+
+instead i made a slack agent whose main job was to learn enough about the lab to roast people gently.
+
+it said "bro" too much. some jokes missed. some landed perfectly.
+
+people got used to the idea that an agent could be part of the lab conversation.
+
+then it was time for the memex.
+
+i created a #wiki slack channel where people could talk to the knowledgebase.
+
+the agent is called walk, because flies mostly walk.
+
+by then i had been refining the memex for almost 10 months. it had been built, rebuilt, reorganized, and rewritten many times.
+
+[ship of theseus](https://lucumr.pocoo.org/2026/3/5/theseus/), but for lab notes.
+
+the result was not fancy.
+
+that is important.
+
+the principle is simple: build a *source-grounded* wiki and give an agent access to it.
+
+the useful part is not that the agent answers.
+
+the useful part is that it *knows where to look*.
+
+this is why i do not think of it as just RAG over PDFs.[^rag]
+
+RAG retrieves chunks.
+
+the memex maintains structure.
+
+a paper becomes a note. a note points to topics. topics point to concepts. concepts become synthesis. synthesis becomes where the next person starts.
+
+papers. notes. protocols. old decisions. half-forgotten context.
+
+tools like [FlyBase](https://github.com/gumadeiras/flybase-cli). [FlyLight](https://github.com/gumadeiras/flylight-cli). the [hemibrain](https://github.com/gumadeiras/fruitloops). [FlyWire](https://github.com/gumadeiras/fruitloops). [BDSC](https://github.com/gumadeiras/bdsc-cli). [OrthoDB](https://github.com/gumadeiras/orthodb-cli).
+
+you can ask:
+
+which split-GAL4 lines label EPG neurons?
+
+show me expression images for those lines.
+
+has anyone used this driver for lateral horn output neurons?
+
+how many synapses do Or42b ORNs make onto DM1 PNs?
+
+help me design a cross for imaging projection neurons while activating one olfactory neuron population and silencing another.
+
+do we have the necessary lines in the lab stock? do we need to buy any?
+
+which papers look into multisensory integration during navigation? find strong results across papers and identify gaps.
+
+<figure>
+  <img
+    src="{{ '/assets/images/memex-cross-plan.png' | relative_url }}"
+    alt="Screenshot of a Slack exchange. Gustavo asks: I want to image DA1 projection neurons while activating Or67d ORNs; what lines should I cross and what should I check before ordering anything? Walk answers with a complete plan. It suggests first making a balanced activation line using Or67d-GAL4 stock 9997 crossed to UAS-CsChrimson stock 55136, then making a balanced imaging line using Mz19-QF stock 41573 crossed to QUAS-GCaMP6f stock 91989. Walk notes that the lab balancers w; Sp/CyO; Dr/TM3 handle the chromosome 2 and chromosome 3 counterparts. Then it says to cross Stock A males to Stock B virgin females for the experimental F1. Before ordering, Walk flags five checks: both effectors land on chromosome 3 at attP2 and are linked, Mz19-QF labels DA1 and VA1d projection neurons and is not pure DA1, red light for CsChrimson should not bleed into the GCaMP filter set, Or67d-GAL4 is on the X chromosome so the balancer strategy must keep the X clean, and the lab balancers are exactly what is needed for the chromosome 2 and chromosome 3 pairs."
+    width="1338"
+    height="1188"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption aria-hidden="true">from a vague question to a crossing plan.</figcaption>
+</figure>
+
+<figure>
+  <img
+    src="{{ '/assets/images/memex-reading-path.png' | relative_url }}"
+    alt="Screenshot of a Slack exchange. Gustavo asks for the fastest reading path for multisensory integration in navigation, combining vision and olfaction: five papers, in order, with why each matters. Walk answers with a five-paper sequence. First, Budick and Dickinson 2006, Free-flight responses of Drosophila to attractive odors, as the behavioral foundation: odor contact means surge upwind and plume loss means casting. Second, Joesch et al. 2013, Functional specialization of parallel motion detection circuits, as the visual hardware: ON and OFF visual motion channels separate at the first synapse. Third, Kadakia et al. 2022, Odour motion sensing enhances navigation of complex plumes, where bilateral timing beats concentration in turbulent plumes and visual-motion comparator logic is reused for odor. Fourth, Heinze et al. 2018, Principles of insect path integration, showing where visual, olfactory, and wind cues converge in the central complex. Fifth, Fisher 2022, Flexible navigational computations, showing sensory-to-compass integration during reorientation via movement-gated plasticity. Walk ends by summarizing the thread: Budick gives behavior, Joesch gives visual hardware, Kadakia shows the same logic applies to odor, Heinze shows where cues merge, and Fisher shows when the merge happens."
+    width="1206"
+    height="1002"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption aria-hidden="true">a reading list with a thread, not just five papers.</figcaption>
+</figure>
+
+<figure>
+  <img
+    src="{{ '/assets/images/memex-driver-lines.png' | relative_url }}"
+    alt="Screenshot of a Slack exchange. Gustavo asks whether there are Or67d or Or56a driver lines that are not GAL4, because GAL4 is already being used for another part of the cross. Walk answers that all four Or67d driver lines are GAL4 only, but Or56a has one non-GAL4 option: BDSC stock 605642, a LexA driver gene trap insertion with genotype w[1118]; TI{RFP[3xP3.cUa]=LexA::p65}Or56a[KO-LexA]. Walk concludes that Or56a has a LexA option and Or67d does not have an alternative system available on BDSC."
+    width="1294"
+    height="586"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption aria-hidden="true">a line lookup becomes a question you can ask in plain english.</figcaption>
+</figure>
+
+<figure>
+  <img
+    src="{{ '/assets/images/memex-flylight-expression.png' | relative_url }}"
+    alt="Screenshot of a Slack exchange. Gustavo asks whether any papers image hDeltaC neurons in the fan-shaped body and which lines they used. Walk finds a paper titled Interneurons of fan-shaped body promote arousal in Drosophila, says it used hDeltaC-GAL4, BDSC stock 75925, and Janelia split-GAL4 lines SS02718 and SS02270. Gustavo then asks whether the lines are on FlyLight and asks to see brain expression for SS02718. Walk uploads an image named SS02718_brain.png showing a fly brain expression image, then notes that SS02718 is on FlyLight in Wolff 2018 and Wolff et al. 2024, but flags a discrepancy: FlyLight EM annotation for SS02718 says vDeltaA_a and vDeltaA_b, not hDeltaC, while the PLOS One paper says SS02718 labels vDeltaB, C, D, and hDeltaC neurons."
+    width="1298"
+    height="1176"
+    loading="lazy"
+    decoding="async"
+  />
+  <figcaption aria-hidden="true">the useful part is not just finding an answer. it is finding the caveat.</figcaption>
+</figure>
+
+none of these questions are impossible without an agent. most are not even hard.
+
+that is not the point.
+
+the point is that each one takes time. search time. memory time. asking-around time. "i know this is in someone's dropbox" time.
+
+the memex compresses that.
+
+sometimes it saves five minutes.
+
+sometimes it saves an afternoon.
+
+sometimes it gives someone enough context to ask a better question.
+
+that is also an *accessibility* story.
+
+you do not need to know the connectome tooling to ask a connectome question.
+
+you do not need to know the orthology database to ask about homologous genes.
+
+it also becomes useful for teaching.
+
+new people do not need a perfect syllabus. they need a path.
+
+start here. read this next. skip this for now. this paper is old but important. this one is famous but weaker than people remember.
+
+a good memex can do that.
+
+it can explain fly genetics. build a reading timeline. compare methods. walk someone through a connectomics analysis. remind them what a driver labels and where the caveats are.
+
+it is like having a senior grad student who has read the lab's collective memory and is always available.
+
+of course, AI slop is real.
+
+research code already has enough problems without adding confident nonsense on top.
+
+but that is also why agents are useful here.
+
+a lot of lab analysis is repetitive. load data. clean it. plot it. check assumptions. compare conditions. document what happened.
+
+the bar is not "replace a computational scientist".
+
+the bar is "help a biologist write better analysis than they would have written alone".
+
+life sciences is a good place for this because so much knowledge is fragmented.
+
+some is in papers. some is in databases. some is in lab notebooks. some is in code. some is in slack. some is in the head of a postdoc leaving in six months.
+
+a memex gives that knowledge a place to live.
+
+an agent gives people a way to use it.
+
+i do not think neuroscience research is about to become fully automated.
+
+behavioral experiments are hard. fly surgery is hard. recording neurons is hard.
+
+knowing what is worth doing is hard.
+
+some pieces will be automated. some already are.[^automation]
+
+but the near future i can actually see is not a robot scientist replacing everyone in the lab.
+
+it is every lab having a memory.
+
+a wiki that knows the literature.
+
+a wiki that knows the lab context.
+
+a wiki that can answer, cite, search, and say "i don't know".
+
+hallucinations still matter.
+
+my rule is simple: the agent can suggest, summarize, and connect. it cannot become the *source of truth*.
+
+for research claims, it needs citations.
+
+for database queries, it needs links or retrieved records.
+
+for analysis, it needs code and outputs i can inspect.
+
+"i don't know" is not a failure mode. it is a feature.
+
+the maintenance is lighter than it sounds.
+
+the agent will be wrong sometimes.
+
+someone has to say "no, that is not right".
+
+but that correction should not die in chat.
+
+the answer gets fixed. the wiki gets updated. the next person benefits.
+
+maintenance becomes part of use.
+
+not a [separate chore](https://gumadeiras.com/2025/03/17/finished-things).
+
+that loop is the point.
+
+without it, you have a chatbot.
+
+with it, the lab memory gets better every time it fails in public.
+
+security also matters.
+
+an agent with access to your computer is not "just a bot".
+
+start read-only. limit channels. avoid DMs. keep secrets out of reach. sandbox anything shared. assume every message is untrusted input until you have a reason not to.
+
+the goal is not to make the agent powerful.
+
+the goal is to make the *useful* part powerful.[^workflows]
+
+costs matter too.
+
+frontier models are expensive. local models are improving. eventually this should become cheap enough that cost is not the bottleneck.
+
+but you do not need to wait for the perfect model.
+
+you can start with the wiki.
+
+make the knowledge explicit. make it searchable. make it source-grounded. make it easy for an agent to consume.
+
+that is the part labs can do now.
+
+i am sharing the [skeleton of how i built my memex](https://github.com/gumadeiras/memex) because i think more people should build one for their labs.
+
+not my exact folders.
+
+not my prompts.
+
+not my agent personality.
+
+not even my tools.
+
+the principle.
+
+research is already a long conversation with the past.
+
+a memex makes the conversation easier to continue.
+
+[^memex]: Vannevar Bush described the [memex](https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/) in 1945.
+
+[^biomemex]: Biology has had versions of the memex dream for a long time too: [wikis for bioinformatics](https://academic.oup.com/bioinformatics/article/28/23/3158/195282), old ideas about [computerized scientific memory](https://muse.jhu.edu/article/403510/pdf), and many databases that tried to make knowledge easier to find.
+
+[^rag]: Andrej Karpathy's [LLM wiki](https://x.com/karpathy/status/2039805659525644595) tweet says this well. The wiki is not just a pile of files. It is something that keeps getting rewritten and connected. Anthropic's [contextual retrieval](https://www.anthropic.com/engineering/contextual-retrieval) is a good technical writeup on making retrieval more flexible.
+
+[^automation]: Some pieces are already moving this way: [laser surgery](https://www.pnas.org/doi/10.1073/pnas.1216287110), this [closed-loop experiment](https://x.com/ChengHuangThu/status/1826778702278983690), and this [behavior platform](https://pmc.ncbi.nlm.nih.gov/articles/PMC6193762/). I just do not think that adds up to a fully automated lab any time soon.
+
+[^workflows]: Armin Ronacher's [Absurd Workflows](https://lucumr.pocoo.org/2025/11/3/absurd-workflows/) explains this well. Once agents do real work, they need boring things: state, retries, checkpoints, and a way to recover when something breaks.

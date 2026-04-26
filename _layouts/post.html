@@ -4,17 +4,34 @@ layout: default
 
 <section class="post">
   <div class="flex-row-between">
-    <a href="{{site.url}}/">« back</a>
-    <button id="theme-toggle" onclick="modeSwitcher()">
-        <div></div>
-    </button>
+    <a href="{{ '/' | relative_url }}">« back</a>
+    {% include theme_toggle.html %}
   </div>
   <h1 class="title">{{ page.title }}</h1>
-  <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
-  {{ content }}
-  <span class="meta">
+  {% assign readable_content = content | split: '<div class="footnotes"' | first %}
+  {% assign words = readable_content | strip_html | number_of_words %}
+  {% assign reading_time = words | divided_by: 250 %}
+  {% assign reading_time_remainder = words | modulo: 250 %}
+  {% if reading_time_remainder > 0 %}
+  {% assign reading_time = reading_time | plus: 1 %}
+  {% endif %}
+  {% if reading_time < 1 %}
+  {% assign reading_time = 1 %}
+  {% endif %}
+  <p class="post-meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+    <span aria-hidden="true"> · </span>
+    <span>{{ reading_time }} min read</span>
+  </p>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  {% if page.tags and page.tags != empty %}
+  <p class="meta">
     {% for tag in page.tags %}
-    <a href="/tag/{{tag}}">{{tag}}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
+    {% assign tag_path = '/tag/' | append: tag | slugify | append: '/' %}
+    <a href="{{ tag_path | relative_url }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </p>
+  {% endif %}
 </section>
-
-

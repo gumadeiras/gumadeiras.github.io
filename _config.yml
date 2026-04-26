@@ -2,17 +2,16 @@ site: Gustavo Madeira Santana
 url: "https://gumadeiras.com"
 title: Gustavo Madeira Santana
 description: researcher. computer engineer. neuroscientist.
-googlewebfonts: Fira+Code:wght@400;500;700
+logo: /favicon.png
 twitter:
   username: gumadeiras
-  card: summary
+  card: summary_large_image
   creator: gumadeiras
 author:
-  twitter: #yourusername
-  name: #yourusername
-  avatar:
-  email: #youremail
-  url: #yoururl
+  twitter: gumadeiras
+  name: Gustavo Madeira Santana
+  avatar: /assets/images/me.jpg
+  url: https://gumadeiras.com
 permalink: pretty
 
 baseurl: ""
@@ -21,6 +20,12 @@ highlighter: rouge
 
 exclude:
   - .jekyll-cache
+  - script
+  - README.md
+  - LICENSE.md
+  - Gemfile
+  - Gemfile.lock
+  - .ruby-version
 
 compress_html:
   clippings: all
@@ -31,7 +36,6 @@ sass:
   style:            :compressed
 
 plugins:
-  - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
 

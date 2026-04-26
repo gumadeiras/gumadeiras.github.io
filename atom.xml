@@ -1,26 +1,28 @@
 ---
 layout: null
 ---
+{% assign latest_post = site.posts.first %}
 
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="https://www.w3.org/2005/Atom">
 
- <title>{{ site.title }}</title>
- <link href="{{ site.url }}{{ site.baseurl }}/atom.xml" rel="self"/>
- <link href="{{ site.url }}{{ site.baseurl }}/"/>
- <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{ site.url }}</id>
+ <title>{{ site.title | xml_escape }}</title>
+ <link href="{{ '/atom.xml' | absolute_url }}" rel="self"/>
+ <link href="{{ '/' | absolute_url }}"/>
+ <updated>{{ latest_post.date | default: site.time | date_to_xmlschema }}</updated>
+ <id>{{ site.url | xml_escape }}</id>
  <author>
-   <name>{{ site.author.name }}</name>
-   <email>{{ site.author.email }}</email>
+   <name>{{ site.author.name | xml_escape }}</name>
+   <uri>{{ site.author.url | xml_escape }}</uri>
  </author>
 
  {% for post in site.posts %}
  <entry>
    <title>{{ post.title | xml_escape }}</title>
-   <link href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"/>
+   <link href="{{ post.url | absolute_url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>{{ site.url }}{{ post.id }}</id>
+   <id>{{ post.url | absolute_url }}</id>
+   <summary>{{ post.description | default: post.summary | xml_escape }}</summary>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
