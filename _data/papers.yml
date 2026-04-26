@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "104"
+    icon: "108"
     text: "citations"
 
 - title: "even lower low-power ffts"
@@ -83,7 +83,7 @@
   date: 2018-09-26
   featured: false
   badge:
-    icon: "31"
+    icon: "32"
     text: "citations"
 
 - title: "ffts, split-radix, adder compressors!"
