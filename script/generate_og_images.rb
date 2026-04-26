@@ -90,7 +90,7 @@ def card_background_svg
   <<~SVG
     <defs>
       <clipPath id="card-clip">
-        <rect x="40" y="50" width="1120" height="530"/>
+        <rect x="0" y="0" width="#{WIDTH}" height="#{HEIGHT}"/>
       </clipPath>
       <filter id="soften">
         <feGaussianBlur stdDeviation="34"/>
@@ -101,13 +101,12 @@ def card_background_svg
         <stop offset="1" stop-color="#f1e1dc"/>
       </linearGradient>
     </defs>
-    <rect width="#{WIDTH}" height="#{HEIGHT}" fill="#292929"/>
     <g clip-path="url(#card-clip)">
-      <rect x="40" y="50" width="1120" height="530" fill="url(#card-bg)"/>
+      <rect width="#{WIDTH}" height="#{HEIGHT}" fill="url(#card-bg)"/>
       <path d="M -105 330 C 85 250 210 502 405 410 C 625 305 720 458 900 372 C 1040 305 1140 220 1290 255 L 1290 690 L -105 690 Z" fill="#bdc6d7" opacity="0.72" filter="url(#soften)"/>
       <path d="M 455 500 C 625 330 770 392 925 310 C 1054 242 1138 180 1275 206 L 1275 690 L 455 690 Z" fill="#d9bab6" opacity="0.68" filter="url(#soften)"/>
       <path d="M -70 458 C 165 350 250 550 438 500 C 578 462 652 360 804 414 C 925 457 1010 390 1140 305 L 1140 690 L -70 690 Z" fill="#aeb5c9" opacity="0.54" filter="url(#soften)"/>
-      <rect x="40" y="50" width="1120" height="530" fill="#ffffff" opacity="0.08"/>
+      <rect width="#{WIDTH}" height="#{HEIGHT}" fill="#ffffff" opacity="0.08"/>
     </g>
   SVG
 end
