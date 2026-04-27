@@ -635,6 +635,7 @@ figcaption {
   align-items: center;
   justify-content: flex-start;
   font-size: 0.8em;
+  line-height: 1;
 }
 
 .badge__icon{
@@ -648,6 +649,7 @@ figcaption {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   flex-shrink: 0;
   white-space: nowrap;
   margin-right: 0.5em;
