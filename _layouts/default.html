@@ -68,6 +68,21 @@ layout: compress
         });
       }
 
+      function scrollExpandedContentIntoView(content) {
+        var bottomPadding = 24;
+        var rect = content.getBoundingClientRect();
+        var overflow = rect.bottom - (window.innerHeight - bottomPadding);
+
+        if (overflow <= 0) {
+          return;
+        }
+
+        window.scrollBy({
+          top: overflow,
+          behavior: prefersReducedMotion ? "auto" : "smooth"
+        });
+      }
+
       function setupCollapsibleSection(section) {
         var summary = section.querySelector(".collapsible-section__summary");
         var content = section.querySelector(".collapsible-section__content");
@@ -87,6 +102,9 @@ layout: compress
             content.style.height = "";
           } else if (section.open) {
             content.style.height = "auto";
+            requestAnimationFrame(function () {
+              scrollExpandedContentIntoView(content);
+            });
           }
 
           section.dataset.animating = "";
