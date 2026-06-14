@@ -19,7 +19,7 @@
   date: 2025-05-05
   featured: true
   badge:
-    icon: "6"
+    icon: "7"
     text: "citations"
 
 - title: "fly adaptive navigation strategies"
@@ -59,7 +59,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "109"
+    icon: "110"
     text: "citations"
 
 - title: "even lower low-power ffts"
