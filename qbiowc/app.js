@@ -249,8 +249,8 @@ function slotInfo(value) {
   const team = currentTeam(value);
   if (team) return { main: team.n, sub: `${value} current`, team };
   if (/^3/.test(value)) return { main: value, sub: "best third-place pool" };
-  if (/^W\d+/.test(value)) return { main: value, sub: "winner" };
-  if (/^L\d+/.test(value)) return { main: value, sub: "semifinal loser" };
+  if (/^W\d+/.test(value)) return { main: value.replace("W", "M"), sub: "winner" };
+  if (/^L\d+/.test(value)) return { main: value.replace("L", "M"), sub: "semifinal loser" };
   return { main: value, sub: "predicted" };
 }
 
