@@ -63,6 +63,16 @@ if (Object.keys(thirdPlaceOptions).length !== 495) throw new Error("Missing FIFA
 const stateKey = "qbiowc-picks-v1";
 const state = JSON.parse(localStorage.getItem(stateKey) || '{"matches":{}}');
 const data = window.QBIOWC_DATA || { standings: [], players: {} };
+const googleFormConfig = {
+  action: "https://docs.google.com/forms/d/e/1FAIpQLSf9jfkZ6zktmFjB9bWFOQNOldxuLlhWd9emTUtTLZKgnCxYbw/formResponse",
+  fields: {
+    name: "entry.2145935792",
+    bracketName: "entry.1805054406",
+    email: "entry.1037084140",
+    boostCountry: "entry.601888031",
+    picks: "entry.1841195636"
+  }
+};
 const standings = data.standings || [];
 const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
 const standingsEl = document.querySelector("[data-standings]");
@@ -341,6 +351,52 @@ function show(message) {
   show.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
+function submissionPayload() {
+  save();
+  return {
+    name: state.name || "",
+    bracketName: state.bracketName || "",
+    email: state.email || "",
+    boostCountry: state.boostCountry || "",
+    picks: JSON.stringify(state)
+  };
+}
+
+function googleFormReady() {
+  return googleFormConfig.action && Object.values(googleFormConfig.fields).every(Boolean);
+}
+
+async function copyPicks() {
+  await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
+}
+
+async function submitPicks() {
+  const required = document.querySelectorAll("[required]");
+  if ([...required].some((input) => !input.reportValidity())) return;
+  const payload = submissionPayload();
+  if (!googleFormReady()) {
+    await copyPicks();
+    show("google form not configured; picks copied");
+    return;
+  }
+  const body = new FormData();
+  Object.entries(googleFormConfig.fields).forEach(([key, entry]) => body.append(entry, payload[key]));
+  await fetch(googleFormConfig.action, { method: "POST", mode: "no-cors", body });
+  show("picks submitted");
+}
+
+function restorePicks() {
+  const raw = document.querySelector("[data-restore-json]").value.trim();
+  try {
+    const restored = JSON.parse(raw);
+    if (!restored || typeof restored !== "object" || !restored.matches || typeof restored.matches !== "object") throw new Error("bad shape");
+    localStorage.setItem(stateKey, JSON.stringify(restored));
+    location.reload();
+  } catch {
+    show("could not restore picks");
+  }
+}
+
 function renderBoostCountries() {
   const boost = document.querySelector("[data-boost-country]");
   const knockoutTeams = rounds[0].matches
@@ -367,9 +423,13 @@ document.querySelectorAll("[data-player-name], [data-bracket-name], [data-player
 });
 document.querySelector("[data-copy]").addEventListener("click", async () => {
   save();
-  await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
+  await copyPicks();
   show("picks copied");
 });
+document.querySelector("[data-submit]").addEventListener("click", submitPicks);
+document.querySelector("[data-restore-open]").addEventListener("click", () => document.querySelector("[data-restore-dialog]").showModal());
+document.querySelector("[data-restore-cancel]").addEventListener("click", () => document.querySelector("[data-restore-dialog]").close());
+document.querySelector("[data-restore-apply]").addEventListener("click", restorePicks);
 document.querySelector("[data-reset]").addEventListener("click", () => {
   localStorage.removeItem(stateKey);
   location.reload();

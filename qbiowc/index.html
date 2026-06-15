@@ -147,7 +147,7 @@
 
     .panel {
       display: grid;
-      grid-template-columns: repeat(4, 1fr) auto auto;
+      grid-template-columns: repeat(4, 1fr) auto;
       gap: 10px;
       align-items: end;
       margin-bottom: 18px;
@@ -164,6 +164,17 @@
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .actions button {
+      white-space: nowrap;
     }
 
     .field {
@@ -261,6 +272,42 @@
 
     .rules b {
       color: var(--ink);
+    }
+
+    dialog {
+      width: min(560px, calc(100vw - 32px));
+      border: 1px solid var(--ink);
+      background: var(--card);
+      color: var(--ink);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    dialog::backdrop {
+      background: rgba(22, 22, 22, 0.25);
+    }
+
+    .restore-box {
+      display: grid;
+      gap: 10px;
+    }
+
+    .restore-box h2 {
+      margin: 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .restore-box textarea {
+      min-height: 180px;
+      resize: vertical;
+      padding: 10px;
+    }
+
+    .restore-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
     }
 
     .ticker {
@@ -635,6 +682,9 @@
       .panel {
         grid-template-columns: 1fr;
       }
+      .actions {
+        grid-template-columns: 1fr;
+      }
       .meta {
         justify-content: flex-start;
       }
@@ -680,22 +730,26 @@
     <section class="panel" aria-label="entry controls">
       <label>
         name
-        <input class="field" data-player-name autocomplete="name" placeholder="your name">
+        <input class="field" data-player-name autocomplete="name" placeholder="your name" required>
       </label>
       <label>
         bracket name
-        <input class="field" data-bracket-name autocomplete="nickname" placeholder="upset oracle">
+        <input class="field" data-bracket-name autocomplete="nickname" placeholder="upset oracle" required>
       </label>
       <label>
         email
-        <input class="field" data-player-email type="email" autocomplete="email" placeholder="you@yale.edu">
+        <input class="field" data-player-email type="email" autocomplete="email" placeholder="you@yale.edu" required>
       </label>
       <label>
         boost country (2x points)
-        <select class="field" data-boost-country></select>
+        <select class="field" data-boost-country required></select>
       </label>
-      <button type="button" data-copy>copy picks</button>
-      <button class="secondary" type="button" data-reset>reset</button>
+      <div class="actions">
+        <button type="button" data-submit>submit picks</button>
+        <button class="secondary" type="button" data-copy>copy</button>
+        <button class="secondary" type="button" data-restore-open>restore</button>
+        <button class="secondary" type="button" data-reset>reset</button>
+      </div>
     </section>
 
     <aside class="prize" aria-label="prize">
@@ -755,6 +809,16 @@
       <span>source slots: fifa 2026 knockout schedule</span>
     </footer>
   </main>
+  <dialog data-restore-dialog>
+    <div class="restore-box">
+      <h2>restore picks</h2>
+      <textarea class="field" data-restore-json placeholder="paste copied picks json"></textarea>
+      <div class="restore-actions">
+        <button class="secondary" type="button" data-restore-cancel>cancel</button>
+        <button type="button" data-restore-apply>restore</button>
+      </div>
+    </div>
+  </dialog>
   <div class="toast" data-toast role="status" aria-live="polite"></div>
 
   <script src="./data.js"></script>
