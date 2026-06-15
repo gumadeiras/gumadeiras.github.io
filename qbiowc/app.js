@@ -227,11 +227,16 @@ function renderLeaderboard() {
   );
   leaderboardEl.innerHTML = rows.length ? rows.map((row, index) => `
     <div class="leader-row">
-      <span>${index + 1}</span><span>${escapeHtml(row.bracketName)}</span><span>${escapeHtml(row.boostCountry)}</span><span>${row.points}</span><span>${row.exact}</span><span>${row.result}</span><span>${row.scorers}</span>
+      <span>${index + 1}</span><span>${escapeHtml(row.bracketName)}</span><span class="leader-boost">${renderBoostCountry(row.boostCountry)}</span><span>${row.points}</span><span>${row.exact}</span><span>${row.result}</span><span>${row.scorers}</span>
     </div>`).join("") : `
     <div class="leader-row">
       <span>-</span><span>TBD</span><span>-</span><span>0</span><span>0</span><span>0</span><span>0</span>
     </div>`;
+}
+
+function renderBoostCountry(country) {
+  const team = currentTeam(country);
+  return `${team ? `<img class="flag" src="${team.l}" alt="">` : ""}<span>${escapeHtml(country || "-")}</span>`;
 }
 
 function currentTeam(value) {
