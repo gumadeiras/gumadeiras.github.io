@@ -331,14 +331,14 @@ function bindMatchControls(root) {
     });
   });
 
-  board.querySelectorAll("[data-advance]").forEach((button) => {
+  root.querySelectorAll("[data-advance]").forEach((button) => {
     button.addEventListener("click", (event) => {
       const [id, side] = event.currentTarget.dataset.advance.split(":");
       setAdvance(id, side);
     });
   });
 
-  board.querySelectorAll("[data-scorer]").forEach((input) => {
+  root.querySelectorAll("[data-scorer]").forEach((input) => {
     input.addEventListener("change", (event) => {
       const [id, side, index] = event.target.dataset.scorer.split(":");
       setScorer(id, side, Number(index), event.target.value);
@@ -374,31 +374,37 @@ function sourceIds(match) {
   return match.slice(1).flatMap((slot) => /^[WL](\d+)$/.exec(slot)?.[1] || []);
 }
 
+function teamCenter(card, index) {
+  const team = card.querySelectorAll(".team")[index];
+  return team ? card.offsetTop + team.offsetTop + team.offsetHeight / 2 : card.offsetTop + card.offsetHeight / 2;
+}
+
 function layoutBracketCards() {
   board.querySelectorAll(".match").forEach((card) => card.style.marginTop = "");
   board.querySelectorAll(".champion").forEach((card) => card.style.marginTop = "");
   const roundEls = [...board.querySelectorAll(".round")];
   const centers = {};
-  const firstRound = orderedMatches(rounds[0]);
-  const firstCards = firstRound.map((match) => board.querySelector(`[data-match-id="${match[0]}"]`)).filter(Boolean);
-  const pitch = Math.max(...firstCards.map((card) => card.offsetHeight)) + 28;
-  const start = firstCards[0] ? firstCards[0].offsetTop + firstCards[0].offsetHeight / 2 : 0;
+  const firstRoundIds = new Set(rounds[0].matches.map((match) => String(match[0])));
 
-  firstRound.forEach((match, index) => {
-    centers[match[0]] = start + index * pitch;
+  orderedMatches(rounds[0]).forEach((match) => {
+    const card = board.querySelector(`[data-match-id="${match[0]}"]`);
+    if (card) centers[match[0]] = card.offsetTop + card.offsetHeight / 2;
   });
 
   rounds.slice(1).forEach((round) => {
     orderedMatches(round).forEach((match) => {
-      const sources = sourceIds(match).map((sourceId) => centers[sourceId]).filter((value) => value != null);
+      const sources = sourceIds(match).map((sourceId, sourceIndex) => {
+        const card = board.querySelector(`[data-match-id="${sourceId}"]`);
+        return card && firstRoundIds.has(String(sourceId)) ? teamCenter(card, sourceIndex) : centers[sourceId];
+      }).filter((value) => value != null);
       if (sources.length) {
         centers[match[0]] = sources.reduce((sum, value) => sum + value, 0) / sources.length;
       }
     });
   });
 
-  rounds.forEach((round, roundIndex) => {
-    const roundEl = roundEls[roundIndex];
+  rounds.slice(1).forEach((round, roundIndex) => {
+    const roundEl = roundEls[roundIndex + 1];
     if (!roundEl) return;
 
     orderedMatches(round).forEach((match) => {
@@ -423,27 +429,32 @@ function layoutBracketCards() {
 function drawBracketLines() {
   board.querySelector(".bracket-lines")?.remove();
   const boardBox = board.getBoundingClientRect();
+  const firstRoundIds = new Set(rounds[0].matches.map((match) => String(match[0])));
   const paths = rounds.flatMap((round) => round.matches).flatMap(([targetId, ...slots]) => {
     if (targetId === 104) return [];
+    if (!slots.some((slot) => /^[WL]\d+$/.test(slot))) return [];
     const target = board.querySelector(`[data-match-id="${targetId}"]`);
     if (!target) return [];
     const targetBox = target.getBoundingClientRect();
-    const x2 = targetBox.left - boardBox.left + board.scrollLeft + Math.min(targetBox.width * 0.55, 112);
+    const stemX = targetBox.left - boardBox.left + board.scrollLeft + Math.min(targetBox.width * 0.38, 72);
+    const sourceYs = slots.map((slot, slotIndex) => {
+      const match = /^[WL](\d+)$/.exec(slot);
+      const source = match ? board.querySelector(`[data-match-id="${match[1]}"]`) : null;
+      if (!source) return null;
+      return firstRoundIds.has(match[1]) ? teamCenter(source, slotIndex) : source.offsetTop + source.offsetHeight / 2;
+    }).filter((value) => value != null);
+    const stem = sourceYs.length === 2 ? [`<path d="M${stemX} ${sourceYs[0]} V${sourceYs[1]}"/>`] : [];
 
-    return slots.flatMap((slot, slotIndex) => {
+    return stem.concat(slots.flatMap((slot, slotIndex) => {
       const match = /^[WL](\d+)$/.exec(slot);
       if (!match) return [];
       const source = board.querySelector(`[data-match-id="${match[1]}"]`);
-      const targetTeam = target.querySelectorAll(".team")[slotIndex];
       if (!source) return [];
       const sourceBox = source.getBoundingClientRect();
-      const targetTeamBox = targetTeam?.getBoundingClientRect() || targetBox;
       const x1 = sourceBox.right - boardBox.left + board.scrollLeft;
-      const y1 = sourceBox.top - boardBox.top + board.scrollTop + sourceBox.height / 2;
-      const y2 = targetTeamBox.top - boardBox.top + board.scrollTop + targetTeamBox.height / 2;
-      const mid = x1 + Math.max(18, (x2 - x1) / 2);
-      return `<path d="M${x1} ${y1} H${mid} V${y2} H${x2}"/>`;
-    });
+      const y = sourceYs[slotIndex];
+      return y == null ? [] : `<path d="M${x1} ${y} H${stemX}"/>`;
+    }));
   }).join("");
   const thirdPlace = board.querySelector('[data-match-id="103"]');
   const final = board.querySelector('[data-match-id="104"]');
