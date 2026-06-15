@@ -51,6 +51,13 @@ const kickoffs = {
   104: "Sun Jul 19 · 3:00 PM"
 };
 
+const visualMatchOrder = {
+  "round of 32": [74, 77, 73, 75, 83, 84, 81, 82, 76, 78, 79, 80, 86, 88, 85, 87],
+  "round of 16": [89, 90, 93, 94, 91, 92, 95, 96],
+  quarterfinals: [97, 98, 99, 100],
+  semifinals: [101, 102]
+};
+
 const thirdPlaceSlotMatches = [79, 85, 81, 74, 82, 77, 87, 80];
 const thirdPlaceOptions = "EJIFHGLK HGIDJFLK EJIDHGLK EJIDHFLK EGIDJFLK EGJDHFLK EGIDHFLK EGJDHFLI EGJDHFIK HGICJFLK EJICHGLK EJICHFLK EGICJFLK EGJCHFLK EGICHFLK EGJCHFLI EGJCHFIK HGICJDLK CJIDHFLK CGIDJFLK CGJDHFLK CGIDHFLK CGJDHFLI CGJDHFIK EJICHDLK EGICJDLK EGJCHDLK EGICHDLK EGJCHDLI EGJCHDIK CJEDIFLK CJEDHFLK CEIDHFLK CJEDHFLI CJEDHFIK CGEDJFLK CGEDIFLK CGEDJFLI CGEDJFIK CGEDHFLK CGJDHFLE CGJDHFEK CGEDHFLI CGEDHFIK CGJDHFEI HJBFIGLK EJIBHGLK EJBFIHLK EJBFIGLK EJBFHGLK EGBFIHLK EJBFHGLI EJBFHGIK HJBDIGLK HJBDIFLK IGBDJFLK HGBDJFLK HGBDIFLK HGBDJFLI HGBDJFIK EJBDIHLK EJBDIGLK EJBDHGLK EGBDIHLK EJBDHGLI EJBDHGIK EJBDIFLK EJBDHFLK EIBDHFLK EJBDHFLI EJBDHFIK EGBDJFLK EGBDIFLK EGBDJFLI EGBDJFIK EGBDHFLK HGBDJFLE HGBDJFEK EGBDHFLI EGBDHFIK HGBDJFEI HJBCIGLK HJBCIFLK IGBCJFLK HGBCJFLK HGBCIFLK HGBCJFLI HGBCJFIK EJBCIHLK EJBCIGLK EJBCHGLK EGBCIHLK EJBCHGLI EJBCHGIK EJBCIFLK EJBCHFLK EIBCHFLK EJBCHFLI EJBCHFIK EGBCJFLK EGBCIFLK EGBCJFLI EGBCJFIK EGBCHFLK HGBCJFLE HGBCJFEK EGBCHFLI EGBCHFIK HGBCJFEI HJBCIDLK IGBCJDLK HGBCJDLK HGBCIDLK HGBCJDLI HGBCJDIK CJBDIFLK CJBDHFLK CIBDHFLK CJBDHFLI CJBDHFIK CGBDJFLK CGBDIFLK CGBDJFLI CGBDJFIK CGBDHFLK CGBDHFLJ HGBCJFDK CGBDHFLI CGBDHFIK HGBCJFDI EJBCIDLK EJBCHDLK EIBCHDLK EJBCHDLI EJBCHDIK EGBCJDLK EGBCIDLK EGBCJDLI EGBCJDIK EGBCHDLK HGBCJDLE HGBCJDEK EGBCHDLI EGBCHDIK HGBCJDEI CJBDEFLK CEBDIFLK CJBDEFLI CJBDEFIK CEBDHFLK CJBDHFLE CJBDHFEK CEBDHFLI CEBDHFIK CJBDHFEI CGBDEFLK CGBDJFLE CGBDJFEK CGBDEFLI CGBDEFIK CGBDJFEI CGBDHFLE CGBDHFEK HGBCJFDE CGBDHFEI HJIFAGLK EJIAHGLK EJIFAHLK EJIFAGLK EGJFAHLK EGIFAHLK EGJFAHLI EGJFAHIK HJIDAGLK HJIDAFLK IGJDAFLK HGJDAFLK HGIDAFLK HGJDAFLI HGJDAFIK EJIDAHLK EJIDAGLK EGJDAHLK EGIDAHLK EGJDAHLI EGJDAHIK EJIDAFLK HJEDAFLK HEIDAFLK HJEDAFLI HJEDAFIK EGJDAFLK EGIDAFLK EGJDAFLI EGJDAFIK HGEDAFLK HGJDAFLE HGJDAFEK HGEDAFLI HGEDAFIK HGJDAFEI HJICAGLK HJICAFLK IGJCAFLK HGJCAFLK HGICAFLK HGJCAFLI HGJCAFIK EJICAHLK EJICAGLK EGJCAHLK EGICAHLK EGJCAHLI EGJCAHIK EJICAFLK HJECAFLK HEICAFLK HJECAFLI HJECAFIK EGJCAFLK EGICAFLK EGJCAFLI EGJCAFIK HGECAFLK HGJCAFLE HGJCAFEK HGECAFLI HGECAFIK HGJCAFEI HJICADLK IGJCADLK HGJCADLK HGICADLK HGJCADLI HGJCADIK CJIDAFLK HJFCADLK HFICADLK HJFCADLI HJFCADIK CGJDAFLK CGIDAFLK CGJDAFLI CGJDAFIK HGFCADLK CGJDAFLH HGJCAFDK HGFCADLI HGFCADIK HGJCAFDI EJICADLK HJECADLK HEICADLK HJECADLI HJECADIK EGJCADLK EGICADLK EGJCADLI EGJCADIK HGECADLK HGJCADLE HGJCADEK HGECADLI HGECADIK HGJCADEI CJEDAFLK CEIDAFLK CJEDAFLI CJEDAFIK HEFCADLK HJFCADLE HJECAFDK HEFCADLI HEFCADIK HJECAFDI CGEDAFLK CGJDAFLE CGJDAFEK CGEDAFLI CGEDAFIK CGJDAFEI HGFCADLE HGECAFDK HGJCAFDE HGECAFDI HJBAIGLK HJBAIFLK IJBFAGLK HJBFAGLK HGBAIFLK HJBFAGLI HJBFAGIK EJBAIHLK EJBAIGLK EJBAHGLK EGBAIHLK EJBAHGLI EJBAHGIK EJBAIFLK EJBFAHLK EIBFAHLK EJBFAHLI EJBFAHIK EJBFAGLK EGBAIFLK EJBFAGLI EJBFAGIK EGBFAHLK HJBFAGLE HJBFAGEK EGBFAHLI EGBFAHIK HJBFAGEI IJBDAHLK IJBDAGLK HJBDAGLK IGBDAHLK HJBDAGLI HJBDAGIK IJBDAFLK HJBDAFLK HIBDAFLK HJBDAFLI HJBDAFIK FJBDAGLK IGBDAFLK FJBDAGLI FJBDAGIK HGBDAFLK HGBDAFLJ HGBDAFJK HGBDAFLI HGBDAFIK HGBDAFIJ EJBAIDLK EJBDAHLK EIBDAHLK EJBDAHLI EJBDAHIK EJBDAGLK EGBAIDLK EJBDAGLI EJBDAGIK EGBDAHLK HJBDAGLE HJBDAGEK EGBDAHLI EGBDAHIK HJBDAGEI EJBDAFLK EIBDAFLK EJBDAFLI EJBDAFIK HEBDAFLK HJBDAFLE HJBDAFEK HEBDAFLI HEBDAFIK HJBDAFEI EGBDAFLK EGBDAFLJ EGBDAFJK EGBDAFLI EGBDAFIK EGBDAFIJ HGBDAFLE HGBDAFEK HGBDAFEJ HGBDAFEI IJBCAHLK IJBCAGLK HJBCAGLK IGBCAHLK HJBCAGLI HJBCAGIK IJBCAFLK HJBCAFLK HIBCAFLK HJBCAFLI HJBCAFIK CJBFAGLK IGBCAFLK CJBFAGLI CJBFAGIK HGBCAFLK HGBCAFLJ HGBCAFJK HGBCAFLI HGBCAFIK HGBCAFIJ EJBAICLK EJBCAHLK EIBCAHLK EJBCAHLI EJBCAHIK EJBCAGLK EGBAICLK EJBCAGLI EJBCAGIK EGBCAHLK HJBCAGLE HJBCAGEK EGBCAHLI EGBCAHIK HJBCAGEI EJBCAFLK EIBCAFLK EJBCAFLI EJBCAFIK HEBCAFLK HJBCAFLE HJBCAFEK HEBCAFLI HEBCAFIK HJBCAFEI EGBCAFLK EGBCAFLJ EGBCAFJK EGBCAFLI EGBCAFIK EGBCAFIJ HGBCAFLE HGBCAFEK HGBCAFEJ HGBCAFEI IJBCADLK HJBCADLK HIBCADLK HJBCADLI HJBCADIK CJBDAGLK IGBCADLK CJBDAGLI CJBDAGIK HGBCADLK HGBCADLJ HGBCADJK HGBCADLI HGBCADIK HGBCADIJ CJBDAFLK CIBDAFLK CJBDAFLI CJBDAFIK HFBCADLK CJBDAFLH HJBCAFDK HFBCADLI HFBCADIK HJBCAFDI CGBDAFLK CGBDAFLJ CGBDAFJK CGBDAFLI CGBDAFIK CGBDAFIJ CGBDAFLH HGBCAFDK HGBCAFDJ HGBCAFDI EJBCADLK EIBCADLK EJBCADLI EJBCADIK HEBCADLK HJBCADLE HJBCADEK HEBCADLI HEBCADIK HJBCADEI EGBCADLK EGBCADLJ EGBCADJK EGBCADLI EGBCADIK EGBCADIJ HGBCADLE HGBCADEK HGBCADEJ HGBCADEI CEBDAFLK CJBDAFLE CJBDAFEK CEBDAFLI CEBDAFIK CJBDAFEI HFBCADLE HEBCAFDK HJBCAFDE HEBCAFDI CGBDAFLE CGBDAFEK CGBDAFEJ CGBDAFEI HGBCAFDE".split(" ").reduce((options, row) => {
   const slots = [...row];
@@ -348,6 +355,8 @@ function renderAffected(id) {
     bindMatchControls(board.querySelector(`[data-match-id="${matchId}"]`));
   });
   board.querySelector(".champion")?.replaceWith(htmlToElement(renderChampion()));
+  layoutBracketCards();
+  drawBracketLines();
 }
 
 function htmlToElement(html) {
@@ -356,16 +365,102 @@ function htmlToElement(html) {
   return template.content.firstElementChild;
 }
 
+function orderedMatches(round) {
+  const order = visualMatchOrder[round.name];
+  return order ? order.map((id) => round.matches.find((match) => match[0] === id)).filter(Boolean) : round.matches;
+}
+
+function sourceIds(match) {
+  return match.slice(1).flatMap((slot) => /^[WL](\d+)$/.exec(slot)?.[1] || []);
+}
+
+function layoutBracketCards() {
+  board.querySelectorAll(".match").forEach((card) => card.style.marginTop = "");
+  board.querySelectorAll(".champion").forEach((card) => card.style.marginTop = "");
+  const roundEls = [...board.querySelectorAll(".round")];
+  const centers = {};
+  const firstRound = orderedMatches(rounds[0]);
+  const firstCards = firstRound.map((match) => board.querySelector(`[data-match-id="${match[0]}"]`)).filter(Boolean);
+  const pitch = Math.max(...firstCards.map((card) => card.offsetHeight)) + 28;
+  const start = firstCards[0] ? firstCards[0].offsetTop + firstCards[0].offsetHeight / 2 : 0;
+
+  firstRound.forEach((match, index) => {
+    centers[match[0]] = start + index * pitch;
+  });
+
+  rounds.slice(1).forEach((round) => {
+    orderedMatches(round).forEach((match) => {
+      const sources = sourceIds(match).map((sourceId) => centers[sourceId]).filter((value) => value != null);
+      if (sources.length) {
+        centers[match[0]] = sources.reduce((sum, value) => sum + value, 0) / sources.length;
+      }
+    });
+  });
+
+  rounds.forEach((round, roundIndex) => {
+    const roundEl = roundEls[roundIndex];
+    if (!roundEl) return;
+
+    orderedMatches(round).forEach((match) => {
+      const card = board.querySelector(`[data-match-id="${match[0]}"]`);
+      if (!card || centers[match[0]] == null) return;
+
+      const desiredTop = centers[match[0]] - card.offsetHeight / 2;
+      if (match[0] === 104) {
+        const champion = roundEl.querySelector(".champion");
+        const gap = 12;
+        if (champion) {
+          champion.style.marginTop = `${Math.max(0, desiredTop - champion.offsetTop - champion.offsetHeight - gap)}px`;
+          card.style.marginTop = `${gap}px`;
+          return;
+        }
+      }
+      card.style.marginTop = `${Math.max(0, desiredTop - card.offsetTop)}px`;
+    });
+  });
+}
+
+function drawBracketLines() {
+  board.querySelector(".bracket-lines")?.remove();
+  const boardBox = board.getBoundingClientRect();
+  const paths = rounds.flatMap((round) => round.matches).flatMap(([targetId, ...slots]) => {
+    if (targetId === 103 || targetId === 104) return [];
+    const target = board.querySelector(`[data-match-id="${targetId}"]`);
+    if (!target) return [];
+    const targetBox = target.getBoundingClientRect();
+    const x2 = targetBox.left - boardBox.left + board.scrollLeft + Math.min(targetBox.width * 0.55, 112);
+
+    return slots.flatMap((slot, slotIndex) => {
+      const match = /^[WL](\d+)$/.exec(slot);
+      if (!match) return [];
+      const source = board.querySelector(`[data-match-id="${match[1]}"]`);
+      const targetTeam = target.querySelectorAll(".team")[slotIndex];
+      if (!source) return [];
+      const sourceBox = source.getBoundingClientRect();
+      const targetTeamBox = targetTeam?.getBoundingClientRect() || targetBox;
+      const x1 = sourceBox.right - boardBox.left + board.scrollLeft;
+      const y1 = sourceBox.top - boardBox.top + board.scrollTop + sourceBox.height / 2;
+      const y2 = targetTeamBox.top - boardBox.top + board.scrollTop + targetTeamBox.height / 2;
+      const mid = x1 + Math.max(18, (x2 - x1) / 2);
+      return `<path d="M${x1} ${y1} H${mid} V${y2} H${x2}"/>`;
+    });
+  }).join("");
+
+  board.insertAdjacentHTML("afterbegin", `<svg class="bracket-lines" width="${board.scrollWidth}" height="${board.scrollHeight}" viewBox="0 0 ${board.scrollWidth} ${board.scrollHeight}" aria-hidden="true">${paths}</svg>`);
+}
+
 function render() {
   board.innerHTML = rounds.map((round) => `
     <section class="round">
       <h2>${round.name}<span class="date">${round.date}</span></h2>
       ${round.name === "final" ? renderChampion() : ""}
-      ${round.matches.map((match, index) => renderMatch(match, index, round.name)).join("")}
+      ${orderedMatches(round).map((match, index) => renderMatch(match, index, round.name)).join("")}
     </section>
   `).join("");
 
   bindMatchControls(board);
+  layoutBracketCards();
+  drawBracketLines();
 }
 
 function show(message) {
@@ -485,3 +580,7 @@ document.querySelector("[data-reset]").addEventListener("click", () => {
 renderStandings();
 renderLeaderboard();
 render();
+window.addEventListener("resize", () => {
+  layoutBracketCards();
+  drawBracketLines();
+});

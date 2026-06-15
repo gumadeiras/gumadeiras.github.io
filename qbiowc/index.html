@@ -437,6 +437,7 @@
     }
 
     .board {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(6, minmax(210px, 1fr));
       gap: 16px;
@@ -456,7 +457,7 @@
     .round h2 {
       position: sticky;
       top: 0;
-      z-index: 2;
+      z-index: 3;
       margin: 0;
       border-block: 1px solid var(--ink);
       background: var(--paper);
@@ -474,6 +475,7 @@
 
     .match {
       position: relative;
+      z-index: 2;
       display: grid;
       gap: 8px;
       min-height: 136px;
@@ -649,6 +651,8 @@
     }
 
     .champion {
+      position: relative;
+      z-index: 2;
       display: grid;
       place-items: center;
       min-height: 136px;
@@ -673,6 +677,21 @@
       grid-row: auto;
       width: 25px;
       height: 25px;
+    }
+
+    .bracket-lines {
+      position: absolute;
+      inset: 0 auto auto 0;
+      z-index: 1;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .bracket-lines path {
+      fill: none;
+      stroke: rgba(176, 8, 47, 0.28);
+      stroke-width: 2;
+      vector-effect: non-scaling-stroke;
     }
 
     .foot {
@@ -879,6 +898,6 @@
   <div class="toast" data-toast role="status" aria-live="polite"></div>
 
   <script src="./data.js"></script>
-  <script src="./app.js"></script>
+  <script src="./app.js?v=local-lines"></script>
 </body>
 </html>
