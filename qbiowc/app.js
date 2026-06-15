@@ -400,6 +400,10 @@ function hasAnyScore() {
   );
 }
 
+function showSubmitSuccess() {
+  document.querySelector("[data-submit-dialog]").showModal();
+}
+
 async function submitPicks() {
   const required = document.querySelectorAll("[required]");
   if ([...required].some((input) => !input.reportValidity())) return;
@@ -417,7 +421,7 @@ async function submitPicks() {
   const body = new FormData();
   Object.entries(googleFormConfig.fields).forEach(([key, entry]) => body.append(entry, payload[key]));
   await fetch(googleFormConfig.action, { method: "POST", mode: "no-cors", body });
-  show("picks submitted");
+  showSubmitSuccess();
 }
 
 function restorePicks() {
@@ -467,6 +471,7 @@ document.querySelector("[data-restore-open]").addEventListener("click", () => do
 document.querySelector("[data-restore-cancel]").addEventListener("click", () => document.querySelector("[data-restore-dialog]").close());
 document.querySelector("[data-restore-apply]").addEventListener("click", restorePicks);
 document.querySelector("[data-empty-close]").addEventListener("click", () => document.querySelector("[data-empty-dialog]").close());
+document.querySelector("[data-submit-close]").addEventListener("click", () => document.querySelector("[data-submit-dialog]").close());
 document.querySelector("[data-reset]").addEventListener("click", () => {
   localStorage.removeItem(stateKey);
   location.reload();

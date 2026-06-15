@@ -310,6 +310,13 @@
       line-height: 1.4;
     }
 
+    .success-copy {
+      margin: 0;
+      color: var(--green);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
     .restore-box textarea {
       min-height: 180px;
       resize: vertical;
@@ -856,6 +863,15 @@
       <p class="warning-copy">Add at least one score before submitting your picks.</p>
       <div class="restore-actions">
         <button type="button" data-empty-close>fill out bracket</button>
+      </div>
+    </div>
+  </dialog>
+  <dialog data-submit-dialog>
+    <div class="restore-box">
+      <h2>picks submitted</h2>
+      <p class="success-copy">You're in. Latest submission per email wins, so you can come back and update later.</p>
+      <div class="restore-actions">
+        <button type="button" data-submit-close>back to bracket</button>
       </div>
     </div>
   </dialog>
