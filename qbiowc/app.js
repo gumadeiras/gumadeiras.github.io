@@ -411,7 +411,7 @@ function layoutBracketCards() {
         const gap = 12;
         if (champion) {
           champion.style.marginTop = `${Math.max(0, desiredTop - champion.offsetTop - champion.offsetHeight - gap)}px`;
-          card.style.marginTop = `${gap}px`;
+          card.style.marginTop = "0px";
           return;
         }
       }
@@ -424,7 +424,7 @@ function drawBracketLines() {
   board.querySelector(".bracket-lines")?.remove();
   const boardBox = board.getBoundingClientRect();
   const paths = rounds.flatMap((round) => round.matches).flatMap(([targetId, ...slots]) => {
-    if (targetId === 103 || targetId === 104) return [];
+    if (targetId === 104) return [];
     const target = board.querySelector(`[data-match-id="${targetId}"]`);
     if (!target) return [];
     const targetBox = target.getBoundingClientRect();
@@ -445,8 +445,18 @@ function drawBracketLines() {
       return `<path d="M${x1} ${y1} H${mid} V${y2} H${x2}"/>`;
     });
   }).join("");
+  const thirdPlace = board.querySelector('[data-match-id="103"]');
+  const final = board.querySelector('[data-match-id="104"]');
+  const bridge = thirdPlace && final ? (() => {
+    const thirdBox = thirdPlace.getBoundingClientRect();
+    const finalBox = final.getBoundingClientRect();
+    const x1 = thirdBox.right - boardBox.left + board.scrollLeft;
+    const x2 = finalBox.left - boardBox.left + board.scrollLeft + Math.min(finalBox.width * 0.55, 112);
+    const y = thirdBox.top - boardBox.top + board.scrollTop + thirdBox.height / 2;
+    return `<path d="M${x1} ${y} H${x2}"/>`;
+  })() : "";
 
-  board.insertAdjacentHTML("afterbegin", `<svg class="bracket-lines" width="${board.scrollWidth}" height="${board.scrollHeight}" viewBox="0 0 ${board.scrollWidth} ${board.scrollHeight}" aria-hidden="true">${paths}</svg>`);
+  board.insertAdjacentHTML("afterbegin", `<svg class="bracket-lines" width="${board.scrollWidth}" height="${board.scrollHeight}" viewBox="0 0 ${board.scrollWidth} ${board.scrollHeight}" aria-hidden="true">${paths}${bridge}</svg>`);
 }
 
 function render() {
