@@ -293,7 +293,7 @@ function renderMatch(match, index, stage) {
   const boosted = isBoosted(homeInfo, awayInfo);
   return `
         <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""} ${boosted ? "boosted" : ""}" data-match-id="${id}" style="animation-delay:${index * 24}ms">
-          <span class="match-id">W${id}</span>${boosted ? `<span class="boost-badge">2x points</span>` : ""}
+          <span class="match-id">M${id}</span>${boosted ? `<span class="boost-badge">2x points</span>` : ""}
           <time class="kickoff">${kickoffs[id]}</time>
           <div class="team ${win === home ? "winner" : ""}">
         ${renderSlot(homeInfo)}
