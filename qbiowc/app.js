@@ -236,7 +236,7 @@ function renderLeaderboard() {
 
 function renderBoostCountry(country) {
   const team = currentTeam(country);
-  return `${team ? `<img class="flag" src="${team.l}" alt="">` : ""}<span>${escapeHtml(country || "-")}</span>`;
+  return `${team ? `<img class="flag" src="${team.l}" alt="">` : ""}<span title="${escapeAttribute(country || "")}">${escapeHtml(team?.a || country || "-")}</span>`;
 }
 
 function currentTeam(value) {
