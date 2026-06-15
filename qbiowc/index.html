@@ -442,7 +442,7 @@
       grid-template-columns: repeat(6, minmax(210px, 1fr));
       gap: 16px;
       overflow-x: auto;
-      padding: 8px 2px 28px;
+      padding: 8px max(18px, env(safe-area-inset-right)) 28px 2px;
       scroll-snap-type: x proximity;
     }
 
@@ -754,7 +754,7 @@
       .board {
         margin-inline: 0;
         max-width: 100%;
-        padding-inline: 0;
+        padding-inline: 0 max(24px, env(safe-area-inset-right));
       }
       .leader-row {
         grid-template-columns: 40px minmax(110px, 1fr) repeat(5, 64px);
