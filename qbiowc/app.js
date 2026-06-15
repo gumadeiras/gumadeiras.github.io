@@ -258,6 +258,10 @@ function renderScorers(matchData, id, side, info) {
     </select>`).join("")}</div>`;
 }
 
+function isBoosted(homeInfo, awayInfo) {
+  return state.boostCountry && [homeInfo.team?.n, awayInfo.team?.n].includes(state.boostCountry);
+}
+
 function renderMatch(match, index, stage) {
   const [id, homeRaw, awayRaw] = match;
   const data = pick(id);
@@ -266,10 +270,11 @@ function renderMatch(match, index, stage) {
   const win = winner(id);
   const tied = data.home !== "" && data.away !== "" && data.home != null && data.away != null && Number(data.home) === Number(data.away);
   const homeInfo = slotInfo(home);
-      const awayInfo = slotInfo(away);
-      return `
-        <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""}" data-match-id="${id}" style="animation-delay:${index * 24}ms">
-          <span class="match-id">W${id}</span>
+  const awayInfo = slotInfo(away);
+  const boosted = isBoosted(homeInfo, awayInfo);
+  return `
+        <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""} ${boosted ? "boosted" : ""}" data-match-id="${id}" style="animation-delay:${index * 24}ms">
+          <span class="match-id">W${id}</span>${boosted ? `<span class="boost-badge">2x points</span>` : ""}
           <time class="kickoff">${kickoffs[id]}</time>
           <div class="team ${win === home ? "winner" : ""}">
         ${renderSlot(homeInfo)}
@@ -421,6 +426,7 @@ document.querySelectorAll("[data-player-name], [data-bracket-name], [data-player
   input.addEventListener("input", save);
   input.addEventListener("change", save);
 });
+document.querySelector("[data-boost-country]").addEventListener("change", render);
 document.querySelector("[data-copy]").addEventListener("click", async () => {
   save();
   await copyPicks();

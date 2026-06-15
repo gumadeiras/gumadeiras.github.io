@@ -472,6 +472,14 @@
         var(--card);
     }
 
+    .match.boosted {
+      border-color: var(--gold);
+      background:
+        linear-gradient(135deg, rgba(200, 147, 43, 0.22), rgba(40, 107, 72, 0.08) 48%, transparent 72%),
+        var(--card);
+      box-shadow: 6px 6px 0 rgba(200, 147, 43, 0.22);
+    }
+
     .kickoff {
       color: var(--muted);
       font-size: 0.58rem;
@@ -490,6 +498,19 @@
       color: var(--muted);
       padding: 2px 4px;
       font-size: 0.56rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .boost-badge {
+      justify-self: start;
+      width: max-content;
+      border: 1px solid var(--gold);
+      background: var(--paper);
+      color: var(--green);
+      padding: 2px 5px;
+      font-size: 0.56rem;
+      font-weight: 700;
       line-height: 1;
       text-transform: uppercase;
     }
