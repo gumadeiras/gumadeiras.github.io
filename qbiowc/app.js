@@ -111,7 +111,7 @@ function renderStandings() {
       ${group.teams.map((team, index) => `
         <div class="group-row ${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? "third-live" : ""}">
           <img class="flag" src="${team.l}" alt="">
-          <span>${team.n}${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? ` <em class="third-badge">+3rd</em>` : ""}</span><span>${team.pts}</span><span>${team.gd}</span><span>${team.gf}</span>
+          <span class="group-team"><span class="group-team-name">${team.n}</span>${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? `<em class="third-badge">+3rd</em>` : ""}</span><span>${team.pts}</span><span>${team.gd}</span><span>${team.gf}</span>
         </div>`).join("")}
     </article>`).join("");
 }
@@ -459,6 +459,10 @@ function drawBracketLines() {
   board.insertAdjacentHTML("afterbegin", `<svg class="bracket-lines" width="${board.scrollWidth}" height="${board.scrollHeight}" viewBox="0 0 ${board.scrollWidth} ${board.scrollHeight}" aria-hidden="true">${paths}${bridge}</svg>`);
 }
 
+function updateScrollHint() {
+  document.querySelector(".scroll-hint")?.classList.toggle("show", board.scrollWidth > board.clientWidth + 1);
+}
+
 function render() {
   board.innerHTML = rounds.map((round) => `
     <section class="round">
@@ -471,6 +475,7 @@ function render() {
   bindMatchControls(board);
   layoutBracketCards();
   drawBracketLines();
+  updateScrollHint();
 }
 
 function show(message) {
@@ -593,4 +598,5 @@ render();
 window.addEventListener("resize", () => {
   layoutBracketCards();
   drawBracketLines();
+  updateScrollHint();
 });

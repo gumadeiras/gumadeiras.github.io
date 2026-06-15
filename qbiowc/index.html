@@ -382,8 +382,12 @@
 
     .third-badge {
       color: var(--green);
+      display: inline-flex;
+      flex: 0 0 auto;
       font-size: 0.58rem;
       font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .groups-scroll {
@@ -426,14 +430,33 @@
     }
 
     .group-row {
+      position: relative;
       border-top: 1px solid var(--line);
-      min-height: 34px;
-      padding: 4px 6px 0;
-      margin-top: 4px;
+      min-height: 38px;
+      padding: 4px 6px;
     }
 
-    .group-row.third-live {
+    .group-row > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .group-row.third-live::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background: rgba(40, 107, 72, 0.1);
+    }
+
+    .group-team {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .group-team-name {
+      min-width: 0;
     }
 
     .board {
@@ -444,6 +467,14 @@
       overflow-x: auto;
       padding: 8px max(18px, env(safe-area-inset-right)) 28px 2px;
       scroll-snap-type: x proximity;
+    }
+
+    .scroll-hint {
+      display: none;
+      margin: -4px 0 6px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      text-transform: uppercase;
     }
 
     .round {
@@ -762,6 +793,12 @@
       }
     }
 
+    @media (hover: hover) and (pointer: fine) {
+      .scroll-hint.show {
+        display: block;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -860,6 +897,7 @@
       </div>
     </section>
 
+    <p class="scroll-hint">hold shift while scrolling to move across the knockout bracket</p>
     <section class="board" data-board aria-label="2026 World Cup prediction bracket"></section>
 
     <footer class="foot">
