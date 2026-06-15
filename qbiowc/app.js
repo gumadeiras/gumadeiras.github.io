@@ -76,6 +76,7 @@ const googleFormConfig = {
 const standings = data.standings || [];
 const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
 const standingsEl = document.querySelector("[data-standings]");
+const leaderboardEl = document.querySelector("[data-leaderboard]");
 const board = document.querySelector("[data-board]");
 const toast = document.querySelector("[data-toast]");
 
@@ -218,6 +219,19 @@ function escapeAttribute(value) {
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
+}
+
+function renderLeaderboard() {
+  const rows = [...(data.leaderboard || [])].sort((a, b) =>
+    b.points - a.points || b.exact - a.exact || b.scorers - a.scorers || a.bracketName.localeCompare(b.bracketName)
+  );
+  leaderboardEl.innerHTML = rows.length ? rows.map((row, index) => `
+    <div class="leader-row">
+      <span>${index + 1}</span><span>${escapeHtml(row.bracketName)}</span><span>${escapeHtml(row.boostCountry)}</span><span>${row.points}</span><span>${row.exact}</span><span>${row.result}</span><span>${row.scorers}</span>
+    </div>`).join("") : `
+    <div class="leader-row">
+      <span>-</span><span>TBD</span><span>-</span><span>0</span><span>0</span><span>0</span><span>0</span>
+    </div>`;
 }
 
 function currentTeam(value) {
@@ -442,4 +456,5 @@ document.querySelector("[data-reset]").addEventListener("click", () => {
 });
 
 renderStandings();
+renderLeaderboard();
 render();
