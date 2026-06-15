@@ -68,7 +68,6 @@ const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort()
 const standingsEl = document.querySelector("[data-standings]");
 const board = document.querySelector("[data-board]");
 const toast = document.querySelector("[data-toast]");
-let renderTimer;
 
 function thirdPlaceKey(team) {
   return [team.pts, Number(team.gd), team.gf, -team.ga, team.n].join(":");
@@ -128,11 +127,32 @@ function resolveThirdSlot(value, id) {
 }
 
 function teams(id) {
+  const meta = matchMeta(id);
+  return meta ? [label(resolveThirdSlot(meta.match[1], meta.match[0])), label(resolveThirdSlot(meta.match[2], meta.match[0]))] : ["", ""];
+}
+
+function matchMeta(id) {
   for (const round of rounds) {
-    const match = round.matches.find((candidate) => String(candidate[0]) === String(id));
-    if (match) return [label(resolveThirdSlot(match[1], match[0])), label(resolveThirdSlot(match[2], match[0]))];
+    const index = round.matches.findIndex((candidate) => String(candidate[0]) === String(id));
+    if (index >= 0) return { round, match: round.matches[index], index };
   }
-  return ["", ""];
+  return null;
+}
+
+function affectedMatchIds(id) {
+  const affected = new Set([String(id)]);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    rounds.flatMap((round) => round.matches).forEach((match) => {
+      if (affected.has(String(match[0]))) return;
+      if (match.slice(1).some((slot) => affected.has(slot.slice(1)))) {
+        affected.add(String(match[0]));
+        changed = true;
+      }
+    });
+  }
+  return rounds.flatMap((round) => round.matches.map((match) => String(match[0]))).filter((matchId) => affected.has(matchId));
 }
 
 function winner(id) {
@@ -162,29 +182,15 @@ function updateScore(id, side, value) {
 }
 
 function setScore(id, side, value) {
-  window.clearTimeout(renderTimer);
   updateScore(id, side, value);
-  render();
-}
-
-function scheduleRender(focusKey) {
-  window.clearTimeout(renderTimer);
-  renderTimer = window.setTimeout(() => {
-    const shouldRefocus = document.activeElement?.dataset.score === focusKey;
-    render();
-    if (!shouldRefocus) return;
-    const input = document.querySelector(`[data-score="${focusKey}"]`);
-    if (!input) return;
-    input.focus();
-    input.setSelectionRange(input.value.length, input.value.length);
-  }, 140);
+  renderAffected(id);
 }
 
 function setAdvance(id, side) {
   state.matches[id] ||= {};
   state.matches[id].advance = side;
   save();
-  render();
+  renderAffected(id);
 }
 
 function setScorer(id, side, index, value) {
@@ -251,7 +257,7 @@ function renderMatch(match, index, stage) {
   const homeInfo = slotInfo(home);
       const awayInfo = slotInfo(away);
       return `
-        <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""}" style="animation-delay:${index * 24}ms">
+        <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""}" data-match-id="${id}" style="animation-delay:${index * 24}ms">
           <span class="match-id">W${id}</span>
           <time class="kickoff">${kickoffs[id]}</time>
           <div class="team ${win === home ? "winner" : ""}">
@@ -271,20 +277,11 @@ function renderMatch(match, index, stage) {
     </article>`;
 }
 
-function render() {
-  board.innerHTML = rounds.map((round) => `
-    <section class="round">
-      <h2>${round.name}<span class="date">${round.date}</span></h2>
-      ${round.name === "final" ? renderChampion() : ""}
-      ${round.matches.map((match, index) => renderMatch(match, index, round.name)).join("")}
-    </section>
-  `).join("");
-
-  board.querySelectorAll("[data-score]").forEach((input) => {
+function bindMatchControls(root) {
+  root.querySelectorAll("[data-score]").forEach((input) => {
     input.addEventListener("input", (event) => {
       const [id, side] = event.target.dataset.score.split(":");
       updateScore(id, side, event.target.value);
-      scheduleRender(event.target.dataset.score);
     });
     input.addEventListener("change", (event) => {
       const [id, side] = event.target.dataset.score.split(":");
@@ -305,6 +302,35 @@ function render() {
       setScorer(id, side, Number(index), event.target.value);
     });
   });
+}
+
+function renderAffected(id) {
+  affectedMatchIds(id).forEach((matchId) => {
+    const meta = matchMeta(matchId);
+    const card = board.querySelector(`[data-match-id="${matchId}"]`);
+    if (!meta || !card) return;
+    card.outerHTML = renderMatch(meta.match, meta.index, meta.round.name);
+    bindMatchControls(board.querySelector(`[data-match-id="${matchId}"]`));
+  });
+  board.querySelector(".champion")?.replaceWith(htmlToElement(renderChampion()));
+}
+
+function htmlToElement(html) {
+  const template = document.createElement("template");
+  template.innerHTML = html.trim();
+  return template.content.firstElementChild;
+}
+
+function render() {
+  board.innerHTML = rounds.map((round) => `
+    <section class="round">
+      <h2>${round.name}<span class="date">${round.date}</span></h2>
+      ${round.name === "final" ? renderChampion() : ""}
+      ${round.matches.map((match, index) => renderMatch(match, index, round.name)).join("")}
+    </section>
+  `).join("");
+
+  bindMatchControls(board);
 }
 
 function show(message) {

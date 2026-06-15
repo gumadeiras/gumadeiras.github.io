@@ -449,7 +449,7 @@
 
     .team {
       display: grid;
-      grid-template-columns: 1fr 42px;
+      grid-template-columns: minmax(0, 1fr) 42px;
       gap: 8px;
       align-items: center;
       padding: 6px 8px;
@@ -479,6 +479,7 @@
     .slot strong {
       font-size: 0.9rem;
       line-height: 1.1;
+      overflow-wrap: anywhere;
     }
 
     .slot small,
