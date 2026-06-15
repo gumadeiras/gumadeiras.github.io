@@ -1,0 +1,303 @@
+const rounds = [
+  {
+    name: "round of 32",
+    date: "jun 28 - jul 3",
+    matches: [
+      [73, "2A", "2B"], [74, "1E", "3A/B/C/D/F"], [75, "1F", "2C"], [76, "1C", "2F"],
+      [77, "1I", "3C/D/F/G/H"], [78, "2E", "2I"], [79, "1A", "3C/E/F/H/I"], [80, "1L", "3E/H/I/J/K"],
+      [81, "1D", "3B/E/F/I/J"], [82, "1G", "3A/E/H/I/J"], [83, "2K", "2L"], [84, "1H", "2J"],
+      [85, "1B", "3E/F/G/I/J"], [86, "1J", "2H"], [87, "1K", "3D/E/I/J/L"], [88, "2D", "2G"]
+    ]
+  },
+  { name: "round of 16", date: "jul 4 - 7", matches: [[89, "W74", "W77"], [90, "W73", "W75"], [91, "W76", "W78"], [92, "W79", "W80"], [93, "W83", "W84"], [94, "W81", "W82"], [95, "W86", "W88"], [96, "W85", "W87"]] },
+  { name: "quarterfinals", date: "jul 9 - 11", matches: [[97, "W89", "W90"], [98, "W93", "W94"], [99, "W91", "W92"], [100, "W95", "W96"]] },
+  { name: "semifinals", date: "jul 14 - 15", matches: [[101, "W97", "W98"], [102, "W99", "W100"]] },
+  { name: "final", date: "jul 19", matches: [[104, "W101", "W102"]] },
+  { name: "third place", date: "jul 18", matches: [[103, "L101", "L102"]] }
+];
+
+const kickoffs = {
+  73: "Sun Jun 28 · 3:00 PM ET",
+  74: "Mon Jun 29 · 4:30 PM ET",
+  75: "Mon Jun 29 · 9:00 PM ET",
+  76: "Mon Jun 29 · 1:00 PM ET",
+  77: "Tue Jun 30 · 5:00 PM ET",
+  78: "Tue Jun 30 · 1:00 PM ET",
+  79: "Tue Jun 30 · 9:00 PM ET",
+  80: "Wed Jul 1 · 12:00 PM ET",
+  81: "Wed Jul 1 · 8:00 PM ET",
+  82: "Wed Jul 1 · 4:00 PM ET",
+  83: "Thu Jul 2 · 7:00 PM ET",
+  84: "Thu Jul 2 · 3:00 PM ET",
+  85: "Thu Jul 2 · 11:00 PM ET",
+  86: "Fri Jul 3 · 6:00 PM ET",
+  87: "Fri Jul 3 · 9:30 PM ET",
+  88: "Fri Jul 3 · 2:00 PM ET",
+  89: "Sat Jul 4 · 5:00 PM ET",
+  90: "Sat Jul 4 · 1:00 PM ET",
+  91: "Sun Jul 5 · 4:00 PM ET",
+  92: "Sun Jul 5 · 8:00 PM ET",
+  93: "Mon Jul 6 · 3:00 PM ET",
+  94: "Mon Jul 6 · 8:00 PM ET",
+  95: "Tue Jul 7 · 12:00 PM ET",
+  96: "Tue Jul 7 · 4:00 PM ET",
+  97: "Thu Jul 9 · 4:00 PM ET",
+  98: "Fri Jul 10 · 3:00 PM ET",
+  99: "Sat Jul 11 · 5:00 PM ET",
+  100: "Sat Jul 11 · 9:00 PM ET",
+  101: "Tue Jul 14 · 3:00 PM ET",
+  102: "Wed Jul 15 · 3:00 PM ET",
+  103: "Sat Jul 18 · 5:00 PM ET",
+  104: "Sun Jul 19 · 3:00 PM ET"
+};
+
+const stateKey = "qbiowc-picks-v1";
+const state = JSON.parse(localStorage.getItem(stateKey) || '{"matches":{}}');
+const data = window.QBIOWC_DATA || { standings: [], players: {} };
+const standings = data.standings || [];
+const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
+const standingsEl = document.querySelector("[data-standings]");
+const board = document.querySelector("[data-board]");
+const toast = document.querySelector("[data-toast]");
+let renderTimer;
+
+function thirdPlaceKey(team) {
+  return [team.pts, Number(team.gd), team.gf, -team.ga, team.n].join(":");
+}
+
+function currentThirds() {
+  return new Set(
+    standings
+      .map((group) => group.teams[2])
+      .filter(Boolean)
+      .sort((a, b) => b.pts - a.pts || Number(b.gd) - Number(a.gd) || b.gf - a.gf || a.ga - b.ga || a.n.localeCompare(b.n))
+      .slice(0, 8)
+      .map(thirdPlaceKey)
+  );
+}
+
+function renderStandings() {
+  const liveThirds = currentThirds();
+  standingsEl.innerHTML = standings.map((group) => `
+    <article class="group">
+      <b><span></span><span>Group ${group.g}</span><span>pts</span><span>gd</span><span>gf</span></b>
+      ${group.teams.map((team, index) => `
+        <div class="group-row ${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? "third-live" : ""}">
+          <img class="flag" src="${team.l}" alt="">
+          <span>${team.n}${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? ` <em class="third-badge">+3rd</em>` : ""}</span><span>${team.pts}</span><span>${team.gd}</span><span>${team.gf}</span>
+        </div>`).join("")}
+    </article>`).join("");
+}
+
+function save() {
+  state.name = document.querySelector("[data-player-name]").value.trim();
+  state.email = document.querySelector("[data-player-email]").value.trim();
+  localStorage.setItem(stateKey, JSON.stringify(state));
+}
+
+function label(raw) {
+  const match = /^([WL])(\d+)$/.exec(raw);
+  if (!match) return raw;
+  const picked = match[1] === "W" ? winner(match[2]) : loser(match[2]);
+  return picked || raw;
+}
+
+function pick(id) {
+  return state.matches[id] || {};
+}
+
+function teams(id) {
+  for (const round of rounds) {
+    const match = round.matches.find((candidate) => String(candidate[0]) === String(id));
+    if (match) return [label(match[1]), label(match[2])];
+  }
+  return ["", ""];
+}
+
+function winner(id) {
+  const data = pick(id);
+  const [home, away] = teams(id);
+  if (data.home === "" || data.away === "" || data.home == null || data.away == null) return "";
+  if (+data.home > +data.away) return home;
+  if (+data.away > +data.home) return away;
+  return data.advance === "home" ? home : data.advance === "away" ? away : "";
+}
+
+function loser(id) {
+  const data = pick(id);
+  const [home, away] = teams(id);
+  const win = winner(id);
+  if (!win) return "";
+  return win === home ? away : home;
+}
+
+function updateScore(id, side, value) {
+  state.matches[id] ||= {};
+  state.matches[id][side] = value === "" ? "" : Math.max(0, Math.min(99, Number(value)));
+  if (state.matches[id].home !== "" && state.matches[id].away !== "" && state.matches[id].home != null && state.matches[id].away != null && Number(state.matches[id].home) !== Number(state.matches[id].away)) {
+    delete state.matches[id].advance;
+  }
+  save();
+}
+
+function setScore(id, side, value) {
+  window.clearTimeout(renderTimer);
+  updateScore(id, side, value);
+  render();
+}
+
+function scheduleRender(focusKey) {
+  window.clearTimeout(renderTimer);
+  renderTimer = window.setTimeout(() => {
+    const shouldRefocus = document.activeElement?.dataset.score === focusKey;
+    render();
+    if (!shouldRefocus) return;
+    const input = document.querySelector(`[data-score="${focusKey}"]`);
+    if (!input) return;
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }, 140);
+}
+
+function setAdvance(id, side) {
+  state.matches[id] ||= {};
+  state.matches[id].advance = side;
+  save();
+  render();
+}
+
+function setScorer(id, side, index, value) {
+  state.matches[id] ||= {};
+  const scorers = Array.isArray(state.matches[id][side + "Scorers"]) ? state.matches[id][side + "Scorers"] : [];
+  scorers[index] = value;
+  state.matches[id][side + "Scorers"] = scorers;
+  save();
+}
+
+function escapeAttribute(value) {
+  return String(value ?? "").replace(/[&"]/g, (char) => char === "&" ? "&amp;" : "&quot;");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
+}
+
+function currentTeam(value) {
+  const match = /^([123])([A-L])$/.exec(value);
+  if (!match) return standings.flatMap((group) => group.teams).find((team) => team.n === value) || null;
+  return standings.find((group) => group.g === match[2])?.teams[Number(match[1]) - 1] || null;
+}
+
+function slotInfo(value) {
+  const team = currentTeam(value);
+  if (team) return { main: team.n, sub: `${value} current`, team };
+  if (/^3/.test(value)) return { main: value, sub: "best third-place pool" };
+  if (/^W\d+/.test(value)) return { main: value, sub: "winner" };
+  if (/^L\d+/.test(value)) return { main: value, sub: "semifinal loser" };
+  return { main: value, sub: "predicted" };
+}
+
+function renderSlot(info) {
+  return `<span class="slot">${info.team ? `<img class="flag" src="${info.team.l}" alt="">` : ""}<strong>${escapeHtml(info.main)}</strong><small>${escapeHtml(info.sub)}</small></span>`;
+}
+
+function renderScorers(matchData, id, side, info) {
+  const count = Math.max(0, Math.min(8, Number(matchData[side]) || 0));
+  const saved = Array.isArray(matchData[side + "Scorers"]) ? matchData[side + "Scorers"] : [];
+  const players = data.players?.[info.team?.n] || allPlayers;
+  if (!count) return `<div class="scorers"></div>`;
+  return `<div class="scorers">${Array.from({ length: count }, (_, index) => `
+    <select class="scorer" data-scorer="${id}:${side}:${index}" aria-label="match ${id} ${info.main} goal ${index + 1} scorer">
+      <option value="">goal ${index + 1}</option>
+      <option value="own goal" ${saved[index] === "own goal" ? "selected" : ""}>own goal</option>
+      ${players.map((player) => `<option value="${escapeAttribute(player)}" ${saved[index] === player ? "selected" : ""}>${escapeHtml(player)}</option>`).join("")}
+    </select>`).join("")}</div>`;
+}
+
+function renderMatch(match, index, stage) {
+  const [id, homeRaw, awayRaw] = match;
+  const data = pick(id);
+  const home = label(homeRaw);
+  const away = label(awayRaw);
+  const win = winner(id);
+  const tied = data.home !== "" && data.away !== "" && data.home != null && data.away != null && Number(data.home) === Number(data.away);
+  const homeInfo = slotInfo(home);
+      const awayInfo = slotInfo(away);
+      return `
+        <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""}" style="animation-delay:${index * 24}ms">
+          <time class="kickoff">${kickoffs[id]}</time>
+          <div class="team ${win === home ? "winner" : ""}">
+        ${renderSlot(homeInfo)}
+        <input class="score" data-score="${id}:home" type="number" min="0" max="99" inputmode="numeric" value="${data.home ?? ""}" aria-label="match ${id} ${home} score">
+        ${renderScorers(data, id, "home", homeInfo)}
+      </div>
+      <div class="team ${win === away ? "winner" : ""}">
+        ${renderSlot(awayInfo)}
+        <input class="score" data-score="${id}:away" type="number" min="0" max="99" inputmode="numeric" value="${data.away ?? ""}" aria-label="match ${id} ${away} score">
+        ${renderScorers(data, id, "away", awayInfo)}
+      </div>
+      <div class="advance" aria-label="match ${id} penalty winner">
+        <button type="button" data-advance="${id}:home" aria-pressed="${data.advance === "home"}">${escapeHtml(homeInfo.main)}</button>
+        <button type="button" data-advance="${id}:away" aria-pressed="${data.advance === "away"}">${escapeHtml(awayInfo.main)}</button>
+      </div>
+    </article>`;
+}
+
+function render() {
+  board.innerHTML = rounds.map((round) => `
+    <section class="round">
+      <h2>${round.name}<span class="date">${round.date}</span></h2>
+      ${round.name === "final" ? `<div class="champion"><span>champion</span><b>${winner(104) || "..."}</b></div>` : ""}
+      ${round.matches.map((match, index) => renderMatch(match, index, round.name)).join("")}
+    </section>
+  `).join("");
+
+  board.querySelectorAll("[data-score]").forEach((input) => {
+    input.addEventListener("input", (event) => {
+      const [id, side] = event.target.dataset.score.split(":");
+      updateScore(id, side, event.target.value);
+      scheduleRender(event.target.dataset.score);
+    });
+    input.addEventListener("change", (event) => {
+      const [id, side] = event.target.dataset.score.split(":");
+      setScore(id, side, event.target.value);
+    });
+  });
+
+  board.querySelectorAll("[data-advance]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const [id, side] = event.currentTarget.dataset.advance.split(":");
+      setAdvance(id, side);
+    });
+  });
+
+  board.querySelectorAll("[data-scorer]").forEach((input) => {
+    input.addEventListener("change", (event) => {
+      const [id, side, index] = event.target.dataset.scorer.split(":");
+      setScorer(id, side, Number(index), event.target.value);
+    });
+  });
+}
+
+function show(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  window.clearTimeout(show.timer);
+  show.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
+}
+
+document.querySelector("[data-player-name]").value = state.name || "";
+document.querySelector("[data-player-email]").value = state.email || "";
+document.querySelectorAll("[data-player-name], [data-player-email]").forEach((input) => input.addEventListener("input", save));
+document.querySelector("[data-copy]").addEventListener("click", async () => {
+  save();
+  await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
+  show("picks copied");
+});
+document.querySelector("[data-reset]").addEventListener("click", () => {
+  localStorage.removeItem(stateKey);
+  location.reload();
+});
+
+renderStandings();
+render();
