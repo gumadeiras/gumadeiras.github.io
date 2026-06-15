@@ -17,38 +17,38 @@ const rounds = [
 ];
 
 const kickoffs = {
-  73: "Sun Jun 28 · 3:00 PM ET",
-  74: "Mon Jun 29 · 4:30 PM ET",
-  75: "Mon Jun 29 · 9:00 PM ET",
-  76: "Mon Jun 29 · 1:00 PM ET",
-  77: "Tue Jun 30 · 5:00 PM ET",
-  78: "Tue Jun 30 · 1:00 PM ET",
-  79: "Tue Jun 30 · 9:00 PM ET",
-  80: "Wed Jul 1 · 12:00 PM ET",
-  81: "Wed Jul 1 · 8:00 PM ET",
-  82: "Wed Jul 1 · 4:00 PM ET",
-  83: "Thu Jul 2 · 7:00 PM ET",
-  84: "Thu Jul 2 · 3:00 PM ET",
-  85: "Thu Jul 2 · 11:00 PM ET",
-  86: "Fri Jul 3 · 6:00 PM ET",
-  87: "Fri Jul 3 · 9:30 PM ET",
-  88: "Fri Jul 3 · 2:00 PM ET",
-  89: "Sat Jul 4 · 5:00 PM ET",
-  90: "Sat Jul 4 · 1:00 PM ET",
-  91: "Sun Jul 5 · 4:00 PM ET",
-  92: "Sun Jul 5 · 8:00 PM ET",
-  93: "Mon Jul 6 · 3:00 PM ET",
-  94: "Mon Jul 6 · 8:00 PM ET",
-  95: "Tue Jul 7 · 12:00 PM ET",
-  96: "Tue Jul 7 · 4:00 PM ET",
-  97: "Thu Jul 9 · 4:00 PM ET",
-  98: "Fri Jul 10 · 3:00 PM ET",
-  99: "Sat Jul 11 · 5:00 PM ET",
-  100: "Sat Jul 11 · 9:00 PM ET",
-  101: "Tue Jul 14 · 3:00 PM ET",
-  102: "Wed Jul 15 · 3:00 PM ET",
-  103: "Sat Jul 18 · 5:00 PM ET",
-  104: "Sun Jul 19 · 3:00 PM ET"
+  73: "Sun Jun 28 · 3:00 PM",
+  74: "Mon Jun 29 · 4:30 PM",
+  75: "Mon Jun 29 · 9:00 PM",
+  76: "Mon Jun 29 · 1:00 PM",
+  77: "Tue Jun 30 · 5:00 PM",
+  78: "Tue Jun 30 · 1:00 PM",
+  79: "Tue Jun 30 · 9:00 PM",
+  80: "Wed Jul 1 · 12:00 PM",
+  81: "Wed Jul 1 · 8:00 PM",
+  82: "Wed Jul 1 · 4:00 PM",
+  83: "Thu Jul 2 · 7:00 PM",
+  84: "Thu Jul 2 · 3:00 PM",
+  85: "Thu Jul 2 · 11:00 PM",
+  86: "Fri Jul 3 · 6:00 PM",
+  87: "Fri Jul 3 · 9:30 PM",
+  88: "Fri Jul 3 · 2:00 PM",
+  89: "Sat Jul 4 · 5:00 PM",
+  90: "Sat Jul 4 · 1:00 PM",
+  91: "Sun Jul 5 · 4:00 PM",
+  92: "Sun Jul 5 · 8:00 PM",
+  93: "Mon Jul 6 · 3:00 PM",
+  94: "Mon Jul 6 · 8:00 PM",
+  95: "Tue Jul 7 · 12:00 PM",
+  96: "Tue Jul 7 · 4:00 PM",
+  97: "Thu Jul 9 · 4:00 PM",
+  98: "Fri Jul 10 · 3:00 PM",
+  99: "Sat Jul 11 · 5:00 PM",
+  100: "Sat Jul 11 · 9:00 PM",
+  101: "Tue Jul 14 · 3:00 PM",
+  102: "Wed Jul 15 · 3:00 PM",
+  103: "Sat Jul 18 · 5:00 PM",
+  104: "Sun Jul 19 · 3:00 PM"
 };
 
 const stateKey = "qbiowc-picks-v1";
@@ -225,6 +225,7 @@ function renderMatch(match, index, stage) {
       const awayInfo = slotInfo(away);
       return `
         <article class="match ${stage === "final" ? "final" : ""} ${tied ? "tied" : ""}" style="animation-delay:${index * 24}ms">
+          <span class="match-id">W${id}</span>
           <time class="kickoff">${kickoffs[id]}</time>
           <div class="team ${win === home ? "winner" : ""}">
         ${renderSlot(homeInfo)}
