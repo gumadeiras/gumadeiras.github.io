@@ -100,6 +100,7 @@ function renderStandings() {
 
 function save() {
   state.name = document.querySelector("[data-player-name]").value.trim();
+  state.bracketName = document.querySelector("[data-bracket-name]").value.trim();
   state.email = document.querySelector("[data-player-email]").value.trim();
   state.boostCountry = document.querySelector("[data-boost-country]").value;
   delete state.country;
@@ -357,9 +358,10 @@ function renderBoostCountries() {
 
 renderBoostCountries();
 document.querySelector("[data-player-name]").value = state.name || "";
+document.querySelector("[data-bracket-name]").value = state.bracketName || "";
 document.querySelector("[data-player-email]").value = state.email || "";
 document.querySelector("[data-boost-country]").value = state.boostCountry || state.country || "";
-document.querySelectorAll("[data-player-name], [data-player-email], [data-boost-country]").forEach((input) => {
+document.querySelectorAll("[data-player-name], [data-bracket-name], [data-player-email], [data-boost-country]").forEach((input) => {
   input.addEventListener("input", save);
   input.addEventListener("change", save);
 });

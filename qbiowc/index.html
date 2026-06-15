@@ -147,7 +147,7 @@
 
     .panel {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr auto auto;
+      grid-template-columns: repeat(4, 1fr) auto auto;
       gap: 10px;
       align-items: end;
       margin-bottom: 18px;
@@ -372,7 +372,7 @@
 
     .board {
       display: grid;
-      grid-template-columns: repeat(7, minmax(190px, 1fr));
+      grid-template-columns: repeat(6, minmax(210px, 1fr));
       gap: 16px;
       overflow-x: auto;
       padding: 8px 2px 28px;
@@ -383,7 +383,7 @@
       display: grid;
       align-content: start;
       gap: 12px;
-      min-width: 190px;
+      min-width: 210px;
       scroll-snap-align: start;
     }
 
@@ -479,7 +479,7 @@
     .slot strong {
       font-size: 0.9rem;
       line-height: 1.1;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .slot small,
@@ -683,6 +683,10 @@
         <input class="field" data-player-name autocomplete="name" placeholder="your name">
       </label>
       <label>
+        bracket name
+        <input class="field" data-bracket-name autocomplete="nickname" placeholder="upset oracle">
+      </label>
+      <label>
         email
         <input class="field" data-player-email type="email" autocomplete="email" placeholder="you@yale.edu">
       </label>
@@ -703,7 +707,7 @@
     <section class="leaderboard" aria-label="leaderboard">
       <h2>leaderboard</h2>
       <div class="leader-row">
-        <b>rank</b><b>name</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
+        <b>rank</b><b>bracket</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
       </div>
       <div class="leader-row" data-leaderboard-empty>
         <span>-</span><span>TBD</span><span>-</span><span>0</span><span>0</span><span>0</span><span>0</span>
@@ -749,7 +753,6 @@
 
     <footer class="foot">
       <span>source slots: fifa 2026 knockout schedule</span>
-      <span>local preview only</span>
     </footer>
   </main>
   <div class="toast" data-toast role="status" aria-live="polite"></div>
