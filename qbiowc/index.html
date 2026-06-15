@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>qbio world cup 26</title>
+  <title>qbio world cup 2026</title>
   <meta name="description" content="qBio World Cup 2026 score predictor">
   <style>
     @font-face {
@@ -147,7 +147,7 @@
 
     .panel {
       display: grid;
-      grid-template-columns: 1fr 1fr auto auto;
+      grid-template-columns: 1fr 1fr 1fr auto auto;
       gap: 10px;
       align-items: end;
       margin-bottom: 18px;
@@ -160,18 +160,107 @@
     label {
       display: grid;
       gap: 5px;
-      color: var(--muted);
-      font-size: 0.72rem;
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 700;
       text-transform: uppercase;
     }
 
     .field {
       width: 100%;
-      min-height: 42px;
+      height: 42px;
       border: 1px solid var(--line);
       background: var(--paper);
       color: var(--ink);
       padding: 0 10px;
+    }
+
+    .prize {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: -6px 0 18px;
+      border: 1px solid var(--red);
+      background:
+        linear-gradient(90deg, rgba(176, 8, 47, 0.12), rgba(200, 147, 43, 0.16)),
+        var(--card);
+      padding: 10px 12px;
+      color: var(--ink);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+    }
+
+    .prize b {
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: white;
+      padding: 3px 8px;
+    }
+
+    .prize em {
+      color: var(--red);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .leaderboard {
+      margin-bottom: 18px;
+      border: 1px solid var(--ink);
+      background: rgba(255, 250, 240, 0.78);
+      padding: 12px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .leaderboard h2 {
+      margin: 0 0 8px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: 48px minmax(140px, 1fr) 120px repeat(4, 78px);
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding: 8px 0;
+      font-size: 0.72rem;
+    }
+
+    .leader-row b,
+    .leader-row:first-of-type {
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .rules {
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 250, 240, 0.78);
+      padding: 10px 12px;
+    }
+
+    .rules summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .rules ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.55;
+    }
+
+    .rules b {
+      color: var(--ink);
     }
 
     .ticker {
@@ -363,13 +452,11 @@
       grid-template-columns: 1fr 42px;
       gap: 8px;
       align-items: center;
-      border-left: 4px solid transparent;
-      padding-left: 6px;
-      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+      padding: 6px 8px;
+      transition: background 180ms ease, color 180ms ease;
     }
 
     .team.winner {
-      border-color: var(--green);
       background: rgba(40, 107, 72, 0.11);
       color: var(--green);
       font-weight: 700;
@@ -378,7 +465,8 @@
     .slot {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 2px;
+      column-gap: 7px;
+      row-gap: 2px;
       min-width: 0;
     }
 
@@ -485,8 +573,18 @@
     }
 
     .champion b {
+      display: inline-grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px;
+      align-items: center;
       font-size: clamp(1.25rem, 3vw, 2rem);
       line-height: 1;
+    }
+
+    .champion .flag {
+      grid-row: auto;
+      width: 25px;
+      height: 25px;
     }
 
     .foot {
@@ -548,6 +646,10 @@
         max-width: 100%;
         padding-inline: 0;
       }
+      .leader-row {
+        grid-template-columns: 40px minmax(110px, 1fr) repeat(5, 64px);
+        min-width: 560px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -565,7 +667,7 @@
     <header class="topbar">
       <div>
         <div class="mark"><span class="ball" aria-hidden="true"></span><span>qbio wc / predictions</span></div>
-        <h1>world cup 26 bracket</h1>
+        <h1>world cup 2026 bracket</h1>
       </div>
       <div class="meta" aria-label="tournament metadata">
         <span class="chip">48 teams</span>
@@ -583,19 +685,54 @@
         email
         <input class="field" data-player-email type="email" autocomplete="email" placeholder="you@yale.edu">
       </label>
+      <label>
+        boost country (2x points)
+        <select class="field" data-boost-country></select>
+      </label>
       <button type="button" data-copy>copy picks</button>
       <button class="secondary" type="button" data-reset>reset</button>
     </section>
 
+    <aside class="prize" aria-label="prize">
+      <span>prize pot</span>
+      <em>glory, bragging rights, and something probably edible</em>
+      <b>TBD</b>
+    </aside>
+
+    <section class="leaderboard" aria-label="leaderboard">
+      <h2>leaderboard</h2>
+      <div class="leader-row">
+        <b>rank</b><b>name</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
+      </div>
+      <div class="leader-row" data-leaderboard-empty>
+        <span>-</span><span>TBD</span><span>-</span><span>0</span><span>0</span><span>0</span><span>0</span>
+      </div>
+    </section>
+
+    <details class="rules">
+      <summary>rules</summary>
+      <ul>
+        <li><b>Exact score:</b> 3 points.</li>
+        <li><b>Correct result:</b> 1 point if you pick the right winner, or the right draw.</li>
+        <li><b>Scorers:</b> 1 point for each correct scorer, max 3 per match.</li>
+        <li><b>Scorer order does not matter.</b> Pick the people, not the minute.</li>
+        <li><b>Boost country:</b> pick one country. Games involving that country count double.</li>
+        <li><b>Boost applies to the whole match:</b> exact score, result, and scorer points.</li>
+        <li><b>If your boost country is eliminated, the boost is done too.</b></li>
+        <li><b>Knockout draws:</b> if your score is tied, choose who advances.</li>
+        <li><b>Leaderboard:</b> total points first; exact scores are the first tiebreaker, then scorer points.</li>
+      </ul>
+    </details>
+
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span class="ticker__item">round of 32 starts june 28 / eight best third-place finishers also qualify / exact score: 3 / correct result: 1 / scorer bonus: tbd / </span>
-        <span class="ticker__item">round of 32 starts june 28 / eight best third-place finishers also qualify / exact score: 3 / correct result: 1 / scorer bonus: tbd / </span>
+        <span class="ticker__item">round of 32 starts june 28 / boost country games count double / exact score: 3 / correct result: 1 / scorer bonus: +1 each, max 3 / </span>
+        <span class="ticker__item">round of 32 starts june 28 / boost country games count double / exact score: 3 / correct result: 1 / scorer bonus: +1 each, max 3 / </span>
       </div>
     </div>
 
     <section class="standings" aria-label="current group standings">
-      <h2>current group stage <span class="date">espn snapshot: jun 15, 2026</span></h2>
+      <h2>current group stage <span class="date">espn snapshot: jun 15, 2026 · 3:09 PM ET</span></h2>
       <div class="legend" aria-label="standings legend">
         <span>pts = points</span>
         <span>gd = goal difference</span>

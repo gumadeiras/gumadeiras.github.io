@@ -12,8 +12,8 @@ const rounds = [
   { name: "round of 16", date: "jul 4 - 7", matches: [[89, "W74", "W77"], [90, "W73", "W75"], [91, "W76", "W78"], [92, "W79", "W80"], [93, "W83", "W84"], [94, "W81", "W82"], [95, "W86", "W88"], [96, "W85", "W87"]] },
   { name: "quarterfinals", date: "jul 9 - 11", matches: [[97, "W89", "W90"], [98, "W93", "W94"], [99, "W91", "W92"], [100, "W95", "W96"]] },
   { name: "semifinals", date: "jul 14 - 15", matches: [[101, "W97", "W98"], [102, "W99", "W100"]] },
-  { name: "final", date: "jul 19", matches: [[104, "W101", "W102"]] },
-  { name: "third place", date: "jul 18", matches: [[103, "L101", "L102"]] }
+  { name: "third place", date: "jul 18", matches: [[103, "L101", "L102"]] },
+  { name: "final", date: "jul 19", matches: [[104, "W101", "W102"]] }
 ];
 
 const kickoffs = {
@@ -51,6 +51,15 @@ const kickoffs = {
   104: "Sun Jul 19 · 3:00 PM"
 };
 
+const thirdPlaceSlotMatches = [79, 85, 81, 74, 82, 77, 87, 80];
+const thirdPlaceOptions = "EJIFHGLK HGIDJFLK EJIDHGLK EJIDHFLK EGIDJFLK EGJDHFLK EGIDHFLK EGJDHFLI EGJDHFIK HGICJFLK EJICHGLK EJICHFLK EGICJFLK EGJCHFLK EGICHFLK EGJCHFLI EGJCHFIK HGICJDLK CJIDHFLK CGIDJFLK CGJDHFLK CGIDHFLK CGJDHFLI CGJDHFIK EJICHDLK EGICJDLK EGJCHDLK EGICHDLK EGJCHDLI EGJCHDIK CJEDIFLK CJEDHFLK CEIDHFLK CJEDHFLI CJEDHFIK CGEDJFLK CGEDIFLK CGEDJFLI CGEDJFIK CGEDHFLK CGJDHFLE CGJDHFEK CGEDHFLI CGEDHFIK CGJDHFEI HJBFIGLK EJIBHGLK EJBFIHLK EJBFIGLK EJBFHGLK EGBFIHLK EJBFHGLI EJBFHGIK HJBDIGLK HJBDIFLK IGBDJFLK HGBDJFLK HGBDIFLK HGBDJFLI HGBDJFIK EJBDIHLK EJBDIGLK EJBDHGLK EGBDIHLK EJBDHGLI EJBDHGIK EJBDIFLK EJBDHFLK EIBDHFLK EJBDHFLI EJBDHFIK EGBDJFLK EGBDIFLK EGBDJFLI EGBDJFIK EGBDHFLK HGBDJFLE HGBDJFEK EGBDHFLI EGBDHFIK HGBDJFEI HJBCIGLK HJBCIFLK IGBCJFLK HGBCJFLK HGBCIFLK HGBCJFLI HGBCJFIK EJBCIHLK EJBCIGLK EJBCHGLK EGBCIHLK EJBCHGLI EJBCHGIK EJBCIFLK EJBCHFLK EIBCHFLK EJBCHFLI EJBCHFIK EGBCJFLK EGBCIFLK EGBCJFLI EGBCJFIK EGBCHFLK HGBCJFLE HGBCJFEK EGBCHFLI EGBCHFIK HGBCJFEI HJBCIDLK IGBCJDLK HGBCJDLK HGBCIDLK HGBCJDLI HGBCJDIK CJBDIFLK CJBDHFLK CIBDHFLK CJBDHFLI CJBDHFIK CGBDJFLK CGBDIFLK CGBDJFLI CGBDJFIK CGBDHFLK CGBDHFLJ HGBCJFDK CGBDHFLI CGBDHFIK HGBCJFDI EJBCIDLK EJBCHDLK EIBCHDLK EJBCHDLI EJBCHDIK EGBCJDLK EGBCIDLK EGBCJDLI EGBCJDIK EGBCHDLK HGBCJDLE HGBCJDEK EGBCHDLI EGBCHDIK HGBCJDEI CJBDEFLK CEBDIFLK CJBDEFLI CJBDEFIK CEBDHFLK CJBDHFLE CJBDHFEK CEBDHFLI CEBDHFIK CJBDHFEI CGBDEFLK CGBDJFLE CGBDJFEK CGBDEFLI CGBDEFIK CGBDJFEI CGBDHFLE CGBDHFEK HGBCJFDE CGBDHFEI HJIFAGLK EJIAHGLK EJIFAHLK EJIFAGLK EGJFAHLK EGIFAHLK EGJFAHLI EGJFAHIK HJIDAGLK HJIDAFLK IGJDAFLK HGJDAFLK HGIDAFLK HGJDAFLI HGJDAFIK EJIDAHLK EJIDAGLK EGJDAHLK EGIDAHLK EGJDAHLI EGJDAHIK EJIDAFLK HJEDAFLK HEIDAFLK HJEDAFLI HJEDAFIK EGJDAFLK EGIDAFLK EGJDAFLI EGJDAFIK HGEDAFLK HGJDAFLE HGJDAFEK HGEDAFLI HGEDAFIK HGJDAFEI HJICAGLK HJICAFLK IGJCAFLK HGJCAFLK HGICAFLK HGJCAFLI HGJCAFIK EJICAHLK EJICAGLK EGJCAHLK EGICAHLK EGJCAHLI EGJCAHIK EJICAFLK HJECAFLK HEICAFLK HJECAFLI HJECAFIK EGJCAFLK EGICAFLK EGJCAFLI EGJCAFIK HGECAFLK HGJCAFLE HGJCAFEK HGECAFLI HGECAFIK HGJCAFEI HJICADLK IGJCADLK HGJCADLK HGICADLK HGJCADLI HGJCADIK CJIDAFLK HJFCADLK HFICADLK HJFCADLI HJFCADIK CGJDAFLK CGIDAFLK CGJDAFLI CGJDAFIK HGFCADLK CGJDAFLH HGJCAFDK HGFCADLI HGFCADIK HGJCAFDI EJICADLK HJECADLK HEICADLK HJECADLI HJECADIK EGJCADLK EGICADLK EGJCADLI EGJCADIK HGECADLK HGJCADLE HGJCADEK HGECADLI HGECADIK HGJCADEI CJEDAFLK CEIDAFLK CJEDAFLI CJEDAFIK HEFCADLK HJFCADLE HJECAFDK HEFCADLI HEFCADIK HJECAFDI CGEDAFLK CGJDAFLE CGJDAFEK CGEDAFLI CGEDAFIK CGJDAFEI HGFCADLE HGECAFDK HGJCAFDE HGECAFDI HJBAIGLK HJBAIFLK IJBFAGLK HJBFAGLK HGBAIFLK HJBFAGLI HJBFAGIK EJBAIHLK EJBAIGLK EJBAHGLK EGBAIHLK EJBAHGLI EJBAHGIK EJBAIFLK EJBFAHLK EIBFAHLK EJBFAHLI EJBFAHIK EJBFAGLK EGBAIFLK EJBFAGLI EJBFAGIK EGBFAHLK HJBFAGLE HJBFAGEK EGBFAHLI EGBFAHIK HJBFAGEI IJBDAHLK IJBDAGLK HJBDAGLK IGBDAHLK HJBDAGLI HJBDAGIK IJBDAFLK HJBDAFLK HIBDAFLK HJBDAFLI HJBDAFIK FJBDAGLK IGBDAFLK FJBDAGLI FJBDAGIK HGBDAFLK HGBDAFLJ HGBDAFJK HGBDAFLI HGBDAFIK HGBDAFIJ EJBAIDLK EJBDAHLK EIBDAHLK EJBDAHLI EJBDAHIK EJBDAGLK EGBAIDLK EJBDAGLI EJBDAGIK EGBDAHLK HJBDAGLE HJBDAGEK EGBDAHLI EGBDAHIK HJBDAGEI EJBDAFLK EIBDAFLK EJBDAFLI EJBDAFIK HEBDAFLK HJBDAFLE HJBDAFEK HEBDAFLI HEBDAFIK HJBDAFEI EGBDAFLK EGBDAFLJ EGBDAFJK EGBDAFLI EGBDAFIK EGBDAFIJ HGBDAFLE HGBDAFEK HGBDAFEJ HGBDAFEI IJBCAHLK IJBCAGLK HJBCAGLK IGBCAHLK HJBCAGLI HJBCAGIK IJBCAFLK HJBCAFLK HIBCAFLK HJBCAFLI HJBCAFIK CJBFAGLK IGBCAFLK CJBFAGLI CJBFAGIK HGBCAFLK HGBCAFLJ HGBCAFJK HGBCAFLI HGBCAFIK HGBCAFIJ EJBAICLK EJBCAHLK EIBCAHLK EJBCAHLI EJBCAHIK EJBCAGLK EGBAICLK EJBCAGLI EJBCAGIK EGBCAHLK HJBCAGLE HJBCAGEK EGBCAHLI EGBCAHIK HJBCAGEI EJBCAFLK EIBCAFLK EJBCAFLI EJBCAFIK HEBCAFLK HJBCAFLE HJBCAFEK HEBCAFLI HEBCAFIK HJBCAFEI EGBCAFLK EGBCAFLJ EGBCAFJK EGBCAFLI EGBCAFIK EGBCAFIJ HGBCAFLE HGBCAFEK HGBCAFEJ HGBCAFEI IJBCADLK HJBCADLK HIBCADLK HJBCADLI HJBCADIK CJBDAGLK IGBCADLK CJBDAGLI CJBDAGIK HGBCADLK HGBCADLJ HGBCADJK HGBCADLI HGBCADIK HGBCADIJ CJBDAFLK CIBDAFLK CJBDAFLI CJBDAFIK HFBCADLK CJBDAFLH HJBCAFDK HFBCADLI HFBCADIK HJBCAFDI CGBDAFLK CGBDAFLJ CGBDAFJK CGBDAFLI CGBDAFIK CGBDAFIJ CGBDAFLH HGBCAFDK HGBCAFDJ HGBCAFDI EJBCADLK EIBCADLK EJBCADLI EJBCADIK HEBCADLK HJBCADLE HJBCADEK HEBCADLI HEBCADIK HJBCADEI EGBCADLK EGBCADLJ EGBCADJK EGBCADLI EGBCADIK EGBCADIJ HGBCADLE HGBCADEK HGBCADEJ HGBCADEI CEBDAFLK CJBDAFLE CJBDAFEK CEBDAFLI CEBDAFIK CJBDAFEI HFBCADLE HEBCAFDK HJBCAFDE HEBCAFDI CGBDAFLE CGBDAFEK CGBDAFEJ CGBDAFEI HGBCAFDE".split(" ").reduce((options, row) => {
+  const slots = [...row];
+  options[[...slots].sort().join("")] = Object.fromEntries(thirdPlaceSlotMatches.map((matchId, index) => [matchId, "3" + slots[index]]));
+  return options;
+}, {});
+
+if (Object.keys(thirdPlaceOptions).length !== 495) throw new Error("Missing FIFA Annex C rows");
+
 const stateKey = "qbiowc-picks-v1";
 const state = JSON.parse(localStorage.getItem(stateKey) || '{"matches":{}}');
 const data = window.QBIOWC_DATA || { standings: [], players: {} };
@@ -65,15 +74,16 @@ function thirdPlaceKey(team) {
   return [team.pts, Number(team.gd), team.gf, -team.ga, team.n].join(":");
 }
 
+function bestThirdTeams() {
+  return standings
+    .map((group) => ({ ...group.teams[2], group: group.g }))
+    .filter((team) => team.n)
+    .sort((a, b) => b.pts - a.pts || Number(b.gd) - Number(a.gd) || b.gf - a.gf || a.ga - b.ga || a.n.localeCompare(b.n))
+    .slice(0, 8);
+}
+
 function currentThirds() {
-  return new Set(
-    standings
-      .map((group) => group.teams[2])
-      .filter(Boolean)
-      .sort((a, b) => b.pts - a.pts || Number(b.gd) - Number(a.gd) || b.gf - a.gf || a.ga - b.ga || a.n.localeCompare(b.n))
-      .slice(0, 8)
-      .map(thirdPlaceKey)
-  );
+  return new Set(bestThirdTeams().map(thirdPlaceKey));
 }
 
 function renderStandings() {
@@ -92,6 +102,8 @@ function renderStandings() {
 function save() {
   state.name = document.querySelector("[data-player-name]").value.trim();
   state.email = document.querySelector("[data-player-email]").value.trim();
+  state.boostCountry = document.querySelector("[data-boost-country]").value;
+  delete state.country;
   localStorage.setItem(stateKey, JSON.stringify(state));
 }
 
@@ -106,10 +118,19 @@ function pick(id) {
   return state.matches[id] || {};
 }
 
+function thirdPlaceSlots() {
+  const key = bestThirdTeams().map((team) => team.group).sort().join("");
+  return thirdPlaceOptions[key] || {};
+}
+
+function resolveThirdSlot(value, id) {
+  return /^3[A-L](\/[A-L])+$/.test(value) ? thirdPlaceSlots()[id] || value : value;
+}
+
 function teams(id) {
   for (const round of rounds) {
     const match = round.matches.find((candidate) => String(candidate[0]) === String(id));
-    if (match) return [label(match[1]), label(match[2])];
+    if (match) return [label(resolveThirdSlot(match[1], match[0])), label(resolveThirdSlot(match[2], match[0]))];
   }
   return ["", ""];
 }
@@ -201,6 +222,12 @@ function renderSlot(info) {
   return `<span class="slot">${info.team ? `<img class="flag" src="${info.team.l}" alt="">` : ""}<strong>${escapeHtml(info.main)}</strong><small>${escapeHtml(info.sub)}</small></span>`;
 }
 
+function renderChampion() {
+  const champ = winner(104);
+  const info = slotInfo(champ || "...");
+  return `<div class="champion"><span>champion</span><b>${info.team ? `<img class="flag" src="${info.team.l}" alt="">` : ""}${escapeHtml(info.main)}</b></div>`;
+}
+
 function renderScorers(matchData, id, side, info) {
   const count = Math.max(0, Math.min(8, Number(matchData[side]) || 0));
   const saved = Array.isArray(matchData[side + "Scorers"]) ? matchData[side + "Scorers"] : [];
@@ -217,8 +244,8 @@ function renderScorers(matchData, id, side, info) {
 function renderMatch(match, index, stage) {
   const [id, homeRaw, awayRaw] = match;
   const data = pick(id);
-  const home = label(homeRaw);
-  const away = label(awayRaw);
+  const home = label(resolveThirdSlot(homeRaw, id));
+  const away = label(resolveThirdSlot(awayRaw, id));
   const win = winner(id);
   const tied = data.home !== "" && data.away !== "" && data.home != null && data.away != null && Number(data.home) === Number(data.away);
   const homeInfo = slotInfo(home);
@@ -248,7 +275,7 @@ function render() {
   board.innerHTML = rounds.map((round) => `
     <section class="round">
       <h2>${round.name}<span class="date">${round.date}</span></h2>
-      ${round.name === "final" ? `<div class="champion"><span>champion</span><b>${winner(104) || "..."}</b></div>` : ""}
+      ${round.name === "final" ? renderChampion() : ""}
       ${round.matches.map((match, index) => renderMatch(match, index, round.name)).join("")}
     </section>
   `).join("");
@@ -287,9 +314,29 @@ function show(message) {
   show.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
+function renderBoostCountries() {
+  const boost = document.querySelector("[data-boost-country]");
+  const knockoutTeams = rounds[0].matches
+    .flatMap((match) => teams(match[0]))
+    .map(currentTeam)
+    .filter(Boolean)
+    .map((team) => team.n);
+  boost.innerHTML = `<option value="">pick one</option>${standings
+    .flatMap((group) => group.teams.map((team) => team.n))
+    .filter((team) => knockoutTeams.includes(team))
+    .sort()
+    .map((country) => `<option value="${escapeAttribute(country)}">${escapeHtml(country)}</option>`)
+    .join("")}`;
+}
+
+renderBoostCountries();
 document.querySelector("[data-player-name]").value = state.name || "";
 document.querySelector("[data-player-email]").value = state.email || "";
-document.querySelectorAll("[data-player-name], [data-player-email]").forEach((input) => input.addEventListener("input", save));
+document.querySelector("[data-boost-country]").value = state.boostCountry || state.country || "";
+document.querySelectorAll("[data-player-name], [data-player-email], [data-boost-country]").forEach((input) => {
+  input.addEventListener("input", save);
+  input.addEventListener("change", save);
+});
 document.querySelector("[data-copy]").addEventListener("click", async () => {
   save();
   await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
