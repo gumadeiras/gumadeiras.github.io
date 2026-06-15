@@ -394,9 +394,20 @@ async function copyPicks() {
   await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
 }
 
+function hasAnyScore() {
+  return Object.values(state.matches || {}).some((match) =>
+    match.home !== "" && match.home != null || match.away !== "" && match.away != null
+  );
+}
+
 async function submitPicks() {
   const required = document.querySelectorAll("[required]");
   if ([...required].some((input) => !input.reportValidity())) return;
+  save();
+  if (!hasAnyScore()) {
+    document.querySelector("[data-empty-dialog]").showModal();
+    return;
+  }
   const payload = submissionPayload();
   if (!googleFormReady()) {
     await copyPicks();
@@ -455,6 +466,7 @@ document.querySelector("[data-submit]").addEventListener("click", submitPicks);
 document.querySelector("[data-restore-open]").addEventListener("click", () => document.querySelector("[data-restore-dialog]").showModal());
 document.querySelector("[data-restore-cancel]").addEventListener("click", () => document.querySelector("[data-restore-dialog]").close());
 document.querySelector("[data-restore-apply]").addEventListener("click", restorePicks);
+document.querySelector("[data-empty-close]").addEventListener("click", () => document.querySelector("[data-empty-dialog]").close());
 document.querySelector("[data-reset]").addEventListener("click", () => {
   localStorage.removeItem(stateKey);
   location.reload();

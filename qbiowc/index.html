@@ -303,6 +303,13 @@
       text-transform: uppercase;
     }
 
+    .warning-copy {
+      margin: 0;
+      color: var(--red);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
     .restore-box textarea {
       min-height: 180px;
       resize: vertical;
@@ -840,6 +847,15 @@
       <div class="restore-actions">
         <button class="secondary" type="button" data-restore-cancel>cancel</button>
         <button type="button" data-restore-apply>restore</button>
+      </div>
+    </div>
+  </dialog>
+  <dialog data-empty-dialog>
+    <div class="restore-box">
+      <h2>no scores yet</h2>
+      <p class="warning-copy">Add at least one score before submitting your picks.</p>
+      <div class="restore-actions">
+        <button type="button" data-empty-close>fill out bracket</button>
       </div>
     </div>
   </dialog>
