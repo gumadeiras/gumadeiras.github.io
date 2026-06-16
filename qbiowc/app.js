@@ -68,6 +68,7 @@ const thirdPlaceOptions = "EJIFHGLK HGIDJFLK EJIDHGLK EJIDHFLK EGIDJFLK EGJDHFLK
 if (Object.keys(thirdPlaceOptions).length !== 495) throw new Error("Missing FIFA Annex C rows");
 
 const stateKey = "qbiowc-picks-v1";
+const randomizeLabelKey = "qbiowc-randomize-labels-v1";
 const state = JSON.parse(localStorage.getItem(stateKey) || '{"matches":{}}');
 const data = window.QBIOWC_DATA || { standings: [], players: {} };
 const googleFormConfig = {
@@ -80,6 +81,27 @@ const googleFormConfig = {
     picks: "entry.1841195636"
   }
 };
+const randomizeLabels = [
+  "I trust entropy",
+  "random walk me",
+  "Monte Carlo me",
+  "Boltzmann bracket",
+  "thermal noise picks",
+  "maximum entropy mode",
+  "let diffusion decide",
+  "Brownian bracket",
+  "noise > knowledge",
+  "p = probably",
+  "p-hack my bracket",
+  "null model picks",
+  "Reviewer 2 mode",
+  "control group me",
+  "evolutionary drift",
+  "chemotaxis chose this",
+  "Hamiltonian hope",
+  "free energy minimum",
+  "simulate my shame"
+];
 const standings = data.standings || [];
 const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
 const standingsEl = document.querySelector("[data-standings]");
@@ -557,6 +579,59 @@ function restorePicks() {
   }
 }
 
+function randomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function nextRandomizeLabel() {
+  let remaining;
+  try {
+    remaining = JSON.parse(localStorage.getItem(randomizeLabelKey) || "[]").filter((label) => randomizeLabels.includes(label));
+  } catch {
+    remaining = [];
+  }
+  if (!remaining.length) remaining = [...randomizeLabels];
+  const index = Math.floor(Math.random() * remaining.length);
+  const [label] = remaining.splice(index, 1);
+  localStorage.setItem(randomizeLabelKey, JSON.stringify(remaining));
+  return label;
+}
+
+function randomScore() {
+  return Math.floor(Math.random() * 5);
+}
+
+function randomScorers(count, team) {
+  const players = data.players?.[team?.n] || allPlayers;
+  const pool = players.length ? players : ["own goal"];
+  return Array.from({ length: Math.min(8, count) }, () => randomItem(pool));
+}
+
+function randomizePicks() {
+  state.matches = {};
+  const boostOptions = [...document.querySelectorAll("[data-boost-country] option")].map((option) => option.value).filter(Boolean);
+  rounds.flatMap((round) => orderedMatches(round)).forEach(([id]) => {
+    const [home, away] = teams(id);
+    const homeInfo = slotInfo(home);
+    const awayInfo = slotInfo(away);
+    const homeScore = randomScore();
+    const awayScore = randomScore();
+    state.matches[id] = {
+      home: homeScore,
+      away: awayScore,
+      homeScorers: randomScorers(homeScore, homeInfo.team),
+      awayScorers: randomScorers(awayScore, awayInfo.team)
+    };
+    if (homeScore === awayScore) state.matches[id].advance = Math.random() < 0.5 ? "home" : "away";
+  });
+  state.boostCountry = randomItem(boostOptions);
+  document.querySelector("[data-boost-country]").value = state.boostCountry || "";
+  document.querySelector("[data-randomize]").textContent = nextRandomizeLabel();
+  save();
+  render();
+  show("chaos bracket generated");
+}
+
 function renderBoostCountries() {
   const boost = document.querySelector("[data-boost-country]");
   const knockoutTeams = rounds[0].matches
@@ -598,6 +673,8 @@ document.querySelector("[data-submit-copy]").addEventListener("click", async () 
   show("responses copied");
 });
 document.querySelector("[data-submit-close]").addEventListener("click", () => document.querySelector("[data-submit-dialog]").close());
+document.querySelector("[data-randomize]").textContent = nextRandomizeLabel();
+document.querySelector("[data-randomize]").addEventListener("click", randomizePicks);
 document.querySelector("[data-reset]").addEventListener("click", () => {
   localStorage.removeItem(stateKey);
   location.reload();

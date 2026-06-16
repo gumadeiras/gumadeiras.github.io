@@ -477,6 +477,15 @@
       text-transform: uppercase;
     }
 
+    .randomize-wrap {
+      margin: 18px 0 8px;
+    }
+
+    .randomize-wrap button {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
     .round {
       display: grid;
       align-content: start;
@@ -897,6 +906,9 @@
       </div>
     </section>
 
+    <div class="randomize-wrap">
+      <button type="button" data-randomize></button>
+    </div>
     <p class="scroll-hint">hold shift while scrolling to move across the knockout bracket</p>
     <section class="board" data-board aria-label="2026 World Cup prediction bracket"></section>
 
