@@ -110,16 +110,6 @@
       text-transform: uppercase;
     }
 
-    .ball {
-      width: 22px;
-      height: 22px;
-      border: 3px solid currentColor;
-      border-radius: 50%;
-      background:
-        linear-gradient(90deg, transparent 42%, currentColor 43% 57%, transparent 58%),
-        linear-gradient(0deg, transparent 42%, currentColor 43% 57%, transparent 58%);
-    }
-
     h1 {
       max-width: 820px;
       margin: 14px 0 0;
@@ -127,6 +117,20 @@
       line-height: 0.92;
       letter-spacing: 0;
       text-transform: uppercase;
+    }
+
+    .trophy-mask {
+      display: inline-block;
+      width: 0.4em;
+      height: 1em;
+      background: currentColor;
+      -webkit-mask: url("./assets/trophy-mono.svg") center / contain no-repeat;
+      mask: url("./assets/trophy-mono.svg") center / contain no-repeat;
+    }
+
+    .mark .trophy-mask {
+      width: 13px;
+      height: 32px;
     }
 
     .meta {
@@ -216,6 +220,23 @@
       font-weight: 700;
     }
 
+    .prize-title {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .prize-title img {
+      width: auto;
+      height: 38px;
+      filter:
+        drop-shadow(1px 0 0 var(--ink))
+        drop-shadow(-1px 0 0 var(--ink))
+        drop-shadow(0 1px 0 var(--ink))
+        drop-shadow(0 -1px 0 var(--ink));
+    }
+
     .agent-panel {
       grid-template-columns: minmax(0, 1fr) auto;
       margin-bottom: 18px;
@@ -246,6 +267,23 @@
     .leaderboard h2 {
       margin: 0 0 8px;
       font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .leaderboard-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 4px;
+    }
+
+    .leaderboard-head p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.68rem;
       text-transform: uppercase;
     }
 
@@ -326,6 +364,10 @@
       color: var(--red);
       font-weight: 700;
       line-height: 1.4;
+    }
+
+    .restore-error[hidden] {
+      display: none;
     }
 
     .success-copy {
@@ -740,6 +782,17 @@
       text-transform: uppercase;
     }
 
+    .champion-kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .champion-kicker .trophy-mask {
+      width: 18px;
+      height: 45px;
+    }
+
     .champion b {
       display: inline-grid;
       grid-template-columns: auto 1fr;
@@ -858,7 +911,7 @@
   <main class="shell">
     <header class="topbar">
       <div>
-        <div class="mark"><span class="ball" aria-hidden="true"></span><span>QBio wc / predictions</span></div>
+        <div class="mark"><span class="trophy-mask" aria-hidden="true"></span><span>QBio wc / predictions</span></div>
         <h1>world cup 2026 bracket</h1>
       </div>
       <div class="meta" aria-label="tournament metadata">
@@ -894,7 +947,7 @@
     </section>
 
     <aside class="prize" aria-label="prize">
-      <span>prize pot</span>
+      <span class="prize-title"><img src="./assets/trophy-color.svg" alt=""> prize pot</span>
       <em>QBio glory, lab bragging rights, and something probably edible</em>
       <b>TBD</b>
     </aside>
@@ -908,7 +961,10 @@
     </section>
 
     <section class="leaderboard" aria-label="leaderboard">
-      <h2>leaderboard</h2>
+      <div class="leaderboard-head">
+        <h2>leaderboard</h2>
+        <p data-leaderboard-updated></p>
+      </div>
       <div class="leader-row">
         <b>rank</b><b>bracket name</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
       </div>
@@ -938,7 +994,7 @@
     </div>
 
     <section class="standings" aria-label="current group standings">
-      <h2>current group stage <span class="date">espn snapshot: jun 15, 2026 · 3:09 PM ET</span></h2>
+      <h2>current group stage <span class="date">espn snapshot: jun 16, 2026 · 5:32 PM ET</span></h2>
       <div class="legend" aria-label="standings legend">
         <span>pts = points</span>
         <span>gd = goal difference</span>
@@ -964,7 +1020,8 @@
   <dialog data-restore-dialog>
     <div class="restore-box">
       <h2>restore picks</h2>
-      <textarea class="field" data-restore-json placeholder="paste copied picks json"></textarea>
+      <textarea class="field" data-restore-json placeholder="paste copied response"></textarea>
+      <p class="warning-copy restore-error" data-restore-error hidden></p>
       <div class="restore-actions">
         <button class="secondary" type="button" data-restore-cancel>cancel</button>
         <button type="button" data-restore-apply>restore</button>
@@ -983,7 +1040,7 @@
   <dialog data-submit-dialog>
     <div class="restore-box">
       <h2>picks submitted</h2>
-      <p class="success-copy">You're in. Latest submission per email wins, so you can come back and update later.</p>
+      <p class="success-copy">You're in. Your bracket will appear on the leaderboard after the next update. Latest submission per email wins, so you can come back and update later.</p>
       <div class="restore-actions">
         <button class="secondary" type="button" data-submit-copy>copy responses</button>
         <button type="button" data-submit-close>back to bracket</button>
@@ -992,6 +1049,7 @@
   </dialog>
   <div class="toast" data-toast role="status" aria-live="polite"></div>
 
+  <!-- Trophy SVG: Wikimedia Commons, 0 Noctis 0, CC BY-SA 3.0. -->
   <script src="./data.js"></script>
   <script src="./app.js?v=local-lines"></script>
 </body>

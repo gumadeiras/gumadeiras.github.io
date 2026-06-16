@@ -123,6 +123,7 @@ const standings = data.standings || [];
 const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
 const standingsEl = document.querySelector("[data-standings]");
 const leaderboardEl = document.querySelector("[data-leaderboard]");
+const leaderboardUpdatedEl = document.querySelector("[data-leaderboard-updated]");
 const board = document.querySelector("[data-board]");
 const toast = document.querySelector("[data-toast]");
 
@@ -268,6 +269,9 @@ function escapeHtml(value) {
 }
 
 function renderLeaderboard() {
+  if (leaderboardUpdatedEl) {
+    leaderboardUpdatedEl.textContent = `last updated ${data.leaderboardUpdated || data.updated || "TBD"}`;
+  }
   const rows = [...(data.leaderboard || [])].sort((a, b) =>
     b.points - a.points || b.exact - a.exact || b.scorers - a.scorers || a.bracketName.localeCompare(b.bracketName)
   );
@@ -307,7 +311,7 @@ function renderSlot(info) {
 function renderChampion() {
   const champ = winner(104);
   const info = slotInfo(champ || "...");
-  return `<div class="champion"><span>champion</span><b>${info.team ? `<img class="flag" src="${info.team.l}" alt="">` : ""}${escapeHtml(info.main)}</b></div>`;
+  return `<div class="champion"><span class="champion-kicker"><span class="trophy-mask" aria-hidden="true"></span>champion</span><b>${info.team ? `<img class="flag" src="${info.team.l}" alt="">` : ""}${escapeHtml(info.main)}</b></div>`;
 }
 
 function renderScorers(matchData, id, side, info) {
@@ -586,23 +590,43 @@ async function submitPicks() {
 
 function restorePicks() {
   const raw = document.querySelector("[data-restore-json]").value.trim();
+  const errorEl = document.querySelector("[data-restore-error]");
+  if (errorEl) errorEl.hidden = true;
   try {
     const restored = parseRestoreInput(raw);
-    if (!restored || typeof restored !== "object" || !restored.matches || typeof restored.matches !== "object") throw new Error("bad shape");
+    validateRestoreInput(restored);
     localStorage.setItem(stateKey, JSON.stringify(restored));
     location.reload();
-  } catch {
-    show("could not restore picks");
+  } catch (error) {
+    const message = restoreErrorMessage(error);
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = false;
+    }
+    show("restore failed; copy error below");
   }
 }
 
 function parseRestoreInput(raw) {
+  if (!raw) throw new Error("nothing was pasted");
   try {
     return JSON.parse(raw);
   } catch {}
   const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
   if (fenced) return JSON.parse(fenced[1]);
-  return JSON.parse(raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  if (start < 0 || end <= start) throw new Error("no restore data object found");
+  return JSON.parse(raw.slice(start, end + 1));
+}
+
+function validateRestoreInput(restored) {
+  if (!restored || typeof restored !== "object" || Array.isArray(restored)) throw new Error("restore data must be an object");
+  if (!restored.matches || typeof restored.matches !== "object" || Array.isArray(restored.matches)) throw new Error("missing matches object");
+}
+
+function restoreErrorMessage(error) {
+  return `Restore failed: ${error.message}. Paste this to your agent: output one valid restore response for ${publicUrl}. It must include name, bracketName, email, boostCountry, and a matches object keyed by match numbers 73-104.`;
 }
 
 function randomItem(items) {
