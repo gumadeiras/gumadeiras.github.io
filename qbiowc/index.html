@@ -478,7 +478,25 @@
     }
 
     .randomize-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
       margin: 18px 0 8px;
+    }
+
+    .randomize-label {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--red);
+      border-right: 0;
+      background: var(--card);
+      color: var(--muted);
+      padding: 0 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .randomize-wrap button {
@@ -907,6 +925,7 @@
     </section>
 
     <div class="randomize-wrap">
+      <span class="randomize-label">decision fatigue?</span>
       <button type="button" data-randomize></button>
     </div>
     <p class="scroll-hint">hold shift while scrolling to move across the knockout bracket</p>
