@@ -69,6 +69,7 @@ if (Object.keys(thirdPlaceOptions).length !== 495) throw new Error("Missing FIFA
 
 const stateKey = "qbiowc-picks-v1";
 const randomizeLabelKey = "qbiowc-randomize-labels-v1";
+const publicUrl = "https://gumadeiras.com/qbiowc/";
 const state = JSON.parse(localStorage.getItem(stateKey) || '{"matches":{}}');
 const data = window.QBIOWC_DATA || { standings: [], players: {} };
 const googleFormConfig = {
@@ -648,6 +649,76 @@ function randomizePicks() {
   show("chaos bracket generated");
 }
 
+function agentSlotLabel(raw, id) {
+  const resolved = resolveThirdSlot(raw, id);
+  const team = currentTeam(resolved);
+  if (team) return team.n;
+  return raw.replace(/^W(\d+)$/, "winner of M$1").replace(/^L(\d+)$/, "loser of M$1");
+}
+
+function restoreTemplate() {
+  return {
+    name: "",
+    bracketName: "",
+    email: "",
+    boostCountry: "",
+    matches: Object.fromEntries(rounds.flatMap((round) => round.matches).map(([id]) => [
+      String(id),
+      { home: null, away: null, advance: "", homeScorers: [], awayScorers: [] }
+    ]))
+  };
+}
+
+function buildAgentPrompt() {
+  const matchList = rounds.flatMap((round) => orderedMatches(round).map(([id, home, away]) =>
+    `M${id}: ${agentSlotLabel(home, id)} vs ${agentSlotLabel(away, id)}`
+  )).join("\n");
+
+  return `Help me fill this World Cup 2026 prediction bracket for fun.
+
+Use this page as context: ${publicUrl}
+
+First ask me which theme to use:
+1. pick by best food
+2. pick by cities i want to visit
+3. pick by flag aesthetics
+4. pick by strongest science vibes
+5. pick by best biodiversity
+6. pick by music scenes
+7. pick by vibes only
+
+If I choose vibes only, randomly fill the full bracket without interviewing me.
+
+For every other theme, walk through the matches one at a time. For each match, ask exactly one binary question tailored to that theme and the two teams, use my answer to pick the winner, then assign a plausible score. Make the questions fun, specific, and a little sassy without being mean.
+
+Rules:
+- Keep each interview message short: one sentence max, two options only.
+- Fill every match in the JSON template.
+- Use numbers for home and away scores.
+- If a match is tied, set advance to "home" or "away"; otherwise set advance to "".
+- homeScorers and awayScorers can be empty arrays, or exact player names if you are confident.
+- Pick one boostCountry from a team in the knockout bracket.
+- Keep the interview playful. Lightly roast the choices and the user, but keep it friendly.
+- Before the final JSON, tell me: "copy the JSON below, open restore on the page (${publicUrl}), paste it, and click restore."
+- Then output only valid JSON. No markdown. No explanation.
+
+Match list:
+${matchList}
+
+Restore JSON template to fill:
+${JSON.stringify(restoreTemplate(), null, 2)}`;
+}
+
+async function copyAgentPrompt() {
+  const promptText = buildAgentPrompt();
+  try {
+    await navigator.clipboard.writeText(promptText);
+    show("agent prompt copied");
+  } catch {
+    window.prompt("copy agent prompt", promptText);
+  }
+}
+
 function renderBoostCountries() {
   const boost = document.querySelector("[data-boost-country]");
   const knockoutTeams = rounds[0].matches
@@ -691,6 +762,7 @@ document.querySelector("[data-submit-copy]").addEventListener("click", async () 
 document.querySelector("[data-submit-close]").addEventListener("click", () => document.querySelector("[data-submit-dialog]").close());
 document.querySelector("[data-randomize]").textContent = nextRandomizeLabel();
 document.querySelector("[data-randomize]").addEventListener("click", randomizePicks);
+document.querySelector("[data-agent-prompt]").addEventListener("click", copyAgentPrompt);
 document.querySelector("[data-reset]").addEventListener("click", () => {
   localStorage.removeItem(stateKey);
   location.reload();

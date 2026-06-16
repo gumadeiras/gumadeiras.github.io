@@ -216,6 +216,24 @@
       font-weight: 700;
     }
 
+    .agent-panel {
+      grid-template-columns: minmax(0, 1fr) auto;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .agent-panel h2 {
+      margin: 0 0 4px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .agent-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
     .leaderboard {
       margin-bottom: 18px;
       border: 1px solid var(--ink);
@@ -880,6 +898,14 @@
       <em>glory, bragging rights, and something probably edible</em>
       <b>TBD</b>
     </aside>
+
+    <section class="panel agent-panel" aria-label="agent help">
+      <div>
+        <h2>no soccer knowledge required</h2>
+        <p>give the prompt to your favorite agent. answer silly questions. get a ready-to-paste bracket. use restore above.</p>
+      </div>
+      <button class="secondary" type="button" data-agent-prompt>copy agent prompt</button>
+    </section>
 
     <section class="leaderboard" aria-label="leaderboard">
       <h2>leaderboard</h2>
