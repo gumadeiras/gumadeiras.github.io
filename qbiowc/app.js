@@ -82,23 +82,23 @@ const googleFormConfig = {
   }
 };
 const randomizeLabels = [
-  "I trust entropy",
+  "i trust entropy",
   "random walk me",
-  "Monte Carlo me",
-  "Boltzmann bracket",
+  "monte carlo me",
+  "boltzmann bracket",
   "thermal noise picks",
   "maximum entropy mode",
   "let diffusion decide",
-  "Brownian bracket",
+  "brownian bracket",
   "noise > knowledge",
   "p = probably",
   "p-hack my bracket",
   "null model picks",
-  "Reviewer 2 mode",
+  "reviewer 2 mode",
   "control group me",
   "evolutionary drift",
   "chemotaxis chose this",
-  "Hamiltonian hope",
+  "hamiltonian hope",
   "free energy minimum",
   "simulate my shame"
 ];
