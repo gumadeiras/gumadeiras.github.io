@@ -93,9 +93,8 @@
 
     .topbar {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: 1fr;
       gap: 16px;
-      align-items: end;
       padding: 20px 0 24px;
     }
 
@@ -111,12 +110,12 @@
     }
 
     h1 {
-      max-width: 820px;
       margin: 14px 0 0;
-      font-size: clamp(2.1rem, 6vw, 5.8rem);
+      font-size: clamp(1.8rem, 5.4vw, 4.9rem);
       line-height: 0.92;
       letter-spacing: 0;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .trophy-mask {
@@ -137,7 +136,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: flex-end;
       color: var(--muted);
       font-size: 0.83rem;
       text-transform: uppercase;
