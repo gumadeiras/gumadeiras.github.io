@@ -587,13 +587,22 @@ async function submitPicks() {
 function restorePicks() {
   const raw = document.querySelector("[data-restore-json]").value.trim();
   try {
-    const restored = JSON.parse(raw);
+    const restored = parseRestoreInput(raw);
     if (!restored || typeof restored !== "object" || !restored.matches || typeof restored.matches !== "object") throw new Error("bad shape");
     localStorage.setItem(stateKey, JSON.stringify(restored));
     location.reload();
   } catch {
     show("could not restore picks");
   }
+}
+
+function parseRestoreInput(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch {}
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) return JSON.parse(fenced[1]);
+  return JSON.parse(raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1));
 }
 
 function randomItem(items) {
@@ -685,9 +694,6 @@ First ask me which theme to use:
 4. pick by strongest science vibes
 5. pick by best biodiversity
 6. pick by music scenes
-7. pick by vibes only
-
-If I choose vibes only, randomly fill the full bracket without interviewing me.
 
 For every other theme, walk through the matches one at a time. For each match, ask exactly one binary question tailored to that theme and the two teams, use my answer to pick the winner, then assign a plausible score. Make the questions fun, specific, and a little sassy without being mean.
 
@@ -699,8 +705,8 @@ Rules:
 - homeScorers and awayScorers can be empty arrays, or exact player names if you are confident.
 - Pick one boostCountry from a team in the knockout bracket.
 - Keep the interview playful. Lightly roast the choices and the user, but keep it friendly.
-- Before the final JSON, tell me: "copy the JSON below, open restore on the page (${publicUrl}), paste it, and click restore."
-- Then output only valid JSON. No markdown. No explanation.
+- Before the final restore data, tell me: "copy this response, open restore on the page (${publicUrl}), paste it, and click restore."
+- Then output the restore data as valid JSON. No markdown. No explanation.
 
 Match list:
 ${matchList}
