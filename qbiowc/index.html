@@ -127,9 +127,18 @@
       mask: url("./assets/trophy-mono.svg") center / contain no-repeat;
     }
 
-    .mark .trophy-mask {
-      width: 13px;
+    .mark img {
+      width: auto;
       height: 32px;
+      filter:
+        brightness(0)
+        saturate(100%)
+        invert(13%)
+        sepia(84%)
+        saturate(4681%)
+        hue-rotate(337deg)
+        brightness(80%)
+        contrast(104%);
     }
 
     .meta {
@@ -251,6 +260,50 @@
       margin: 0;
       color: var(--muted);
       font-size: 0.72rem;
+    }
+
+    .quickstart {
+      grid-template-columns: repeat(4, 1fr);
+      align-items: stretch;
+    }
+
+    .quickstart p {
+      margin: 0;
+    }
+
+    .quickstart b {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .quickstart span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .info-stack {
+      display: grid;
+      gap: 18px;
+      order: -1;
+    }
+
+    .info-grid .leaderboard,
+    .info-stack > * {
+      margin-bottom: 0;
+    }
+
+    .info-stack .prize {
+      margin-top: 0;
     }
 
     .leaderboard {
@@ -889,6 +942,17 @@
       }
     }
 
+    @media (min-width: 1040px) {
+      .info-grid {
+        grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.75fr);
+        align-items: start;
+      }
+
+      .info-stack {
+        order: 0;
+      }
+    }
+
     @media (hover: hover) and (pointer: fine) {
       .scroll-hint.show {
         display: block;
@@ -909,7 +973,7 @@
   <main class="shell">
     <header class="topbar">
       <div>
-        <div class="mark"><span class="trophy-mask" aria-hidden="true"></span><span>QBio wc / predictions</span></div>
+        <div class="mark"><img src="./assets/trophy-color.svg" alt=""><span>QBio wc / predictions</span></div>
         <h1>world cup 2026 bracket</h1>
       </div>
       <div class="meta" aria-label="tournament metadata">
@@ -918,6 +982,13 @@
         <span class="chip">one lab champion</span>
       </div>
     </header>
+
+    <section class="panel quickstart" aria-label="quick start">
+      <p><b>1. enter info</b><span>name, bracket name, email, boost country.</span></p>
+      <p><b>2. fill bracket</b><span>scroll to knockout games and enter scores.</span></p>
+      <p><b>3. add scorers</b><span>optional bonus picks appear after scores.</span></p>
+      <p><b>4. submit</b><span>leaderboard updates after the next refresh.</span></p>
+    </section>
 
     <section class="panel" aria-label="entry controls">
       <label>
@@ -944,12 +1015,6 @@
       </div>
     </section>
 
-    <aside class="prize" aria-label="prize">
-      <span class="prize-title"><img src="./assets/trophy-color.svg" alt=""> prize pot</span>
-      <em>QBio glory, lab bragging rights, and something probably edible</em>
-      <b>TBD</b>
-    </aside>
-
     <section class="panel agent-panel" aria-label="agent help">
       <div>
         <h2>no soccer knowledge required</h2>
@@ -958,31 +1023,41 @@
       <button class="secondary" type="button" data-agent-prompt>copy agent prompt</button>
     </section>
 
-    <section class="leaderboard" aria-label="leaderboard">
-      <div class="leaderboard-head">
-        <h2>leaderboard</h2>
-        <p data-leaderboard-updated></p>
-      </div>
-      <div class="leader-row">
-        <b>rank</b><b>bracket name</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
-      </div>
-      <div data-leaderboard></div>
-    </section>
+    <div class="info-grid">
+      <section class="leaderboard" aria-label="leaderboard">
+        <div class="leaderboard-head">
+          <h2>leaderboard</h2>
+          <p data-leaderboard-updated></p>
+        </div>
+        <div class="leader-row">
+          <b>rank</b><b>bracket name</b><b>boost</b><b>pts</b><b>exact</b><b>result</b><b>scorers</b>
+        </div>
+        <div data-leaderboard></div>
+      </section>
 
-    <details class="rules">
-      <summary>rules</summary>
-      <ul>
-        <li><b>Exact score:</b> 3 points.</li>
-        <li><b>Correct result:</b> 1 point if you pick the right winner, or the right draw.</li>
-        <li><b>Scorers:</b> 1 point for each correct scorer, max 3 per match.</li>
-        <li><b>Scorer order does not matter.</b> Pick the people, not the minute.</li>
-        <li><b>Boost country:</b> pick one country. Games involving that country count double.</li>
-        <li><b>Boost applies to the whole match:</b> exact score, result, and scorer points.</li>
-        <li><b>If your boost country is eliminated, the boost is done too.</b></li>
-        <li><b>Knockout draws:</b> if your score is tied, choose who advances.</li>
-        <li><b>Leaderboard:</b> total points first; exact scores are the first tiebreaker, then scorer points.</li>
-      </ul>
-    </details>
+      <div class="info-stack">
+        <aside class="prize" aria-label="prize">
+          <span class="prize-title"><img src="./assets/trophy-color.svg" alt=""> prize pot</span>
+          <em>QBio glory, lab bragging rights, and something probably edible</em>
+          <b>TBD</b>
+        </aside>
+
+        <details class="rules" open>
+          <summary>rules</summary>
+          <ul>
+            <li><b>Exact score:</b> 3 points.</li>
+            <li><b>Correct result:</b> 1 point if you pick the right winner, or the right draw.</li>
+            <li><b>Scorers:</b> 1 point for each correct scorer, max 3 per match.</li>
+            <li><b>Scorer order does not matter.</b> Pick the people, not the minute.</li>
+            <li><b>Boost country:</b> pick one country. Games involving that country count double.</li>
+            <li><b>Boost applies to the whole match:</b> exact score, result, and scorer points.</li>
+            <li><b>If your boost country is eliminated, the boost is done too.</b></li>
+            <li><b>Knockout draws:</b> if your score is tied, choose who advances.</li>
+            <li><b>Leaderboard:</b> total points first; exact scores are the first tiebreaker, then scorer points.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
