@@ -120,8 +120,10 @@ const randomizeLabels = [
   "simulate my shame"
 ];
 const standings = data.standings || [];
+const groupResults = data.groupResults || [];
 const allPlayers = [...new Set(Object.values(data.players || {}).flat())].sort();
 const standingsEl = document.querySelector("[data-standings]");
+const standingsUpdatedEl = document.querySelector("[data-standings-updated]");
 const leaderboardEl = document.querySelector("[data-leaderboard]");
 const leaderboardUpdatedEl = document.querySelector("[data-leaderboard-updated]");
 const board = document.querySelector("[data-board]");
@@ -144,16 +146,43 @@ function currentThirds() {
 }
 
 function renderStandings() {
+  if (standingsUpdatedEl) standingsUpdatedEl.textContent = `updated: ${data.updated || "TBD"}`;
   const liveThirds = currentThirds();
   standingsEl.innerHTML = standings.map((group) => `
     <article class="group">
-      <b><span></span><span>Group ${group.g}</span><span>pts</span><span>gd</span><span>gf</span></b>
+      <b><span></span><span>Group ${group.g}</span><span>form</span><span>pts</span><span>gd</span><span>gf</span></b>
       ${group.teams.map((team, index) => `
         <div class="group-row ${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? "third-live" : ""}">
           <img class="flag" src="${team.l}" alt="">
-          <span class="group-team"><span class="group-team-name">${team.n}</span>${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? `<em class="third-badge">+3rd</em>` : ""}</span><span>${team.pts}</span><span>${team.gd}</span><span>${team.gf}</span>
+          <span class="group-team"><span class="group-team-name">${team.n}</span>${index === 2 && liveThirds.has(thirdPlaceKey(team)) ? `<em class="third-badge">+3rd</em>` : ""}</span>${renderForm(team)}<span>${team.pts}</span><span>${team.gd}</span><span>${team.gf}</span>
         </div>`).join("")}
     </article>`).join("");
+}
+
+function renderForm(team) {
+  const results = groupResults
+    .filter((result) => result.home === team.n || result.away === team.n)
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .map((result) => {
+      const isHome = result.home === team.n;
+      const goalsFor = isHome ? result.homeScore : result.awayScore;
+      const goalsAgainst = isHome ? result.awayScore : result.homeScore;
+      if (goalsFor > goalsAgainst) return "win";
+      if (goalsFor < goalsAgainst) return "loss";
+      return "draw";
+    })
+    .slice(-3);
+  if (!results.length) results.push(...aggregateForm(team));
+  while (results.length < 3) results.push("empty");
+  return `<span class="form-dots" aria-label="form">${results.map((result) => `<i class="${result}"></i>`).join("")}</span>`;
+}
+
+function aggregateForm(team) {
+  return [
+    ...Array(team.w || 0).fill("win"),
+    ...Array(team.d || 0).fill("draw"),
+    ...Array(team.loss || 0).fill("loss")
+  ].slice(0, 3);
 }
 
 function save() {

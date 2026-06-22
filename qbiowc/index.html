@@ -491,6 +491,30 @@
       padding: 2px 5px;
     }
 
+    .legend .form-key {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend .form-key i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .legend .form-key .win {
+      background: var(--green);
+    }
+
+    .legend .form-key .draw {
+      background: var(--gold);
+    }
+
+    .legend .form-key .loss {
+      background: var(--red);
+    }
+
     .third-badge {
       color: var(--green);
       display: inline-flex;
@@ -509,7 +533,7 @@
 
     .groups {
       display: grid;
-      grid-template-columns: repeat(12, 278px);
+      grid-template-columns: repeat(12, 316px);
       gap: 10px;
       width: max-content;
     }
@@ -523,7 +547,7 @@
     .group b,
     .group-row {
       display: grid;
-      grid-template-columns: 24px minmax(0, 1fr) repeat(3, 32px);
+      grid-template-columns: 24px minmax(0, 1fr) 46px repeat(3, 30px);
       gap: 6px;
       align-items: center;
       font-size: 0.68rem;
@@ -538,6 +562,11 @@
     .group b span:nth-child(n + 3),
     .group-row span:nth-child(n + 3) {
       text-align: right;
+    }
+
+    .group b span:nth-child(3),
+    .group-row .form-dots {
+      text-align: center;
     }
 
     .group-row {
@@ -568,6 +597,35 @@
 
     .group-team-name {
       min-width: 0;
+    }
+
+    .form-dots {
+      display: inline-flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .form-dots i {
+      width: 7px;
+      height: 7px;
+      border: 1px solid #aaa;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .form-dots .win {
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .form-dots .draw {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .form-dots .loss {
+      border-color: var(--red);
+      background: var(--red);
     }
 
     .board {
@@ -1062,11 +1120,12 @@
     </div>
 
     <section class="standings" aria-label="current group standings">
-      <h2>group stage <span class="date">updated: jun 20, 2026 · 11:36 PM ET</span></h2>
+      <h2>group stage <span class="date" data-standings-updated></span></h2>
       <div class="legend" aria-label="standings legend">
         <span>pts = points</span>
         <span>gd = goal difference</span>
         <span>gf = goals for</span>
+        <span class="form-key">form = <i class="win"></i> win <i class="draw"></i> draw <i class="loss"></i> loss</span>
         <span>+3rd = currently among best eight third-place teams</span>
       </div>
       <div class="groups-scroll">
