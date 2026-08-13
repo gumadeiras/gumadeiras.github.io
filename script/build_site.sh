@@ -4,12 +4,6 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
-if ! ruby -e 'exit RUBY_VERSION.start_with?("3.2.") ? 0 : 1' >/dev/null 2>&1; then
-  if [[ -x /opt/homebrew/opt/ruby@3.2/bin/ruby ]]; then
-    export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
-  fi
-fi
-
 baseurl=""
 args=("$@")
 
