@@ -16,6 +16,10 @@
 
   {% seo title=false %}
 
+  {% if page.url == '/' %}
+    <script type="application/ld+json">{{ site.person | jsonify }}</script>
+  {% endif %}
+
   {% if page.robots %}
     <meta name="robots" content="{{ page.robots }}">
   {% endif %}
@@ -41,6 +45,16 @@
   <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/atom.xml' | relative_url }}">
   <link rel="alternate" type="application/json" title="{{ site.title }}" href="{{ "/feed.json" | prepend: site.baseurl | prepend: site.url }}" />
+  {% assign markdown_url_last_character = page.url | slice: -1, 1 %}
+  {% if page.url == '/' %}
+    {% assign markdown_url = '/index.md' %}
+  {% elsif markdown_url_last_character == '/' %}
+    {% assign markdown_url = page.url | append: 'index.md' %}
+  {% else %}
+    {% assign markdown_url = page.url | replace: '.html', '' | append: '.md' %}
+  {% endif %}
+  <link rel="alternate" type="text/markdown" href="{{ markdown_url | relative_url }}" />
+  <link rel="alternate" type="text/plain" href="{{ '/llms.txt' | relative_url }}" />
   <link rel="sitemap" type="application/xml" title="sitemap" href="{{ '/sitemap.xml' | relative_url }}" />
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">

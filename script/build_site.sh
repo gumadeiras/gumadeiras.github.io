@@ -25,3 +25,4 @@ export JEKYLL_ENV="${JEKYLL_ENV:-production}"
 ruby script/generate_og_images.rb
 bundle _2.7.1_ exec jekyll build "${args[@]}"
 ruby script/fingerprint_assets.rb _site "${SITE_URL:-https://gumadeiras.com}" "$baseurl"
+bundle _2.7.1_ exec ruby script/generate_markdown.rb _site

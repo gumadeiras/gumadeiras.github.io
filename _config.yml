@@ -2,7 +2,6 @@ site: Gustavo Madeira Santana
 url: "https://gumadeiras.com"
 title: Gustavo Madeira Santana
 description: researcher. computer engineer. neuroscientist.
-logo: /favicon.png
 twitter:
   username: gumadeiras
   card: summary_large_image
@@ -12,6 +11,18 @@ author:
   name: Gustavo Madeira Santana
   avatar: /assets/images/me.jpg
   url: https://gumadeiras.com
+person:
+  "@context": https://schema.org
+  "@type": Person
+  name: Gustavo Madeira Santana
+  description: Researcher, computer engineer, and neuroscientist studying the neural basis of olfactory navigation.
+  url: https://gumadeiras.com
+  jobTitle: PhD candidate
+  sameAs:
+    - https://github.com/gumadeiras
+    - https://scholar.google.com/citations?user=L603SPwAAAAJ
+    - https://www.linkedin.com/in/gumadeiras/
+    - https://x.com/gumadeiras
 permalink: pretty
 
 baseurl: ""
