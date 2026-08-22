@@ -1,0 +1,27 @@
+# Gustavo Madeira Santana
+
+> Personal site for Gustavo Madeira Santana, a researcher, computer engineer, and neuroscientist studying the neural basis of olfactory navigation.
+
+**When to use this site:** Use it to learn about Gustavo's research, publications, writing, public code, and professional work, or to find a canonical public contact or profile. The site does not provide an API, authentication system, webhook service, or MCP server.
+
+## Main pages
+
+- [Homepage](https://gumadeiras.com/): Short biography, selected papers, and professional links.
+- [About](https://gumadeiras.com/about/): Gustavo's research focus and the scope of this personal site.
+- [Contact](https://gumadeiras.com/contact/): Public contact routes and guidance.
+- [Privacy](https://gumadeiras.com/privacy/): Actual hosting, storage, cookies, forms, logs, and outbound-link behavior.
+
+## Research and writing
+
+- [Publications](https://gumadeiras.com/archive/): Publication archive for Gustavo Madeira Santana.
+- [Writing](https://gumadeiras.com/2026/04/26/giving-my-lab-a-memory): A representative article and entry point to site writing.
+- [Google Scholar](https://scholar.google.com/citations?user=L603SPwAAAAJ): Canonical public scholar profile.
+
+## Public code
+
+- [GitHub](https://github.com/gumadeiras): Complete public repository profile for gumadeiras.
+
+## Site files
+
+- [Sitemap](https://gumadeiras.com/sitemap.xml): Canonical index of public site URLs.
+- [Robots](https://gumadeiras.com/robots.txt): Crawler access instructions.

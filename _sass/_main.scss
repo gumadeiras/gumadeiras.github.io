@@ -301,6 +301,11 @@ h1 {
 	text-transform: uppercase;
 }
 
+h1.plain-title {
+	color: inherit;
+	text-transform: none;
+}
+
 h3 {
 	color: var(--medium-text-color);
 }
