@@ -19,7 +19,7 @@
   date: 2025-09-26
   featured: true
   badge:
-    icon: "3"
+    icon: "4"
     text: "citations"
 
 - title: "neurons for divergent odor-coding dynamics!"
@@ -35,7 +35,7 @@
   date: 2025-05-05
   featured: true
   badge:
-    icon: "10"
+    icon: "11"
     text: "citations"
 
 - title: "neurons for mother–baby bonding!"
@@ -67,7 +67,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "124"
+    icon: "125"
     text: "citations"
 
 - title: "even lower low-power ffts"
