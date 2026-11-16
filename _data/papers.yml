@@ -19,7 +19,7 @@
   date: 2025-09-26
   featured: true
   badge:
-    icon: "4"
+    icon: "5"
     text: "citations"
 
 - title: "neurons for divergent odor-coding dynamics!"
@@ -67,7 +67,7 @@
   date: 2021-03-31
   featured: false
   badge:
-    icon: "125"
+    icon: "126"
     text: "citations"
 
 - title: "even lower low-power ffts"
